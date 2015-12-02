@@ -65,6 +65,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-NIO-library" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/02/NIO-library/" class="article-date">
+  <time datetime="2015-12-02T05:15:50.000Z" itemprop="datePublished">2015-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/02/NIO-library/">NIO-library</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NIO_类库简介">NIO 类库简介</h2><h3 id="缓冲区Buffer">缓冲区Buffer</h3><p>Buffer是一个对象，它包含一些要读出或写入的数据。在NIO库中，所有数据都是用缓冲区处理的。任何时候访问数据都是通过缓冲区进行的。</p>
+<p>缓冲区实质上是一个数组。通常它是一个字节数组（ByteBuffer），也可以使用其他种类的数组。</p>
+<ul>
+<li>ByteBuffer</li>
+<li>CharBuffer</li>
+<li>ShortBuffer</li>
+<li>IntBuffer</li>
+<li>LongBuffer</li>
+<li>FloatBuffer</li>
+<li>DoubleBuffer<br>每一个Buffer类都是Buffer接口的子实例。除了ByteBuffer，每一个Buffer类都有完全一样的操作。</li>
+</ul>
+<h3 id="通道Channel">通道Channel</h3><p>Channel是一个通道，可以通过它读取和写入数据。通道与流不同之处在于通道是双向的，流只是在一个方向上移动（一个流必须是InputStream或者是OutputStream的子类）。</p>
+<p>因为通道是全双工的，所以它可以更好的映射操作系统底层的API。特别是UNIX网络编程模型中，底层操作系统通道都是全双工的。从类图上看Channel可以分为两大类；分别是用于网络读写的SelectableChannel和用于文件操作的FileChannel。</p>
+<p>SocketChannel和ServerSocketChannel都是SelectableChannel的子类。</p>
+<h3 id="多路复用器Selector">多路复用器Selector</h3><p>多路复用器提供已经就绪的任务的能力。简单的讲Selector不断轮询注册在其上的Channel，如果某个Channel上面有新的TCP接入、读或者写事件，这个Channel就处于就绪状态，会被Selector轮询出来，然后通过SelectionKey可以获取就绪Channel的集合，进行后续I/O操作。</p>
+<p>一个多路复用器Selector可以轮询多个Channel，由于JDK采用epoll()代替传统的select实现，所以它并没有最大连接句柄的限制。</p>
+<h2 id="NIO服务器主要创建过程">NIO服务器主要创建过程</h2><ul>
+<li><p>打开ServerSocketChannel，用于监听客户端请求连接，它是所有客户端连接的父管道</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServerSocketChannel</span> acceptorSvr = <span class="type">ServerSocketChannel</span>.<span class="keyword">open</span><span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绑定监听端口，设置连接为非阻塞模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">acceptorSvr</span><span class="class">.socket</span>()<span class="class">.bind</span>(<span class="tag">new</span> <span class="tag">InetSocketAddress</span>(<span class="tag">InetAddress</span><span class="class">.getByName</span>("<span class="tag">IP</span>"),<span class="tag">port</span>));</span><br><span class="line"><span class="tag">acceptorSvr</span><span class="class">.configureBlocking</span>(<span class="tag">false</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Reactor线程，创建多路复用器并启动线程</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Selet<span class="subst">or</span> <span class="keyword">select</span><span class="subst">or</span> = <span class="keyword">Select</span><span class="subst">or</span><span class="built_in">.</span>open();</span><br><span class="line"><span class="literal">New</span> Tread(<span class="literal">new</span> ReactorTask())<span class="built_in">.</span>start();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将ServerSocketChannel注册到Reactor线程的多路复用器Selector上，监听ACCEPT事件</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SelectionKey </span>key = acceptorSvr.register(<span class="keyword">selector, </span><span class="keyword">SelectionKey.OP_ACCEPT,ioHandler);</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多路复用器在线程run方法的无限循环体内轮询准备就绪的Key</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = selector.select();</span><br><span class="line"><span class="type">Set</span> selectedKeys = selector.selectedKeys();</span><br><span class="line"><span class="type">Iterator</span> it = selectedKeys.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">  <span class="type">SelectionKey</span> key = (<span class="type">SelectionKey</span>) it.next();</span><br><span class="line">  //<span class="type">TODO</span> deal <span class="keyword">with</span> I/O event</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多路复用器监听到所有新的客户端接入，处理新的接入请求，完成TCP三次握手，建立物理链路</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SocketChannel channel = svrChannel.accept()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置客户端链路为非阻塞模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">channel</span><span class="class">.configureBlocking</span>(<span class="tag">false</span>);</span><br><span class="line"><span class="tag">channel</span><span class="class">.socket</span>()<span class="class">.setReuseAddress</span>(<span class="tag">true</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将新的客户端连接注册到Reactor线程的多路复用器上，监听读操作，用来读取客户端发送的网络消息</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SelectionKey </span>key = socketChannel.register(<span class="keyword">selector, </span><span class="keyword">SelectionKey.OP_READ, </span>ioHandler)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步读取客户端请求消息到缓冲区</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> readNumber = channel.<span class="keyword">read</span>(receivedBuffer);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对ByteBuffer进行编解码，如果有半包指针reset,继续读取后续的报文，将解码成功的消息封装成Task，投递到业务线程池中，进行业务逻辑的编排</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Object</span> message = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">while</span>(buffer.hasRemain())&#123;</span><br><span class="line">  byteBuffer.mark();</span><br><span class="line">  <span class="keyword">Object</span> message = decode(ByteBuffer);</span><br><span class="line">  <span class="keyword">if</span>(message == <span class="keyword">null</span>)&#123;</span><br><span class="line">    byteBuffer.reset();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  messageList.<span class="built_in">add</span>(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!byteBuffer.hasRemain())&#123;</span><br><span class="line">  byteBuffer.<span class="built_in">clear</span>();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  byteBuffer.compact();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(messageList != <span class="keyword">null</span> &amp; !messageList.isEmpty())&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">Object</span> messageE : messageList)&#123;</span><br><span class="line">    handlerTask(messageE);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将POJO对象encode成ByteBuffer，调用SocketChannel的异步write接口，将消息异步发送给客户端</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socketChannel.<span class="keyword">write</span>(<span class="keyword">buffer</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="NIO_客户端创建">NIO 客户端创建</h2><ul>
+<li><p>打开SocketChannel，绑定客户端本地地址</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SocketChannel</span> clientChannel = <span class="type">SocketChannel</span>.<span class="keyword">open</span><span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置SocketChannel为非阻塞模式，同时设置客户端连接的TCP参数</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">clientChannel</span><span class="class">.configureBlocking</span>(<span class="tag">false</span>);</span><br><span class="line"><span class="tag">socket</span><span class="class">.setReuseAddress</span>(<span class="tag">true</span>);</span><br><span class="line"><span class="tag">socket</span><span class="class">.setReceiveBufferSize</span>(<span class="tag">BUFFER_SIZE</span>);</span><br><span class="line"><span class="tag">socket</span><span class="class">.setSendBufferSize</span>(<span class="tag">BUFFER_SIZE</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步连接服务器</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="typename">boolean</span> connectioned = clientChannel.connect(<span class="keyword">new</span> InetSocketAddress(<span class="string">"IP"</span>).<span class="keyword">port</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断连接是否成功，如果连接成功，则直接注册读状态位到多路复用器中，如果当前没有连接成功（异步连接，返回false，说明客户端已经发送sync包，服务端没有返回ack包，物理链路没有建立）</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">if</span>(connectioned)&#123;</span><br><span class="line">  clientChannel.register(<span class="keyword">selector, </span><span class="keyword">SelectorKey.OP_READ, </span>ioHandler)<span class="comment">;</span></span><br><span class="line">&#125;<span class="preprocessor">else</span>&#123;</span><br><span class="line">  clientChannel.register(<span class="keyword">selector, </span><span class="keyword">SelectorKey.OP_CONNECT,ioHandler);</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向Reactor线程的多路复用器注册OP_CONNECT状态位，监听服务端的TCP ACK应答</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">clientChannel.register</span>(<span class="keyword">selector, </span><span class="keyword">SelectorKey.OP_CONNECT, </span>ioHandler)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Reactor线程，创建多路复用器并启动线程</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span><span class="subst">or</span> <span class="keyword">select</span><span class="subst">or</span> = <span class="keyword">Select</span><span class="subst">or</span><span class="built_in">.</span>open();</span><br><span class="line"><span class="literal">New</span> <span class="keyword">Thread</span>(<span class="literal">new</span> ReactorTask())<span class="built_in">.</span>start();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多路复用器在线程run方法的无限循环内轮询准备就绪的Key</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = selector.select();</span><br><span class="line"><span class="type">Set</span> selectedKeys = selector.selectedKeys();</span><br><span class="line"><span class="type">Iterator</span> it = selectedKeys.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">  <span class="type">SelectionKey</span> key= (<span class="type">SelectionKey</span>) it.next();</span><br><span class="line">  // <span class="type">TODO</span> deal <span class="keyword">with</span> I/O event</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收connect事件进行处理</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span><span class="comment">(key.isConnectable()</span>)&#123;</span><br><span class="line">  <span class="comment">//handlerConnect();</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断连接结果，如果连接成功，注册读事件到多路复用器</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span><span class="comment">(channel.finishConnect()</span>)&#123;</span><br><span class="line">  registerRead<span class="comment">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册事件到多路复用器</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">clientChannel</span><span class="class">.register</span>(<span class="tag">selector</span>, <span class="tag">SelectionKey</span><span class="class">.OP_READ</span>,<span class="tag">ioHandler</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步读取客户端请求消息到缓冲区</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> readNumber = channel.<span class="keyword">read</span>(recevicedBuffer);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对ByteBuffer进行编解码，如果有半包消息接收缓冲区Reset，继续读取后续的报文，将解码成功的消息封装成Task，投递到业务线程池中</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Object</span> message = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">while</span>(buffer.hasRemain)&#123;</span><br><span class="line">  byteBuffer.mark();</span><br><span class="line">  <span class="keyword">Object</span> message = decode(byteBuffer);</span><br><span class="line">  <span class="keyword">if</span>(message == <span class="keyword">null</span>)&#123;</span><br><span class="line">    byteBuffer.reset();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  messageList.<span class="built_in">add</span>(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!byteBuffer.hasRemain())&#123;</span><br><span class="line">  byteBuffer.<span class="built_in">clear</span>();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  byteBuffer.compact();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(messageList != <span class="keyword">null</span> &amp;&amp; !messageList.isEmpty())&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">Object</span> messageE : messageList)&#123;</span><br><span class="line">    handlerTask(messageE);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将POJO对象encode成ByteBuffer，调用SocketChannel的异步write接口，将消息异步发送给客户端</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socketChannel.<span class="keyword">write</span>(<span class="keyword">buffer</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/12/02/NIO-library/" data-id="cihonh723005e4wtjx7yug5iu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-NIO-Introduce-Abstractly" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/30/NIO-Introduce-Abstractly/" class="article-date">
@@ -110,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/11/30/NIO-Introduce-Abstractly/" data-id="cihocho8l005fg4tj0kfndr04" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/11/30/NIO-Introduce-Abstractly/" data-id="cihonh725005h4wtjnrfvvl8d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
@@ -173,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/11/30/java-I-O-2/" data-id="cihocho70002ug4tjx2z6yb43" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/11/30/java-I-O-2/" data-id="cihonh70k002u4wtjr1c10jjq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaIO/">JavaIO</a></li></ul>
@@ -240,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/11/27/java-I-O/" data-id="cihocho6w002rg4tj1kwboe3p" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/11/27/java-I-O/" data-id="cihonh70i002r4wtjj8t492bv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaIO/">javaIO</a></li></ul>
@@ -278,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/11/27/markdown/" data-id="cihocho6q002ig4tj2vte4w5a" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/11/27/markdown/" data-id="cihonh70b002i4wtj9vlp6t6a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
@@ -316,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/11/27/hexo-commands/" data-id="cihocho790038g4tjgi02ssw3" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/11/27/hexo-commands/" data-id="cihonh70x00384wtj1qafm2j5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -374,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/06/22/java-exception/" data-id="cihocho6u002ng4tjjh1tv33w" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/06/22/java-exception/" data-id="cihonh70g002n4wtjg972d2iy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exception/">Exception</a></li></ul>
@@ -451,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/06/15/fibonacci-2/" data-id="cihocho7k003lg4tjramlergx" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/06/15/fibonacci-2/" data-id="cihonh714003k4wtjauybuoen" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -617,7 +747,7 @@ public class ProducerConsumerService{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/06/15/producer-consumer-problem/" data-id="cihocho6m002ag4tjtaex0gwv" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/06/15/producer-consumer-problem/" data-id="cihonh706002a4wtjr0t1mwoq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/concurrent/">concurrent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multiThread/">multiThread</a></li></ul>
@@ -712,65 +842,11 @@ Object[] toArray(Object[] a)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/06/10/java 集合类/" data-id="cihocho72002xg4tj8k3046km" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/06/10/java 集合类/" data-id="cihonh70p002x4wtjbcfg760p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Collections/">Collections</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java 终结处理&amp;垃圾回收" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/10/Java 终结处理&垃圾回收/" class="article-date">
-  <time datetime="2015-06-09T23:05:49.000Z" itemprop="datePublished">2015-06-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/10/Java 终结处理&垃圾回收/">Java 终结处理&amp;垃圾回收</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1，finalize()方法</p>
-<p>一旦垃圾回收器准备释放对象占用的存储空间，将首先调用其finalize()方法，并且在下一次来垃圾回收动作发生时，才会真正回收对象占用的内存。</p>
-<ul>
-<li>对象可能不会被回收；</li>
-<li>垃圾回收不等于“析构”;</li>
-<li>垃圾回收只与内存有关；<br>2，垃圾回收</li>
-</ul>
-<p>如果JVM并未面临内存耗尽的情形，它是不会浪费时间去执行垃圾回收已恢复内存的。</p>
-<p>3，垃圾回收器如何工作</p>
-<p>垃圾回收器对于提高对象的创建速度具有明显的效果。</p>
-<ul>
-<li>stop-and-copy</li>
-<li>Mark-and-sweep</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/06/10/Java 终结处理&垃圾回收/" data-id="cihocho8p005kg4tj5wj7pyw8" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -800,7 +876,7 @@ Object[] toArray(Object[] a)
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -809,7 +885,7 @@ Object[] toArray(Object[] a)
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
     </div>
   </div>
 
@@ -818,7 +894,7 @@ Object[] toArray(Object[] a)
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -828,6 +904,10 @@ Object[] toArray(Object[] a)
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/02/NIO-library/">NIO-library</a>
+          </li>
         
           <li>
             <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
@@ -843,10 +923,6 @@ Object[] toArray(Object[] a)
         
           <li>
             <a href="/2015/11/27/markdown/">markdown</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/27/hexo-commands/">Hexo-commands</a>
           </li>
         
       </ul>
