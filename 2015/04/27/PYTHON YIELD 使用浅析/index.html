@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PYTHON YIELD 使用浅析 | Welcome To Napu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="### PYTHON YIELD 初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。您可能听说过，带有 yield 的函数在 Pyth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PYTHON YIELD 使用浅析">
+<meta property="og:url" content="http://zhaohuizhang.github.io/2015/04/27/PYTHON YIELD 使用浅析/index.html">
+<meta property="og:site_name" content="Welcome To Napu's Blog">
+<meta property="og:description" content="### PYTHON YIELD 初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。您可能听说过，带有 yield 的函数在 Pyth">
+<meta property="og:updated_time" content="2015-12-02T04:39:35.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PYTHON YIELD 使用浅析">
+<meta name="twitter:description" content="### PYTHON YIELD 初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。您可能听说过，带有 yield 的函数在 Pyth">
+  
+    <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Welcome To Napu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello world，have a nice day!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaohuizhang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PYTHON YIELD 使用浅析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/PYTHON YIELD 使用浅析/" class="article-date">
+  <time datetime="2015-04-26T20:15:54.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PYTHON YIELD 使用浅析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="dwc-exp-a" class="dw-article-sidebar dw-bluemix"><br><div id="ibm-leadspace-body"><br><br>### <a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/" target="_blank" rel="external">PYTHON YIELD </a><br><br></div><br><div id="dw-summary-area" class="dw-summary-columns"><br><div class="ibm-col-6-4"><br><br>初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。<br><br></div><br></div><br></div><br>您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？<br><br>我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。<br><br>## 如何生成斐波那契數列<br><br>斐波那契（Fibonacci）數列是一个非常简单的递归数列，除第一个和第二个数外，任意一个数都可由前两个数相加得到。用计算机程序输出斐波那契數列的前 N 个数是一个非常简单的问题，许多初学者都可以轻易写出如下函数：<br><br>##### 清单 1. 简单输出斐波那契數列前 N 个数<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        print b<br>        a, b = b, a + b<br>        n = n + 1</pre><br></div><br>执行 fab(5)，我们可以得到如下输出：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; fab(5)<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>结果没有问题，但有经验的开发者会指出，直接在 fab 函数中用 print 打印数字会导致该函数可复用性较差，因为 fab 函数返回 None，其他函数无法获得该函数生成的数列。<br><br>要提高 fab 函数的可复用性，最好不要直接打印出数列，而是返回一个 List。以下是 fab 函数改写后的第二个版本：<br><br>##### 清单 2. 输出斐波那契數列前 N 个数第二版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    L = []<br>    while n &lt; max:<br>        L.append(b)<br>        a, b = b, a + b<br>        n = n + 1<br>    return L</pre><br></div><br>可以使用如下方式打印出 fab 函数返回的 List：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>改写后的 fab 函数通过返回 List 能满足复用性的要求，但是更有经验的开发者会指出，该函数在运行中占用的内存会随着参数 max 的增大而增大，如果要控制内存占用，最好不要用 List<br><br>来保存中间结果，而是通过 iterable 对象来迭代。例如，在 Python2.x 中，代码：<br><br>##### 清单 3. 通过 iterable 对象来迭代<br><br><div class="codesection"><br><pre class="displaycode"> for i in range(1000): pass</pre><br></div><br>会导致生成一个 1000 个元素的 List，而代码：<br><div class="codesection"><br><pre class="displaycode"> for i in xrange(1000): pass</pre><br></div><br>则不会生成一个 1000 个元素的 List，而是在每次迭代中返回下一个数值，内存空间占用很小。因为 xrange 不返回 List，而是返回一个 iterable 对象。<br><br>利用 iterable 我们可以把 fab 函数改写为一个支持 iterable 的 class，以下是第三个版本的 Fab：<br><br>##### 清单 4. 第三个版本<br><br><div class="codesection"><br><pre class="displaycode"> class Fab(object):<br><br>    def <strong>init</strong>(self, max):<br>        self.max = max<br>        self.n, self.a, self.b = 0, 0, 1<br><br>    def <strong>iter</strong>(self):<br>        return self<br><br>    def next(self):<br>        if self.n &lt; self.max:<br>            r = self.b<br>            self.a, self.b = self.b, self.a + self.b<br>            self.n = self.n + 1<br>            return r<br>        raise StopIteration()</pre><br></div><br>Fab 类通过 next() 不断返回数列的下一个数，内存占用始终为常数：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in Fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>然而，使用 class 改写的这个版本，代码远远没有第一版的 fab 函数来得简洁。如果我们想要保持第一版 fab 函数的简洁性，同时又要获得 iterable 的效果，yield 就派上用场了：<br><br>##### 清单 5. 使用 yield 的第四版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        yield b<br>        # print b<br>        a, b = b, a + b<br>        n = n + 1<br><br>‘’’</pre><br></div><br>第四个版本的 fab 和第一版相比，仅仅把 print b 改为了 yield b，就在保持简洁性的同时获得了 iterable 的效果。<br><br>调用第四版的 fab 和第二版的 fab 完全一致：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。<br><br>也可以手动调用 fab(5) 的 next() 方法（因为 fab(5) 是一个 generator 对象，该对象具有 next() 方法），这样我们就可以更清楚地看到 fab 的执行流程：<br><br>##### 清单 6. 执行流程<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f = fab(5)<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 2<br> &gt;&gt;&gt; f.next()<br> 3<br> &gt;&gt;&gt; f.next()<br> 5<br> &gt;&gt;&gt; f.next()<br> Traceback (most recent call last):<br>  File “&lt;stdin&gt;”, line 1, in &lt;module&gt;<br> StopIteration</pre><br></div><br>当函数执行结束时，generator 自动抛出 StopIteration 异常，表示迭代完成。在 for 循环里，无需处理 StopIteration 异常，循环会正常结束。<br><br>我们可以得出以下结论：<br><br>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。<br><br>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br><br>如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断：<br><br>##### 清单 7. 使用 isgeneratorfunction 判断<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from inspect import isgeneratorfunction<br> &gt;&gt;&gt; isgeneratorfunction(fab)<br> True</pre><br></div><br>要注意区分 fab 和 fab(5)，fab 是一个 generator function，而 fab(5) 是调用 fab 返回的一个 generator，好比类的定义和类的实例的区别：<br><br>##### 清单 8. 类的定义和类的实例<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; import types<br> &gt;&gt;&gt; isinstance(fab, types.GeneratorType)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), types.GeneratorType)<br> True</pre><br></div><br>fab 是无法迭代的，而 fab(5) 是可迭代的：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from collections import Iterable<br> &gt;&gt;&gt; isinstance(fab, Iterable)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), Iterable)<br> True</pre><br></div><br>每次调用 fab 函数都会生成一个新的 generator 实例，各实例互不影响：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f1 = fab(3)<br> &gt;&gt;&gt; f2 = fab(5)<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 3<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 5</pre><br></div><br><div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="return_的作用">return 的作用</h2><p>在一个 generator function 中，如果没有 return，则默认执行至函数完毕，如果在执行过程中 return，则直接抛出 StopIteration 终止迭代。</p>
+<div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="另一个例子">另一个例子</h2><p>另一个 yield 的例子来源于文件读取。如果直接对文件对象调用 read() 方法，会导致不可预测的内存占用。好的方法是利用固定长度的缓冲区来不断读取文件内容。通过 yield，我们不再需要编写读文件的迭代类，就可以轻松实现文件读取：</p>
+<h5 id="清单_9-_另一个_yield_的例子">清单 9. 另一个 yield 的例子</h5><p><div class="codesection"></div></p>
+<p><pre class="displaycode"> def read_file(fpath):<br>    BLOCK_SIZE = 1024<br>    with open(fpath, ‘rb’) as f:<br>        while True:<br>            block = f.read(BLOCK_SIZE)<br>            if block:<br>                yield block<br>            else:<br>                return</pre><br><br>以上仅仅简单介绍了 yield 的基本概念和用法，yield 在 Python 3 中还有更强大的用法，我们会在后续文章中讨论。</p>
+<p>注：本文的代码均在 Python 2.7 中调试通过</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/27/PYTHON YIELD 使用浅析/" data-id="cihocho8f0054g4tjpm6b8o44" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-yield/">python yield</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/28/Struts validate验证框架配置使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Struts validate验证框架配置使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/27/Sublime Text 2 插件安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sublime Text 2 插件安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hibernate/">Hibernate</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/fibonacci/">fibonacci</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/socket/">socket</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Zhaohui zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

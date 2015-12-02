@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Welcome To Napu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome To Napu's Blog">
+<meta property="og:url" content="http://zhaohuizhang.github.io/page/5/index.html">
+<meta property="og:site_name" content="Welcome To Napu's Blog">
+<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome To Napu's Blog">
+<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+  
+    <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Welcome To Napu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello world，have a nice day!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaohuizhang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Struts （V-1.3.8） 应用概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/21/Struts （V-1.3.8） 应用概述/" class="article-date">
+  <time datetime="2015-04-21T06:19:59.000Z" itemprop="datePublished">2015-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/21/Struts （V-1.3.8） 应用概述/">Struts （V-1.3.8） 应用概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>struts 为 Apache Jakarta项目的组成部分。项目的创立者希望通过对该项目的研究，改进和提高Java Server Pages(JSP), Servlet、标签库以及面向对象的技术水准。</p>
+<p>Struts名字来源于建筑和旧式飞机中使用的支持金属架。它的目的是为了减少运用MVC设计模式开发Web应用的时间。混合使用Servlets和JSP的优点来建立可扩展的应用。</p>
+<p>Framework, 软件架构的建立是一个复杂而又持续改进的过程，开发者要尽量重用以前的框架。</p>
+<p>MVC是Model-View-Controller是一种常用的设计模式。MVC减弱了业务逻辑接口和数据接口之间的耦合</p>
+<p><img src="http://huoding.com/wp-content/uploads/2011/05/web_mvc.gif" alt=""></p>
+<p>Struts是MVC的一种实现，他将Servlet和JSP标记用作实现的一部分。</p>
+<p><img src="http://s2.sinaimg.cn/bmiddle/535e2244476b8d011e3b1&amp;690" alt=""></p>
+<p>Controller：有一个XML文件Struts-config.xml，与之相关联的是Controller，在Struts中，承担MVC中Controller角色的是一个Servlet，叫ActionServlet。ActionServlet是一个通用的控制组件，这个控制组件提供了处理所有发送到Struts的HTTP请求的入口点。它截取和分发这些请求到相应的动作类（这些动作类都是Action类的子类）。另外控制组件也负责用相应的请求参数填充ActionForm（FormBean），并传给动作类（ActionBean）。动作类用于实现核心商业逻辑，可以访问JavaBean或调用EJB。最后动作类把控制权传给后续的JSP文件，后者生成视图。所有这些控制逻辑利用Struts-config.xml文件来配置。</p>
+<p>View：主要由JSP生成页面完成视图，Struts提供了丰富的JSP标签库：HTML，Bean，Logic，Template等，这有利于充分表现逻辑和程序逻辑。</p>
+<p>Model：模型以一个或多个JavaBean的形式存在。这些Bean分为三类：Action Form，Action，JavaBean or EJB。Action Form通常称为FormBean，封装了来自于Client的请求信息，如表单信息。Action通常称为ActionBean，获取从ActionServlet传来的FormBean，取出并处理FormBean中的相关信息，一般是调用Java Bean 或 EJB等。</p>
+<p>在Struts中，用户的请求一般以<em>.do作为请求服务名，所有的</em>.do请求均被指向ActionSevlet, ActionServlet根据Struts-config.xml中配置信息，将用户请求封装成一个指定名称的FormBean，并将此FormBean传至指定名称的ActionBean，由ActionBean完成相应的业务操作，如文件操作、数据库操作等。每一个*.do均有对应的FormBean名称和ActionBean名称，这些在Struts-config.xml中配置。</p>
+<p>Struts和核心是ActionServlet，ActionSevlet的核心是struts-config.xml.</p>
+<p>当请求来临之时，系统如何知晓要用哪个ActionForm来封装请求数据，又是如何知晓要用哪个Action来处理数据，最后又是如何来应答的呢？找struts-config.xml</p>
+<p>Struts用配置文件来定义应用的一些内容，包括连接的逻辑名称。Struts在启动时读入配置文件，以创建一个所需要的对象数据库。各种Struts组件都引用这个数据库来提供框架的各种服务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Struts （V-1.3.8） 应用概述/" data-id="cihocho7w0041g4tjbhu6asnw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/">MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python 工具总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/21/Python 工具总结/" class="article-date">
+  <time datetime="2015-04-20T18:08:57.000Z" itemprop="datePublished">2015-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/21/Python 工具总结/">Python 工具总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Python网页爬虫工具集">一、Python网页爬虫工具集</h2><p>自己动手获取数据</p>
+<h3 id="1，Scrapy">1，Scrapy</h3><p>Scrapy, a fast high-level screen scraping and web crawling framework for Python.</p>
+<p>《Scrapy轻松定制网络爬虫》</p>
+<p><a href="http://scrapy.org/" target="_blank" rel="external">官网</a>，<a href="https://github.com/scrapy/scrapy" target="_blank" rel="external">Github代码</a></p>
+<h3 id="2，Beautiful_Soup">2，Beautiful Soup</h3><p>You didn’t write that awful page. You’re just trying to get some data out of it. Beautiful Soup is here to help. Since 2004, it’s been saving programmers hours or days of week on quick-turnaround screen scraping projects.</p>
+<p>配合urllib使用，数据分析，清洗和获取的工具</p>
+<p><a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">官网</a></p>
+<h3 id="3，Python-Goose">3，Python-Goose</h3><p>Html Content/Article Extractor, web scrapping lib in Python</p>
+<p>Goose最早是用Java写，现在用Scala重写，是一个Scala项目，Python-Goose用Python重写，依赖于Beautiful Soup。</p>
+<p><a href="https://github.com/grangier/python-goose" target="_blank" rel="external">Github</a>地址</p>
+<h2 id="二、Python文本处理工具集">二、Python文本处理工具集</h2><p>网页爬取数据之后进行基本的文本处理，譬如对于英文来说要最基本的tokenize,对于中文，则需要中文分词，进一步的话，词性标注，句法分析，关键词提取，文本分类，情感分析。</p>
+<h3 id="1，NLTK-Natural_Language_Toolkit">1，NLTK-Natural Language Toolkit</h3><p>NLTK is a leading platform for building Python programs to work with human language data. It provide easy-to-use interface to over 50 corpora and lexical resources such as WordNet, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic, reasoning, and an active discussion forum.</p>
+<p>《Natural Language Processing with Python》 《Python Text Processing with NLTK 2.0 Cookbook》</p>
+<p><a href="http://www.nltk.org/" target="_blank" rel="external">官网</a>，<a href="https://github.com/nltk/nltk" target="_blank" rel="external">Github</a></p>
+<h3 id="2，Pattern">2，Pattern</h3><p>Pattern is a web mining module for the Python programming language. It has tools for data mining, natural language processing, machine learning, network analysis and canvas visualization.</p>
+<p>Pattern由比利时安特卫普大学CLiPS实验室出品，客观的说，Pattern不仅仅是一套文本处理工具，它更是一套web数据挖掘工具，囊括了数据抓取模块（包括Google, Twitter, 维基百科的API，以及爬虫和HTML分析器），文本处理模块（词性标注，情感分析等），机器学习模块(VSM, 聚类，SVM）以及可视化模块等，可以说，Pattern的这一整套逻辑也是这篇文章的组织逻辑. 使用的是它的英文处理模块Pattern.en, 有很多很不错的文本处理功能，包括基础的tokenize, 词性标注，句子切分，语法检查，拼写纠错，情感分析，句法分析等，相当不错。</p>
+<p><a href="http://www.clips.ua.ac.be/pattern" target="_blank" rel="external">官网</a></p>
+<h3 id="3，TextBlob:_Simplified_Text_Processing">3，TextBlob: Simplified Text Processing</h3><p>TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing(NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, translation, and more.</p>
+<p>TextBlob是一个很有意思的Python文本处理工具包，它其实是基于上面两个Python工具包NLKT和Pattern做了封装（TextBlob stands on the giant shoulders of NLTK and pattern, and plays nicely with both），同时提供了很多文本处理功能的接口，包括词性标注，名词短语提取，情感分析，文本分类，拼写检查等，甚至包括翻译和语言检测，不过这个是基于Google的API的，有调用次数限制。TextBlob相对比较年轻，有兴趣的同学可以关注。</p>
+<p><a href="http://textblob.readthedocs.org/en/dev/" target="_blank" rel="external">官网</a>，<a href="https://github.com/sloria/textblob" target="_blank" rel="external">Github</a></p>
+<h3 id="4，MBSP_for_Python">4，MBSP for Python</h3><p>MBSP is a text analysis system based on the TiMBL and MBT memory based learning applications developed at CLiPS and ILK. It provides tools for Tokenization and Sentence Splitting, Part of Speech Tagging, Chunking, Lemmatization, Relation Finding and Prepositional Phrase Attachment.</p>
+<p>MBSP与Pattern同源，同出自比利时安特卫普大学CLiPS实验室，提供了Word Tokenization, 句子切分，词性标注，Chunking, Lemmatization，句法分析等基本的文本处理功能，感兴趣的同学可以关注。</p>
+<p><a href="http://www.clips.ua.ac.be/pages/MBSP" target="_blank" rel="external">官网</a></p>
+<h3 id="5，Gensim:_Topic_modeling_for_humans">5，Gensim: Topic modeling for humans</h3><p>Gensim是一个相当专业的Python包，无论是代码还是文档。</p>
+<p><a href="http://radimrehurek.com/gensim/index.html" target="_blank" rel="external">官网</a>,<a href="https://github.com/piskvorky/gensim" target="_blank" rel="external">Github</a></p>
+<h3 id="6,langid-py:_Stand-alone_language_identification_system">6,langid.py: Stand-alone language identification system</h3><p>语言检测是一个很有意思的话题，不过相对比较成熟，这方面的解决方案很多，也有很多不错的开源工具包，不过对于Python来说。langid目前支持97种语言的检测，提供了很多易用的功能，包括可以启动一个建议的server，通过json调用其API，可定制训练自己的语言检测模型等，可以说是“麻雀虽小，五脏俱全”。</p>
+<p><a href="https://github.com/saffsd/langid.py" target="_blank" rel="external">Github</a></p>
+<h3 id="7,Jieba:_结巴中文分词">7,Jieba: 结巴中文分词</h3><p>结巴分词，其功能包括支持三种分词模式（精确模式、全模式、搜索引擎模式），支持繁体分词，支持自定义词典等，是目前一个非常不错的Python中文分词解决方案。</p>
+<p><a href="https://github.com/fxsjy/jieba" target="_blank" rel="external">Github</a></p>
+<h2 id="三、Python科学计算工具包">三、Python科学计算工具包</h2><p>MATLAB = NumPy+SciPy+Matplotlib+iPython</p>
+<p>《Python科学计算》</p>
+<h3 id="1,NumPy">1,NumPy</h3><p>NumPy几乎是一个无法回避的科学计算工具包，最常用的也许是它的N维数组对象，其他还包括一些成熟的函数库，用于整合C/C++和Fortran代码的工具包，线性代数、傅里叶变换和随机数生成函数等。NumPy提供了两种基本的对象：ndarray（N-dimensional array object）和 ufunc（universal function object）。ndarray是存储单一数据类型的多维数组，而ufunc则是能够对数组进行处理的函数。</p>
+<p><a href="http://www.numpy.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="2，SciPy:_Scientific_Computing_Tools_for_Python">2，SciPy: Scientific Computing Tools for Python</h3><p>SciPy是一个开源的Python算法库和数学工具包，SciPy包含的模块有最优化、线性代数、积分、插值、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科学与工程中常用的计算。其功能与软件MATLAB、Scilab和GNU Octave类似。 Numpy和Scipy常常结合着使用，Python大多数机器学习库都依赖于这两个模块。”—-引用自“Python机器学习库”</p>
+<p><a href="http://www.scipy.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="3，Matplotlib">3，Matplotlib</h3><p>matplotlib is a python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.</p>
+<p><a href="http://matplotlib.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="4，iPython">4，iPython</h3><p>“iPython 是一个Python 的交互式Shell，比默认的Python Shell 好用得多，功能也更强大。 她支持语法高亮、自动完成、代码调试、对象自省，支持 Bash Shell 命令，内置了许多很有用的功能和函式等，非常容易使用。 ” 启动iPython的时候用这个命令“ipython –pylab”，默认开启了matploblib的绘图交互，用起来很方便。</p>
+<p><a href="http://ipython.org/" target="_blank" rel="external">官网</a></p>
+<h2 id="四、Python_机器学习、数据挖掘">四、Python 机器学习、数据挖掘</h2><h3 id="1，scikit-learn:_Machine_Learning_in_Python">1，scikit-learn: Machine Learning in Python</h3><p>scikit-learn is an open source machine learning library for the python programming language. It features various classification, regression and clustering algorithms including support vector machines, logistic regression, naive Bayes, random forests, gradient boosting, k-meams and DBSCAN is designed to interoperate with the python numerical and scientific libraries NumPy and SciPy.</p>
+<p>scikit-learn是一个基于NumPy，SciPy, Matplotlib的开源机器学习工具包，主要涵盖分类，回归和聚类算法，例如SVM，逻辑回归，朴素贝叶斯，随机森林，k-means等算法，代码和文档都非常不错，在许多Python项目中都有应用。</p>
+<p><a href="http://scikit-learn.org" target="_blank" rel="external">官网</a></p>
+<h3 id="2，Pandas:_Python_Data_Analysis_Library">2，Pandas: Python Data Analysis Library</h3><p>Pandas is a software library written for the Python programming language for data manipulation and analysis. In particular, it offers data structures and operations for manipulating numerical tables and time series.</p>
+<p>Pandas也是基于NumPy和Matplotlib开发的，主要用于数据分析和数据可视化，它的数据结构DataFrame和R语言里的data.frame很像，特别是对于时间序列数据有自己的一套分析机制，非常不错。这里推荐一本书《Python for Data Analysis》，作者是Pandas的主力开发，依次介绍了iPython, NumPy, Pandas里的相关功能，数据可视化，数据清洗和加工，时间数据处理等，案例包括金融股票数据挖掘等，相当不错。</p>
+<p><a href="http://pandas.pydata.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="3,mlpy">3,mlpy</h3><p>mlpy is a Python module for Machine Learning built on top of NumPy/SciPy and the GNU Scientific Libraries.</p>
+<p>mlpy provide a wide range of state-of-the-art machine learning methods for supervised and unsupervised problems and it is aimed at finding a reasonable compromise among modularity, maintainability, reproducibility, usability and efficiency. mlpy is multiplatform, it is Open Source, distributed under the GNU General Public License version 3.</p>
+<p><a href="http://mlpy.sourceforge.net/" target="_blank" rel="external">官网</a></p>
+<h3 id="4，MDP：The_Modular_toolkit_for_Data_Processing">4，MDP：The Modular toolkit for Data Processing</h3><p>Modular toolkit for Data Processing (MDP) is a Python data processing framework.<br>From the user’s perspective, MDP is a collection of supervised and unsupervised learning algorithms and other data processing units that can be combined into data processing sequences and more complex feed-forward network architectures.<br>From the scientific developer’s perspective, MDP is a modular framework, which can easily be expanded. The implementation of new algorithms is easy and intuitive. The new implemented units are then automatically integrated with the rest of the library.<br>The base of available algorithms is steadily increasing and includes signal processing methods (Principal Component Analysis, Independent Component Analysis, Slow Feature Analysis), manifold learning methods ([Hessian] Locally Linear Embedding), several classifiers, probabilistic methods (Factor Analysis, RBM), data pre-processing methods, and many others.</p>
+<p><a href="http://mdp-toolkit.sourceforge.net/" target="_blank" rel="external">官网</a></p>
+<h3 id="5，PyBrain">5，PyBrain</h3><p>PyBrain is a modular Machine Learning Library for Python. Its goal is to offer flexible, easy-to-use yet still powerful algorithms for Machine Learning Tasks and a variety of predefined environments to test and compare your algorithms.</p>
+<p>PyBrain is short for Python-Based Reinforcement Learning, Artificial Intelligence and Neural Network Library. In fact, we came up with the name first and later reverse-engineered this quite descriptive “Backronym”.</p>
+<p>PyBrain正如其名，包括神经网络、强化学习(及二者结合)、无监督学习、进化算法。因为目前的许多问题需要处理连续态和行为空间，必须使用函数逼近(如神经网络)以应对高维数据。PyBrain以神经网络为核心，所有的训练方法都以神经网络为一个实例。</p>
+<p><a href="http://www.pybrain.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="6，PyML-machine_Learning_in_Python">6，PyML-machine Learning in Python</h3><p>“PyML是一个Python机器学习工具包，为各分类和回归方法提供灵活的架构。它主要提供特征选择、模型选择、组合分类器、分类评估等功能。”</p>
+<p><a href="http://pyml.sourceforge.net/" target="_blank" rel="external">官网</a></p>
+<h3 id="7，Milk:_Machine_learning_toolkit_in_Python">7，Milk: Machine learning toolkit in Python</h3><p>Its focus is on supervised classification with several classifiers available: SVMs (based on libsvm), k-NN, random forests, decision trees. It also performs feature selection. These classifiers can be combined in many ways to form different classification systems.</p>
+<p><a href="http://luispedro.org/software/milk" target="_blank" rel="external">官网</a></p>
+<h3 id="8，PyMVPA：MulitVariate_Pattern_Analysis(MVPA)_in_Python">8，PyMVPA：MulitVariate Pattern Analysis(MVPA) in Python</h3><p>PyMVPA is a Python package intended to ease statistical learning analyses of large datasets. It offers an extensible framework with a high-level interface to a broad range of algorithms for classification, regression, feature selection, data import and export. It is designed to integrate well with related software packages, such as scikit-learn, and MDP. While it is not limited to the neuroimaging domain, it is eminently suited for such datasets. PyMVPA is free software and requires nothing but free-software to run.</p>
+<p><a href="http://www.pymvpa.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="9，Pyrallel-Parallel_Data_Analytics_in_Python">9，Pyrallel-Parallel Data Analytics in Python</h3><p>“Pyrallel(Parallel Data Analytics in Python)基于分布式计算模式的机器学习和半交互式的试验项目，可在小型集群上运行”</p>
+<p><a href="http://github.com/pydata/pyrallel" target="_blank" rel="external">Github</a></p>
+<h3 id="10,Monte_-_gradient_based_learning_in_Python">10,Monte - gradient based learning in Python</h3><p>“Monte (machine learning in pure Python)是一个纯Python机器学习库。它可以迅速构建神经网络、条件随机场、逻辑回归等模型，使用inline-C优化，极易使用和扩展。”</p>
+<p><a href="http://montepython.sourceforge.net" target="_blank" rel="external">官网</a></p>
+<h3 id="11，Theano">11，Theano</h3><p>“Theano 是一个 Python 库，用来定义、优化和模拟数学表达式计算，用于高效的解决多维数组的计算问题。Theano的特点：紧密集成Numpy；高效的数据密集型GPU计算；高效的符号微分运算；高速和稳定的优化；动态生成c代码；广泛的单元测试和自我验证。自2007年以来，Theano已被广泛应用于科学运算。theano使得构建深度学习模型更加容易，可以快速实现多种模型。</p>
+<p><a href="http://deeplearning.net/software/theano/" target="_blank" rel="external">官网</a>，<a href="https://github.com/Theano/Theano" target="_blank" rel="external">Github</a></p>
+<h3 id="12,Pylearn2">12,Pylearn2</h3><p>“Pylearn2建立在theano上，部分依赖scikit-learn上，目前Pylearn2正处于开发中，将可以处理向量、图像、视频等数据，提供MLP、RBM、SDA等深度学习模型。</p>
+<p><a href="http://deeplearning.net/software/pylearn2/" target="_blank" rel="external">官网</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Python 工具总结/" data-id="cihocho89004lg4tjzyq7e3ek" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全栈工程师/">全栈工程师</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文本处理/">文本处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学计算/">科学计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-网络爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/20/网络爬虫/" class="article-date">
+  <time datetime="2015-04-19T21:38:14.000Z" itemprop="datePublished">2015-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/20/网络爬虫/">网络爬虫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习要求"><strong>学习要求</strong></h1><ol>
+<li>基本的爬虫工作原理；</li>
+<li>基本的http抓取工具，scrapy</li>
+<li>Bloom Filter: Bloom</li>
+<li>分布式爬虫：<a href="https://github.com/nvie/rq" target="_blank" rel="external">python-rq</a></li>
+<li>rq和Scrapy的结合：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external">scrapy-redis</a></li>
+<li>后续处理，网页分析：<a href="https://github.com/grangier/python-goose" target="_blank" rel="external">python-goose</a></li>
+</ol>
+<h3 id="爬虫的工作原理">爬虫的工作原理</h3><p>以人民日报为例：<a href="http://www.renminribao.com" target="_blank" rel="external">http://www.renminribao.com</a></p>
+<p>基本流程如下：伪代码</p>
+<pre>import Queue
+
+initial_page = "http://www.renminribao.com"
+url_open = Queue.Queue()
+seen = set()
+seen.insert(initial_page)
+url_queue.put(initial_page)
+
+while(True):
+    if url_queue.size()&gt;0:
+        current_url = url_queue.get()
+        store(current_url)
+        for next_url in extract_urls(current_url):
+            if next_url not in seen:
+                seen.put(next_url)
+                url_queue.put(next_url)
+            else:
+                break</pre>
+
+<h3 id="效率">效率</h3><p>N个网络链接，判重的复杂度N*log(N)，python的set实现是hash，太慢</p>
+<p>通常的判重，Bloom Filter。它是一种hash的方法，但是它的特点是，它可以使用固定的内存（不随URL的数量而增长）以O(1)的效率判定URL是否已经在set中。<a href="http://billmill.org/bloomfilter-tutorial/" target="_blank" rel="external">实例</a></p>
+<h3 id="集群化抓取">集群化抓取</h3><p>slave master模式，url_queue 放到master上，所有的slave都可以通过网络跟master通信，每当一个slave完成下载一个网页，就向master请求一个新的网页来抓取，每次slave新抓取到一个网页，就把这个网页上所有链接送到master的queue里去。同样，bloom filter也放到master上，但是master只发送确定没有被访问过的URL给slave。Bloom Filter放到master的内存里，而被访问过的URL放到master上的Redis里，这样保证所有操作都是O(1)，<a href="http://redis.io/documentation" target="_blank" rel="external">LINSERT – Redis</a></p>
+<p>在各个slave上装好scrapy，在master装好Redis和rq作为分布式队列。</p>
+<p><pre>#slave.py<br>current_url = request_from_master()<br>to_send = []<br>for next_url in extract_urls(current_url):<br>    to_send.append(next_url)<br>store(current_url)<br>send_to_master(to_send)</pre></p>
+<p>#master.py</p>
+<p>distributed_queue = DistributedQueue()<br>bf = BloomFilter()</p>
+<p>initial_pages = ‘www.renminribao.com’</p>
+<p>while(True):<br>    if request == ‘GET’<br>        if distributed_queue.size()&gt;0:<br>            send(distributed_queue.get())<br>        else:<br>            break<br>    elif request == ‘POST’<br>        bf.put(request.url)<br>已经有现成的例子：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external"><span class="author">arkrho</span><span class="path-divider">/</span><strong>scrapy-redis</strong></a></p>
+<h3 id="展望及后处理">展望及后处理</h3><p>1，有效地存储（数据库应该怎样安排）</p>
+<p>2，有效的判重（网页内容判重）</p>
+<p>3，有效的信息提取（抽取有用信息）</p>
+<p>4，及时更新（预测网页多久更新一次）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/20/网络爬虫/" data-id="cihocho4u0009g4tjtamn0dn9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-rq/">python-rq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python scrapy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/python scrapy/" class="article-date">
+  <time datetime="2015-04-14T05:41:23.000Z" itemprop="datePublished">2015-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/14/python scrapy/">python scrapy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="python网络爬虫入门"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MjEyNTA5Mw==&amp;mid=206006839&amp;idx=1&amp;sn=568201291c68761da6cf873c1a7c5ef4&amp;scene=1&amp;key=2e5b2e802b7041cff91e825029c4e8dffd7e57e0850ce3f6ceddf95fa83fc9ef1a791f79976a57d5d12b17ba4373880d&amp;ascene=1&amp;uin=NTQ2NzM3NjAw&amp;devicetype=webwx&amp;version=70000001&amp;pass_ticket=JB%2FEpXYFNKiCkydl90TMnZcFgfueNnKbRfxBhEiBP5NJ5bt3KKdkREjW664WzO%2Fs" title="python网络爬虫入门" target="_blank" rel="external">python网络爬虫入门</a></h1><h2 id="学习要求"><strong>学习要求</strong></h2><ol>
+<li>基本的爬虫工作原理；</li>
+<li>基本的http抓取工具，scrapy</li>
+<li>Bloom Filter: Bloom</li>
+<li>分布式爬虫：<a href="https://github.com/nvie/rq" target="_blank" rel="external">python-rq</a></li>
+<li>rq和Scrapy的结合：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external">scrapy-redis</a></li>
+<li>后续处理，网页分析：<a href="https://github.com/grangier/python-goose" target="_blank" rel="external">python-goose</a></li>
+</ol>
+<h3 id="爬虫的工作原理">爬虫的工作原理</h3><p>以人民日报为例：<a href="http://www.renminribao.com" target="_blank" rel="external">http://www.renminribao.com</a></p>
+<p>基本流程如下：伪代码</p>
+<pre>import Queue
+
+initial_page = "http://www.renminribao.com"
+url_open = Queue.Queue()
+seen = set()
+seen.insert(initial_page)
+url_queue.put(initial_page)
+
+while(True):
+    if url_queue.size()&gt;0:
+        current_url = url_queue.get()
+        store(current_url)
+        for next_url in extract_urls(current_url):
+            if next_url not in seen:
+                seen.put(next_url)
+                url_queue.put(next_url)
+            else:
+                break</pre>
+
+<h3 id="效率">效率</h3><p>N个网络链接，判重的复杂度N*log(N)，python的set实现是hash，太慢</p>
+<p>通常的判重，Bloom Filter。它是一种hash的方法，但是它的特点是，它可以使用固定的内存（不随URL的数量而增长）以O(1)的效率判定URL是否已经在set中。<a href="http://billmill.org/bloomfilter-tutorial/" target="_blank" rel="external">实例</a></p>
+<h3 id="集群化抓取">集群化抓取</h3><p>slave master模式，url_queue 放到master上，所有的slave都可以通过网络跟master通信，每当一个slave完成下载一个网页，就向master请求一个新的网页来抓取，每次slave新抓取到一个网页，就把这个网页上所有链接送到master的queue里去。同样，bloom filter也放到master上，但是master只发送确定没有被访问过的URL给slave。Bloom Filter放到master的内存里，而被访问过的URL放到master上的Redis里，这样保证所有操作都是O(1)，<a href="http://redis.io/documentation" target="_blank" rel="external">LINSERT – Redis</a></p>
+<p>在各个slave上装好scrapy，在master装好Redis和rq作为分布式队列。</p>
+<p><pre>#slave.py<br>current_url = request_from_master()<br>to_send = []<br>for next_url in extract_urls(current_url):<br>    to_send.append(next_url)<br>store(current_url)<br>send_to_master(to_send)</pre></p>
+<p>#master.py</p>
+<p>distributed_queue = DistributedQueue()<br>bf = BloomFilter()</p>
+<p>initial_pages = ‘www.renminribao.com’</p>
+<p>while(True):<br>    if request == ‘GET’<br>        if distributed_queue.size()&gt;0:<br>            send(distributed_queue.get())<br>        else:<br>            break<br>    elif request == ‘POST’<br>        bf.put(request.url)<br>已经有现成的例子：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external"><span class="author">arkrho</span><span class="path-divider">/</span><strong>scrapy-redis</strong></a></p>
+<h3 id="展望及后处理">展望及后处理</h3><p>1，有效地存储（数据库应该怎样安排）</p>
+<p>2，有效的判重（网页内容判重）</p>
+<p>3，有效的信息提取（抽取有用信息）</p>
+<p>4，及时更新（预测网页多久更新一次）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/14/python scrapy/" data-id="cihocho6j0024g4tjmhozf1kh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/srcapy/">srcapy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hibernate/">Hibernate</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/fibonacci/">fibonacci</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/socket/">socket</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Zhaohui zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

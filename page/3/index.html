@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Welcome To Napu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome To Napu's Blog">
+<meta property="og:url" content="http://zhaohuizhang.github.io/page/3/index.html">
+<meta property="og:site_name" content="Welcome To Napu's Blog">
+<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome To Napu's Blog">
+<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+  
+    <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Welcome To Napu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello world，have a nice day!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaohuizhang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-对象入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/12/对象入门/" class="article-date">
+  <time datetime="2015-05-12T06:31:01.000Z" itemprop="datePublished">2015-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/12/对象入门/">对象入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>OOP（Object-oriented programming）</p>
+<p>1，抽象的进步</p>
+<p>所有的编程语言的最终目的都是提供一种“抽象”方法。汇编语言是对基础机器的少量抽象，后来许多“命令式”语言（FORTRAN，BASIC，C）是对汇编语言的抽象。与汇编语言相比，这些语言已有了长足的进步，但它们的抽象原理依然要求我们着重考虑计算机的结构，而非考虑问题本身的结构。</p>
+<p>我们将问题空间的元素以及它们在方案空间的表示物成为“对象”（Object）。SmallTalk的五大特征，这是第一种成功的面相对象的程序设计语言，也是Java语言的基础：</p>
+<ol>
+<li>所有的东西都是对象。对象可以想象成一种新型的变量。</li>
+<li>程序是一大堆对象的集合。通过消息传递，个对象知道自己该做些什么。为了面向对象发出请求，需向那个对象发送一条消息。</li>
+<li>每个对象都有自己的存储空间，可容纳其他对象。或者说通过封装现有对象可制作出新型对象。</li>
+<li>每个对象都有一种类型。每个对象都是某一个类的一个实例，其中Class 和 Type 是同义词。一个类的重要特征是“能够将什么消息发送给它”。</li>
+<li>同一类的所有对象能够接受相同的信息。对象的“可替代性”<br>2，对象的接口</li>
+</ol>
+<p>我们向对象发出的请求是通过它的的接口定义的，对象的类型和类则规定了它的接口形式。“类型”和“接口”的等价或对应关系是面向对象程序设计的基础。</p>
+<p>3，实现方案的隐藏</p>
+<p>客户程序员：收集一个充斥着各种类的编程工具箱，以便能够快速的开发符合自己要求的东西。</p>
+<p>类创建者：从头构建一个类，只向客户程序员开放有必要开放的东西（接口），其他所有细节都隐藏起来。</p>
+<p>“接口”（Interface）规定了可对一个特定的对象发出哪些请求。然而，必须在某个地方存放着一些代码以便满足这些请求。这些代码以及哪些隐藏起来的数据叫做“隐藏的实现”。</p>
+<p>若是任何人都能够使用一个类的所有成员，那么客户程序员可对那个类做任何事情，没有办法强制他们遵守任何约束。有两方面的原因促使我们控制成员的访问。</p>
+<p>防止程序员接触他们不该接触的东西，通常是内部数据类型的设计思想。</p>
+<p>允许库设计人员修改内部结构，不用担心它会对客户程序员造成什么影响。接口与实现方法早已分开，并分受到保护，用户只需要重新连接一下就好。</p>
+<p>Java采用三个显示（明确）关键字以及一个隐式（暗示）关键字来设置类边界：public, private, protected以及暗示性的friendly。若没有明确指定其他关键字，则默认为后者。这些关键字的使用和含义相当直观，它们决定了谁能够使用后续的定义内容。“public”意味着后续的定义任何人均可使用。“private”意味着除了自己、类型创建者以及那个类型的内部函数成员，其他任何人都不能访问后续的定义信息。private在你与客户程序员之间竖起了一堵墙。若有人想访问私有变量成员，就会得到一个编译错误。“friendly”涉及“包装”或“封装”的概念，若某样东西是友好的，意味着它只能在这个包装范围内使用（包装访问）。“protected”与“private”相似，只是一个继承的类可访问受保护的成员，但不能访问私有成员</p>
+<p>4，方案的重复使用</p>
+<p>代码或设计方案的重复使用是面向对象程序设计提供的最伟大的一种杠杆。</p>
+<p>在现有类的基础上组织一个新类—-组织。新类的成员对象通常设为“私有”，使用这个类的客户程序员不能访问它们，这样我们可以不干扰客户代码的前提下，从容的修改那些成员。</p>
+<p>由于继承的重要性，所以在面向对象的程序设计中，它通常被重点强调。“继承应当随处可见”，沿用这种思想的设计将是非常笨拙的，会大大增加程序的复杂程度。相反，新建类的时候，首先考虑“组织”对象，这样做显得更加简单和灵活。</p>
+<p>5，继承：重新使用接口</p>
+<p>继承不完全等同于克隆。若原始类（基础类，父类，超类）发生变化，修改过的“克隆类”（继承类或子类）也会反映这些变化。通过extends关键字来实现。</p>
+<p>使用继承时，相当于创建了一个新类。这个新类不仅包含了现有类型的所有成员（尽管private 成员被隐藏 起来，且不能访问），但更重要的是，它复制了基础类的接口。</p>
+<p>5.1 改善基础类</p>
+<p>尽管extends 关键字暗示着我们要为接口“扩展”新功能，但实情并非肯定如此。为区分我们的新类，第二 个办法是改变基础类一个现有函数的行为。我们将其称作“改善”那个函数。 为改善一个函数，只需为衍生类的函数建立一个新定义即可。我们的目标是：“尽管使用的函数接口未变， 但它的新版本具有不同的表现”。</p>
+<p>5.2 等价于类似的关系</p>
+<p>我们通常认为基础类和衍生类之间存在一种“等价”关系——因为我们可以理直气壮地说：“圆 就是一种几何形状”。</p>
+<p>但在许多时候，我们必须为衍生类型加入新的接口元素。所以不仅扩展了接口，也创建了一种新类型。这种 新类型仍可替换成基础类型，但这种替换并不是完美的，因为不可在基础类里访问新函数。我们将其称作 “类似”关系；新类型拥有旧类型的接口，但也包含了其他函数，所以不能说它们是完全等价的。</p>
+<p>6，多形对象的互换作用</p>
+<p>通常，继承最终以创建一系列类收场，所有类都建立在统一的接口基础之上。</p>
+<p>我们将这种把衍生类当做它的基础类型处理的过程叫做Upcasting。其中cast是指根据一个想成的模型创建；而Up表明继承的方向是从上面来的。</p>
+<p>上溯造型的方法用来避免去调查准确类型的一个好办法。</p>
+<p>6.1 动态绑定</p>
+<p>将一条消息发送给对象时，如果并不知道对方的具体类型是什么，但采取的行动同样是正确的，这种情况就叫做“多形性”。对面向对象的程序设计语言来说，它们用以实现多形性的方法叫做“动态绑定”。</p>
+<p>6.2 抽象的基础类和接口</p>
+<p>我们经常希望基础类能够给自己的衍生类提供一个接口。使用“abstract”关键字，如果有人试图创建抽象类的一个对象，编译器会阻止他们。可以用“abstract”关键字描述一个尚未实现的方法，作为“根”使用。继承抽象类的衍生类必须实现abstract方法，不然也会变成抽象类。通过创建一个抽象方法，我们可以将一个方法置入接口中，不必再为那个方法提供可能毫无意义的主题代码。</p>
+<p>Interface（接口）关键字将抽象类的概念更延伸了一步，它完全禁止了所有的函数定义。“接口”是一种相当有效和常用的工具，另外如果自己愿意，可以将多个接口合并成在一起。</p>
+<p>7，对象的创建和存在的时间</p>
+<p>对象的创建及破坏方式，对象需要的数据在哪？如何控制对象的“存在时间”呢？</p>
+<p>C++ 认为程序的执行效率是最重要的一个问题，所以它允许程序员做出选择。为获得最快的运行速度，存储以及存在时间可在编写程序时指定，只需将对象放置在堆栈或者静态存储区域即可。这样便为存储空间的分配和释放提供了一个优先级。某种情况下这种优先级是非常有价值的。</p>
+<p>在一个内存池中动态的创建对象，该内存池也叫“堆”或“内存堆”。若采用这种方式，除非进入运行期，否则根本不知道到底需要多少个对象，也不知道它们的存在时间有多长，以及准确的类型是什么？</p>
+<p>存储空间的管理是在运行期动态进行的，所以在内存堆里分配存储空间的时间比在堆栈里创建的时间长的多。</p>
+<p>C++允许我们决定是在写程序时创建对象，还是在运行时创建对象，这种控制方法更加灵活。对象的生存时间“Lifttime”。若在堆栈或者静态存储空间里创建一个对象，编译器会判断对象的持续时间有多长，会到时自动“破坏”或者“清除”它。程序员可用两种方式破会一个对象：用程序话方法来决定何时破坏对象，或者利用由运行环境提供的一种“垃圾收集器”的特性，自动寻找那些不再使用的对象，并将其清除。</p>
+<p>7.1 集合与继承器</p>
+<p>集，队列，散列表，数，堆栈等等。所有的集合都提供了相应的读写功能。Push，Add功能。</p>
+<p>继承器（Iterator），它属于一种对象，负责选择集合内的元素，并把它们提供给继承器的用户。最早的标准继承器（Enumeration），java1.2中添加Iteration。</p>
+<p>根据具体的需求选择集合类型。</p>
+<p>7.2 单根结构</p>
+<p>在Java中所有类都继承于Object类，单根结构有很多优点：</p>
+<ul>
+<li>都有相同的类型</li>
+<li>不会判断不出一个对象的类型</li>
+<li>方便省事，适用于新手，我们可以更方便的实现一个垃圾收集器<br>7.3 集合库与方便使用集合</li>
+</ul>
+<p>下塑造性与模板/通用性</p>
+<p>Downcasting。从一个集合中提取对象句柄时，必须用某些方法记住它，以保证下塑造性的正确进行。利用参数化类型，定制集合。</p>
+<p>7.4 对象清除</p>
+<p>在Java中，垃圾收集器在设计时已考虑到了内存的释放问题。垃圾收集器“知道”一个对象在什么时候不再使用，让后会自动释放那个对象占据的内存空间，采用这种方式，另外加上所有对象都从单根Object继承的事实，而且由于我们只能在内存堆中以一种方式创建对象，所以Java的编程要比C++ 的编程简单得多。</p>
+<p>垃圾收集器对效率的影响</p>
+<p>Java是在运行时动态的创建对象，C++则是在堆栈中创建对象。在堆栈中创建对象是为对象分配存储空间最有效的一种方式，也是释放那些空间最有效的一种方式。在内存堆（Heap）中创建对象可能要付出昂贵的代价，如果总是从同一基础类继承，并使用所有函数调用都具有“同质多形”特征，那么也不可避免地需要付出一定的代价。</p>
+<p>8 违例控制：解决错误</p>
+<p>“违例控制”是将错误控制方案内置到程序设计语言中，有时甚至内建到操作系统内。“Exception”特殊的对象，从产生错误的地方抛出。Java中的为例控制模块从一开始就封装好的，所以必须使用它。</p>
+<p>9 多线程</p>
+<p>在计算机编程中，一个最基本的概念就是同时对多个任务加以控制。最早是“中断服务例程”，主进程暂时通过硬件级的中断实现的。很难移植，造成了另一类的代价高昂的问题。中断对于那些实时性很强的任务来说是必要的。但还存在其他许多问题，，它们只要求将问题划分进入独立运行的程序片断中，使整个程序快速更迅速地响应用户的请求。在一个程序中，这些独立运行的片断叫做“线程”，利用它编程的概念叫做“多线程处理”。多线程处理一个常见的例子就是用户界面。利用线程，用户可以按下一个按钮，然后程序会立即做出响应，而不是让用户等待程序完成当前任务后再开始响应。最开始，线程只是用于分配单个处理器的处理时间的一种工具。但假如操作系统支持多个处理器，那么每个线程都可以分配给一个不同的处理器，真正进入“并行计算”状态。从程序设计语言的角度看，多线程操作最优价值的特性之一就是程序员不必关系到底使用多少个处理器。程序在逻辑意义上被划分出多个线程。多线程处理的问题：共享资源。一个线程可以将资源锁定，在完成了它的任务后，再解开这个锁，使其他线程可以接着使用同样的资源。</p>
+<p>Java的多线程机制已经内建在语言中了，这使一个可能较复杂的问题简单起来。对多线程支持是在对象这一级支持的，所以一个执行线程可以表达为一个对象。Java也提供了有限的资源锁定方案。它能锁定任何对象占用的内存，所以同一时间只能有一个线程使用特定的内存空间。未达到这个目的使用synchronized关键字。其他类型的资源必须有程序员明确锁定，这通常要求程序员创建一个对象，用它代表一种锁，所有线程在访问那个资源是都必须检查这个锁。</p>
+<p>10，永久性</p>
+<p>创建一个对象后，只要我们需要，它就会一直存在下去。但在程序的运行结束后，对象的生存期也宣告结束。</p>
+<p>11，分析与设计</p>
+<p>对象是什么？（怎样将自己的项目分割成组件）</p>
+<p>它们的接口是什么？（需要将什么消息发给每一个对象）</p>
+<p>阶段0 ，计划：决定后面的过程，有阶段性的工作任务。</p>
+<p>阶段1，要制作什么：建立需求分析和系统规格，估算出时间。</p>
+<p>阶段2，如何创建：必须拿出一套设计方案，并解释其中包含各类对象在外观上是什么样子，以及相互间是如何沟通的。此时用“UML”。</p>
+<p>阶段3，开始创建：先拿出一套较为全面的方案，使其尽可能的设想周全。</p>
+<p>阶段4，校订：改变。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/12/对象入门/" data-id="cihocho5i0010g4tj63a0q3zs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HashMap 和 HashTable的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/11/HashMap 和 HashTable的区别/" class="article-date">
+  <time datetime="2015-05-11T06:03:57.000Z" itemprop="datePublished">2015-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/11/HashMap 和 HashTable的区别/">HashMap 和 HashTable的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，类的定义</p>
+<p><pre>Public class Hashtable extends Dictionary implements Map, Cloneable, java.io.Serializable</pre></p>
+<p>Public class HashMap extends AbstractMap implements Map, Cloneable, Serializable<br>可见Hashtable继承自Dictionary而HashMap继承自AbstractMap</p>
+<p>Hashtable的put方法</p>
+<p><pre>public synchronized V put(K key, V value){<br>    if(value == null){<br>    throws new NullPointerException();<br> }<br>    Entry tab[] = table;<br>    int hash = key.hashCode();<br>    int index = (hash $ 0x7FFFFFFF)% tab.length;<br>    for(Entry e = tab[index]; e != null; e=e.next){<br>        if((e.hash == hash)&amp;&amp;e.key.equals(key)){<br>        V old = e.value;<br>        e.value = value;<br>        return old;<br>    }<br>  }<br>    modCount++;<br>    if(count &gt;= threshold){<br>    rehash();<br>    tab = table;<br>    index = (hash &amp; 0x7FFFFFFF) % tab.length;<br>    }<br>    Entry e = tab[index];<br>    tab[index] = new Entry(hash,key,value,e);<br>    count++;<br>    return null;<br>}</pre><br>1，put方法时同步的</p>
+<p>2，方法不允许value==null</p>
+<p>3，方法调用了key的hashCode方法，如果key == null，会抛出空指针异常</p>
+<p>HashMap的put方法</p>
+<p><pre>public V put(K key, V value){//#####<br>    if(key == null)//####<br>        return putForNullKey(value);<br>    int hash = hash(key.hashCode());<br>    int i = indexFor(hash, table.length);<br>    for(Entry e=table[i];e!=null; e=e.next){<br>         Object k;<br>         if(e.hash == hash &amp;&amp; ((k = e.key)==key||key.equals(k))){<br>                V oldValue = e.value;<br>                e.value = value;<br>                e.recordAccess(this);<br>                return oldValue;<br>        }<br>    }<br>    modCount++;<br>    addEntry(hash, key, value, i);//###<br>    return null;<br>}</pre><br>1，方法为非同步的</p>
+<p>2，方法允许key==null</p>
+<p>3，方法并没有对value值做任何调整，所以允许null</p>
+<p><table></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><td>HashMap</td></p>
+<p><td>HashTable</td><br></p>
+<p><tr></tr></p>
+<p><td>父类</td></p>
+<p><td>AbstractMap</td></p>
+<p><td>Dictionary</td><br></p>
+<p><tr></tr></p>
+<p><td>Value是否为空</td></p>
+<p><td>可为空</td></p>
+<p><td>不可</td><br><br><br><br>HashMap是HashTable的轻量级实现（非线程安全的实现），他们都完成了Map接口。</p>
+<p>主要区别在于HashMap允许空（null）键值（key），由于非线程安全，效率上可能高于HashTable。</p>
+<p>HashMap把Hashtable的contains方法去掉，改成containsvalue和containsKey。因为contains方法容易让人引起误解。</p>
+<p>Hashtable继承自Dictionary类，而HashMap是Map interface的接口。</p>
+<p>最大的不同是，Hashtable的方法时Synchronize的，而HashMap不是，在多线程访问Hashtable时，不需要自己为它的方法同步，而HashMap就必须为之提供同步Collection.synchronizedMap。</p>
+<p>Hashtable和HashMap采用hash/rehash算法都大概一样，所以性能不会有很大的差异。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/11/HashMap 和 HashTable的区别/" data-id="cihocho910066g4tj1t1dm29h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hashmap/">Hashmap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hashtable/">hashtable</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-socket blocking noblocking IO model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/08/socket blocking noblocking IO model/" class="article-date">
+  <time datetime="2015-05-07T20:08:19.000Z" itemprop="datePublished">2015-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/socket/">socket</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/08/socket blocking noblocking IO model/">socket阻塞与非阻塞，同步与异步、I/O模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>转载：</p>
+<h1 id="socket阻塞与非阻塞，同步与异步、I/O模型"><span class="link_title"><a href="http://blog.csdn.net/hguisu/article/details/7453390" target="_blank" rel="external">socket阻塞与非阻塞，同步与异步、I/O模型</a></span></h1><p>1. 概念理解</p>
+<pre><code>在进行网络编程时，我们常常见到同步<span class="comment">(Sync)</span>/异步<span class="comment">(Async)</span>，阻塞<span class="comment">(Block)</span>/非阻塞<span class="comment">(Unblock)</span>四种调用方式：
+</code></pre><p><strong>同步：</strong><br>所谓同步，就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回。<strong>也就是必须一件一件事做</strong><span lang="EN-US">,</span>等前一件做完了才能做下一件事。</p>
+<p>例如普通B/S模式（同步）：提交请求-&gt;等待服务器处理-&gt;处理完毕返回 这个期间客户端浏览器不能干任何事</p>
+<p><strong>异步：</strong><br>异步的概念和同步相对。当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者。</p>
+<p>例如 ajax请求（异步）<span lang="EN-US">: </span>请求通过事件触发<span lang="EN-US">-&gt;</span>服务器处理（这是浏览器仍然可以作其他事情）<span lang="EN-US">-&gt;</span>处理完毕</p>
+<p><strong>阻塞</strong><br>阻塞调用是指调用结果返回之前，当前线程会被挂起（线程进入非可执行状态，在这个状态下，cpu不会给线程分配时间片，即线程暂停运行）。函数只有在得到结果之后才会返回。</p>
+<p>有人也许会把阻塞调用和同步调用等同起来，实际上他是不同的。对于同步调用来说，很多时候当前线程还是激活的，只是从逻辑上当前函数没有返回而已。 例如，我们在socket中调用recv函数，如果缓冲区中没有数据，这个函数就会一直等待，直到有数据才返回。而此时，当前线程还会继续处理各种各样的消息。</p>
+<p><strong>快递的例子：</strong>比如到你某个时候到A楼一层（假如是内核缓冲区）取快递，但是你不知道快递什么时候过来，你又不能干别的事，只能死等着。但你可以睡觉（进程处于休眠状态），因为你知道快递把货送来时一定会给你打个电话（假定一定能叫醒你）。</p>
+<p><strong>非阻塞</strong><br>非阻塞和阻塞的概念相对应，指在不能立刻得到结果之前，该函数不会阻塞当前线程，而会立刻返回。</p>
+<p>还是等快递的例子：如果用忙轮询的方法，每隔5分钟到A楼一层(内核缓冲区）去看快递来了没有。如果没来，立即返回。而快递来了，就放在A楼一层，等你去取。<br>对象的阻塞模式和阻塞函数调用<br>对象是否处于阻塞模式和函数是不是阻塞调用有很强的相关性，但是并不是一一对应的。阻塞对象上可以有非阻塞的调用方式，我们可以通过一定的API去轮询状 态，在适当的时候调用阻塞函数，就可以避免阻塞。而对于非阻塞对象，调用特殊的函数也可以进入阻塞调用。函数select就是这样的一个例子。</p>
+<p>&nbsp;</p>
+<p>1. 同步，就是我调用一个功能，该功能没有结束前，我死等结果。<br>2. 异步，就是我调用一个功能，不需要知道该功能结果，该功能有结果后通知我（回调通知）<br>3. 阻塞，      就是调用我（函数），我（函数）没有接收完数据或者没有得到结果之前，我不会返回。<br>4. 非阻塞，  就是调用我（函数），我（函数）立即返回，通过select通知调用者</p>
+<p>同步IO和异步IO的区别就在于：数据拷贝的时候进程是否阻塞！</p>
+<p>阻塞IO和非阻塞IO的区别就在于：应用程序的调用是否立即返回！</p>
+<p>&nbsp;</p>
+<p>对于举个简单c/s 模式：</p>
+<div>同步：提交请求-&gt;等待服务器处理-&gt;处理完毕返回这个期间客户端浏览器不能干任何事<br>异步：请求通过事件触发-&gt;服务器处理（这是浏览器仍然可以作其他事情）-&gt;处理完毕</div><br><div>同步和异步都只针对于本机SOCKET而言的。</div><br><div><br><br>同步和异步,阻塞和非阻塞,有些混用,其实它们完全不是一回事,而且它们修饰的对象也不相同。<br>阻塞和非阻塞是指当进程访问的数据如果尚未就绪,进程是否需要等待,简单说这相当于函数内部的实现区别,也就是未就绪时是直接返回还是等待就绪;<br><br>而同步和异步是指访问数据的机制,同步一般指主动请求并等待I/O操作完毕的方式,当数据就绪后在读写的时候必须阻塞(区别就绪与读写二个阶段,同步的读写必须阻塞),异步则指主动请求数据后便可以继续处理其它任务,随后等待I/O,操作完毕的通知,这可以使进程在数据读写时也不阻塞。(等待”通知”)<br><br>node.js里面的描述：<br><div class="dp-highlighter bg_html"><br><br>1.  线程在执行中如果遇到磁盘读写或网络通信（统称为I/O 操作），通常要耗费较长的时间，这时操作系统会剥夺这个线程的CPU 控制权，使其暂停执行，同时将资源让给其他的工作线程，这种线程调度方式称为 阻塞。当I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。这种I/O 模式就是通常的同步式I/O（Synchronous I/O）或阻塞式I/O （Blocking I/O）。<br>2.  相应地，异步式I/O （Asynchronous I/O）或非阻塞式I/O （Non-blocking I/O）则针对所有I/O 操作不采用阻塞的策略。当线程遇到I/O 操作时，不会以阻塞的方式等待I/O 操作的完成或数据的返回，而只是将I/O 请求发送给操作系统，继续执行下一条语句。当操作系统完成I/O 操作时，以事件的形式通知执行I/O 操作的线程，线程会在特定时候处理这个事件。为了处理异步I/O，线程必须有事件循环，不断地检查有没有未处理的事件，依次予以处理。阻塞模式下，一个线程只能处理一项任务，要想提高吞吐量必须通过多线程。而非阻塞模式下，一个线程永远在执行计算操作，<span class="tag">&lt;</span><span class="tag-name">span</span> <span class="attribute">style</span>=<span class="attribute-value">“color:#ff0000;”</span><span class="tag">&gt;</span>这个线程所使用的CPU 核心利用率永远是100%<span class="tag">&lt;/</span><span class="tag-name">span</span><span class="tag">&gt;</span>，I/O 以事件的方式通知。<span class="tag">&lt;</span><span class="tag-name">span</span> <span class="attribute">style</span>=<span class="attribute-value">“color:#ff0000;”</span><span class="tag">&gt;</span>在阻塞模式下，多线程往往能提高系统吞吐量，因为一个线程阻塞时还有其他线程在工作，多线程可以让CPU 资源不被阻塞中的线程浪费。<span class="tag">&lt;/</span><span class="tag-name">span</span><span class="tag">&gt;</span>而在非阻塞模式下，线程不会被I/O 阻塞，永远在利用CPU。多线程带来的好处仅仅是在多核CPU 的情况下利用更多的核，而Node.js的单线程也能带来同样的好处。这就是为什么Node.js 使用了单线程、非阻塞的事件编程模式。<br></div><br></div>
+
+<h2 id=""><a name="t1"></a></h2><p>2. Linux下的五种I/O模型</p>
+<div>
+
+<p>1)阻塞I/O（blocking I/O）<br>2)非阻塞I/O （nonblocking I/O）<br>3) I/O复用(select 和poll) （I/O multiplexing）<br>4)信号驱动I/O （signal driven I/O (SIGIO)）<br>5)异步I/O （asynchronous I/O (the POSIX aio_functions)）</p>
+<p>前四种都是同步，只有最后一种才是异步IO。</p>
+<h4 id="阻塞I/O模型："><a name="t2"></a><strong>阻塞I/O模型：</strong></h4><p>简介：进程会一直阻塞，直到数据拷贝完成</p>
+<p>应用程序调用一个IO函数，导致应用程序阻塞，等待数据准备好。 如果数据没有准备好，一直等待….数据准备好了，从内核拷贝到用户空间,IO函数返回成功指示。</p>
+<p>我们 第一次接触到的网络编程都是从 listen()、send()、recv()等接口开始的。使用这些接口可以很方便的构建服务器 /客户机的模型。</p>
+<p><strong>阻塞I/O模型图：</strong>在调用recv()/recvfrom（）函数时，发生在内核中等待数据和复制数据的过程。</p>
+<p><img src="http://my.csdn.net/uploads/201204/12/1334216532_9745.jpg" alt=""></p>
+<p>当调用recv()函数时，系统首先查是否有准备好的数据。如果数据没有准备好，那么系统就处于等待状态。当数据准备好后，将数据从<strong>系统缓冲区</strong>复制到用户空间，然后该函数返回。在套接应用程序中，当调用recv()函数时，未必用户空间就已经存在数据，那么此时recv()函数就会处于等待状态。</p>
+<p>当使用socket()函数和WSASocket()函数创建套接字时，默认的套接字都是阻塞的。这意味着当调用Windows Sockets API不能立即完成时，线程处于等待状态，直到操作完成。</p>
+<p>并不是所有Windows Sockets API以阻塞套接字为参数调用都会发生阻塞。例如，以阻塞模式的套接字为参数调用bind()、listen()函数时，函数会立即返回。将可能阻塞套接字的Windows Sockets API调用分为以下四种:</p>
+<p>1．输入操作： recv()、recvfrom()、WSARecv()和WSARecvfrom()函数。以阻塞套接字为参数调用该函数接收数据。如果此时套接字缓冲区内没有数据可读，则调用线程在数据到来前一直睡眠。</p>
+<p>2．输出操作： send()、sendto()、WSASend()和WSASendto()函数。以阻塞套接字为参数调用该函数发送数据。如果套接字缓冲区没有可用空间，线程会一直睡眠，直到有空间。</p>
+<p>3．接受连接：accept()和WSAAcept()函数。以阻塞套接字为参数调用该函数，等待接受对方的连接请求。如果此时没有连接请求，线程就会进入睡眠状态。</p>
+<p>4．外出连接：connect()和WSAConnect()函数。对于TCP连接，客户端以阻塞套接字为参数，调用该函数向服务器发起连接。该函数在收到服务器的应答前，不会返回。这意味着TCP连接总会等待至少到服务器的一次往返时间。</p>
+<p>使用阻塞模式的套接字，开发网络程序比较简单，容易实现。当希望能够立即发送和接收数据，且处理的套接字数量比较少的情况下，使用阻塞模式来开发网络程序比较合适。</p>
+<p>阻塞模式套接字的不足表现为，在大量建立好的套接字线程之间进行通信时比较困难。当使用“生产者-消费者”模型开发网络程序时，为每个套接字都分别分配一个读线程、一个处理数据线程和一个用于同步的事件，那么这样无疑加大系统的开销。其最大的缺点是当希望同时处理大量套接字时，将无从下手，其扩展性很差.</p>
+<p>阻塞模式给网络编程带来了一个很大的问题，如在调用 send()的同时，线程将被阻塞，在此期间，线程将无法执行任何运算或响应任何的网络请求。这给多客户机、多业务逻辑的网络编程带来了挑战。这时，我们可能会选择多线程的方式来解决这个问题。</p>
+<p>应对多客户机的网络应用，最简单的解决方式是在服务器端使用多线程（或多进程）。多线程（或多进程）的目的是让每个连接都拥有独立的线程（或进程），这样任何一个连接的阻塞都不会影响其他的连接。</p>
+<p>具体使用多进程还是多线程，并没有一个特定的模式。传统意义上，进程的开销要远远大于线程，所以，如果需要同时为较多的客户机提供服务，则不推荐使用多进程；如果单个服务执行体需要消耗较多的 <span id="dc52mg8ruzd1_6" class="dc52mg8ruzd1">CPU</span> 资源，譬如需要进行大规模或长时间的数据运算或文件访问，则进程较为安全。通常，使用 pthread_create () 创建新线程，<span id="dc52mg8ruzd1_3" class="dc52mg8ruzd1">fork</span>() 创建新进程。</p>
+<p>多线程/进程服务器同时为多个客户机提供应答服务。模型如下：</p>
+<p><img src="http://img.blog.csdn.net/20140818224818116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGd1aXN1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>主线程持续等待客户端的连接请求，如果有连接，则创建新线程，并在新线程中提供为前例同样的问答服务。</p>
+<p>上述多线程的服务器模型似乎完美的解决了为多个客户机提供问答服务的要求，但其实并不尽然。如果要同时响应成百上千路的连接请求，则无论多线程还是多进程都会严重占据系统资源，降低系统对外界响应效率，而线程与进程本身也更容易进入假死状态。</p>
+<p>由此可能会考虑使用“<strong>线程池</strong>”或“<strong>连接池</strong>”。“线程池”旨在减少创建和销毁线程的频率，其维持一定合理数量的线程，并让空闲的线程重新承担新的执行任务。“连接池”维持连接的缓存池，尽量重用已有的连接、减少创建和关闭连接的频率。这两种技术都可以很好的降低系统开销，都被广泛应用很多大型系统，如apache，mysql数据库等。</p>
+<p>但是，“线程池”和“连接池”技术也只是在一定程度上缓解了频繁调用 IO 接口带来的资源占用。而且，所谓“池”始终有其上限，当请求大大超过上限时，“池”构成的系统对外界的响应并不比没有池的时候效果好多少。所以使用“池”必须考虑其面临的响应规模，并根据响应规模调整“池”的大小。</p>
+<p>对应上例中的所面临的可能同时出现的上千甚至上万次的客户端请求，“线程池”或“连接池”或许可以缓解部分压力，但是不能解决所有问题。</p>
+<h4 id="非阻塞IO模型_："><a name="t3"></a><strong>非阻塞IO模型</strong> ：</h4><p></p></div><p></p>
+<p><div>       简介：非阻塞IO通过进程反复调用IO函数（多次系统调用，并马上返回）；在数据拷贝的过程中，进程是阻塞的；</div><br>&nbsp;</p>
+<p>我们把一个SOCKET接口设置为非阻塞就是告诉内核，当所请求的I/O操作无法完成时，<strong>不要将进程睡眠</strong>，而是返回一个错误。这样我们的I/O操作函数将不断的测试数据是否已经准备好，如果没有准备好，继续测试，直到数据准备好为止。在这个不断测试的过程中，会大量的占用CPU的时间。</p>
+<p>把SOCKET设置为非阻塞模式，即通知系统内核：在调用Windows Sockets API时，不要让线程睡眠，而应该让函数立即返回。在返回时，该函数返回一个错误代码。图所示，一个非阻塞模式套接字多次调用recv()函数的过程。前三次调用recv()函数时，内核数据还没有准备好。因此，该函数立即返回WSAEWOULDBLOCK错误代码。第四次调用recv()函数时，数据已经准备好，被复制到应用程序的缓冲区中，recv()函数返回成功指示，应用程序开始处理数据。</p>
+<p><img src="http://my.csdn.net/uploads/201204/12/1334216607_3004.jpg" alt=""></p>
+<p>当使用socket()函数和WSASocket()函数创建套接字时，默认都是阻塞的。在创建套接字之后，通过调用ioctlsocket()函数，将该套接字设置为非阻塞模式。Linux下的函数是:fcntl().<br>套接字设置为非阻塞模式后，在调用Windows Sockets API函数时，调用函数会立即返回。大多数情况下，这些函数调用都会调用“失败”，并返回WSAEWOULDBLOCK错误代码。说明请求的操作在调用期间内没有时间完成。通常，应用程序需要重复调用该函数，直到获得成功返回代码。</p>
+<p>需要说明的是并非所有的Windows Sockets API在非阻塞模式下调用，都会返回WSAEWOULDBLOCK错误。例如，以非阻塞模式的套接字为参数调用bind()函数时，就不会返回该错误代码。当然，在调用WSAStartup()函数时更不会返回该错误代码，因为该函数是应用程序第一调用的函数，当然不会返回这样的错误代码。</p>
+<p>要将套接字设置为非阻塞模式，除了使用ioctlsocket()函数之外，还可以使用WSAAsyncselect()和WSAEventselect()函数。当调用该函数时，套接字会自动地设置为非阻塞方式。</p>
+<p>由于使用非阻塞套接字在调用函数时，会经常返回WSAEWOULDBLOCK错误。所以在任何时候，都应仔细检查返回代码并作好对“失败”的准备。应用程序连续不断地调用这个函数，直到它返回成功指示为止。上面的程序清单中，在While循环体内不断地调用recv()函数，以读入1024个字节的数据。这种做法很浪费系统资源。</p>
+<p>要完成这样的操作，有人使用MSG_PEEK标志调用recv()函数查看缓冲区中是否有数据可读。同样，这种方法也不好。因为该做法对系统造成的开销是很大的，并且应用程序至少要调用recv()函数两次，才能实际地读入数据。较好的做法是，使用套接字的“I/O模型”来判断非阻塞套接字是否可读可写。</p>
+<p>非阻塞模式套接字与阻塞模式套接字相比，不容易使用。使用非阻塞模式套接字，需要编写更多的代码，以便在每个Windows Sockets API函数调用中，对收到的WSAEWOULDBLOCK错误进行处理。因此，非阻塞套接字便显得有些难于使用。</p>
+<p>但是，非阻塞套接字在控制建立的多个连接，在数据的收发量不均，时间不定时，明显具有优势。这种套接字在使用上存在一定难度，但只要排除了这些困难，它在功能上还是非常强大的。通常情况下，可考虑使用套接字的“I/O模型”，它有助于应用程序通过异步方式，同时对一个或多个套接字的通信加以管理。</p>
+<p>&nbsp;</p>
+<h3 id="IO复用模型："><a name="t4"></a><strong>IO复用模型：</strong></h3><p>简介：主要是select和epoll；对一个IO端口，两次调用，两次返回，比阻塞IO并没有什么优越性；关键是能实现同时对多个IO端口进行监听；</p>
+<p>I/O复用模型会用到select、poll、epoll函数，这几个函数也会使进程阻塞，但是和阻塞I/O所不同的的，这两个函数可以同时阻塞多个I/O操作。而且可以同时对多个读操作，多个写操作的I/O函数进行检测，直到有数据可读或可写时，才真正调用I/O操作函数。</p>
+<p><img src="http://my.csdn.net/uploads/201204/12/1334216620_6310.jpg" alt=""></p>
+<h3 id="信号驱动IO"><a name="t5"></a><strong>信号驱动IO</strong></h3><p>简介：两次调用，两次返回；</p>
+<p>首先我们允许套接口进行信号驱动I/O,并安装一个信号处理函数，进程继续运行并不阻塞。当数据准备好时，进程会收到一个SIGIO信号，可以在信号处理函数中调用I/O操作函数处理数据。</p>
+<p><img src="http://my.csdn.net/uploads/201204/12/1334216632_6025.jpg" alt=""></p>
+<h3 id="异步IO模型"><a name="t6"></a><strong>异步IO模型</strong></h3><p>简介：数据拷贝的时候进程无需阻塞。</p>
+<p><strong>     </strong>当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者的输入输出操作</p>
+<p><img src="http://my.csdn.net/uploads/201204/12/1334216641_7821.jpg" alt=""></p>
+<p>同步IO引起进程阻塞，直至IO操作完成。<br>异步IO不会引起进程阻塞。<br>IO复用是先通过select调用阻塞。</p>
+<h3 id="5个I/O模型的比较："><a name="t7"></a><strong>5个I/O模型的比较：</strong></h3><p><img src="http://my.csdn.net/uploads/201204/12/1334216724_2405.jpg" alt=""></p>
+<h2 id="-1"><a name="t8"></a></h2><p>3. select、poll、epoll简介</p>
+<p>epoll跟select都能提供多路I/O复用的解决方案。在现在的Linux内核里有都能够支持，其中epoll是Linux所特有，而select则应该是POSIX所规定，一般操作系统均有实现</p>
+<p><strong>select：</strong></p>
+<p>select本质上是通过设置或者检查存放fd标志位的数据结构来进行下一步处理。这样所带来的缺点是：</p>
+<p>1、 单个进程可监视的fd数量被限制，即能监听端口的大小有限。</p>
+<p>一般来说这个数目和系统内存关系很大，具体数目可以cat /proc/sys/fs/file-max察看。32位机默认是1024个。64位机默认是2048.</p>
+<p>2、 对socket进行扫描时是线性扫描，即采用轮询的方法，效率较低：</p>
+<p>当套接字比较多的时候，每次select()都要通过遍历FD_SETSIZE个Socket来完成调度,不管哪个Socket是活跃的,都遍历一遍。这会浪费很多CPU时间。如果能给套接字注册某个回调函数，当他们活跃时，自动完成相关操作，那就避免了轮询，这正是epoll与kqueue做的。</p>
+<p>3、需要维护一个用来存放大量fd的数据结构，这样会使得用户空间和内核空间在传递该结构时复制开销大</p>
+<p><strong>poll：</strong></p>
+<p>poll本质上和select没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个fd对应的设备状态，如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程，直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
+<p>它没有最大连接数的限制，原因是它是基于链表来存储的，但是同样有一个缺点：</p>
+<p>1、大量的fd的数组被整体复制于用户态和内核地址空间之间，而不管这样的复制是不是有意义。                                                                                                                                      2、poll还有一个特点是“水平触发”，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</p>
+<p><strong>epoll:</strong></p>
+<p>epoll支持水平触发和边缘触发，最大的特点在于边缘触发，它只告诉进程哪些fd刚刚变为就需态，并且只会通知一次。还有一个特点是，epoll使用“事件”的就绪通知方式，通过epoll_ctl注册fd，一旦该fd就绪，内核就会采用类似callback的回调机制来激活该fd，epoll_wait便可以收到通知</p>
+<p>epoll的优点：</p>
+<p><div><strong>1、没有最大并发连接的限制，</strong>能打开的FD的上限远大于1024（1G的内存上能监听约10万个端口）；<br><strong>2、效率提升</strong>，不是轮询的方式，不会随着FD数目的增加效率下降。只有活跃可用的FD才会调用callback函数；<br>即Epoll最大的优点就在于它只管你“活跃”的连接，而跟连接总数无关，因此在实际的网络环境中，Epoll的效率就会远远高于select和poll。</div></p>
+<p><div><strong>3、 内存拷贝</strong>，利用mmap()文件映射内存加速与内核空间的消息传递；即epoll使用mmap减少复制开销。</div></p>
+<p><strong>select、poll、epoll 区别总结：</strong><br>1、支持一个进程所能打开的最大连接数</p>
+<p><table border="1" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td width="111">select</td></p>
+<p><td width="457">单个进程所能打开的最大连接数有FD_SETSIZE宏定义，其大小是32个整数的大小（在32位的机器上，大小就是32<em>32，同理64位机器上FD_SETSIZE为32</em>64），当然我们可以对进行修改，然后重新编译内核，但是性能可能会受到影响，这需要进一步的测试。</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">poll</td></p>
+<p><td width="457">poll本质上和select没有区别，但是它没有最大连接数的限制，原因是它是基于链表来存储的</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">epoll</td></p>
+<p><td width="457">虽然连接数有上限，但是很大，1G内存的机器上可以打开10万左右的连接，2G内存的机器可以打开20万左右的连接</td><br><br><br><br>2、FD剧增后带来的IO效率问题</p>
+<p><table border="1" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td width="111">select</td></p>
+<p><td width="457">因为每次调用时都会对连接进行线性遍历，所以随着FD的增加会造成遍历速度慢的“线性下降性能问题”。</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">poll</td></p>
+<p><td width="457">同上</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">epoll</td></p>
+<p><td width="457">因为epoll内核中实现是根据每个fd上的callback函数来实现的，只有活跃的socket才会主动调用callback，所以在活跃socket较少的情况下，使用epoll没有前面两者的线性下降的性能问题，但是所有socket都很活跃的情况下，可能会有性能问题。</td><br><br><br><br>3、 消息传递方式</p>
+<p><table border="1" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td width="111">select</td></p>
+<p><td width="457">内核需要将消息传递到用户空间，都需要内核拷贝动作</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">poll</td></p>
+<p><td width="457">同上</td><br></p>
+<p><tr></tr></p>
+<p><td width="111">epoll</td></p>
+<p><td width="457">epoll通过内核和用户空间共享一块内存来实现的。</td><br><br><br><br><strong>总结：</strong></p>
+<p>综上，在选择select，poll，epoll时要根据具体的使用场合以及这三种方式的自身特点。</p>
+<p>1、表面上看epoll的性能最好，但是在连接数少并且连接都十分活跃的情况下，select和poll的性能可能比epoll好，毕竟epoll的通知机制需要很多函数回调。</p>
+<p>2、select低效是因为每次它都需要轮询。但低效也是相对的，视情况而定，也可通过良好的设计改善</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/08/socket blocking noblocking IO model/" data-id="cihocho65001sg4tjr2gcqeg7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hibernate 数据查询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/07/Hibernate 数据查询/" class="article-date">
+  <time datetime="2015-05-07T01:19:25.000Z" itemprop="datePublished">2015-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/07/Hibernate 数据查询/">Hibernate 数据查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HQL（Hibernate Query Language, HQL），它是Hibernate的面向对象的查询语言。</p>
+<p>1，创建查询对象</p>
+<p>Query query = session.createQuery(“from Dept”);</p>
+<p>2，执行查询列出结果</p>
+<pre>(1)列出所有的结果
+
+调用Query对象的list()方法可以返回所有结果的列表。
+
+List&lt;Dept&gt; depts = query.list();
+
+for(Dept dept:depts){}
+
+(2)列出单个结果
+
+Query query = session.createQuery("from Dept where id=1");
+
+query.setMaxResults(1);
+
+Dept dept = (Dept) query.uniqueResult();
+
+(3)迭代访问结果
+
+Query query  = session.createQuery("from Dept");
+
+Iterator&lt;Dept&gt; it = query.iterate();
+
+while(it.next()){}
+</pre>
+3，HQL基本语法
+
+(1)选择要查询的持久化类
+
+String hql = "from Dept as d"
+
+Dept为持久化类名。区分大小写.
+
+(2)投影查询
+
+与SQL语句类似，HQL可以只查询出某一个或某几个属性，用select关键字来指定查询的属性名。Select id,name from Dept;
+
+可以构造两个属性参数的构造函数。
+
+public DeptRow(Long id, String name){}
+
+Select new DeptRow(id,name) from Dept;
+
+(3)where 条件句
+
+*   比较运算：=、&gt;、&gt;=、等等
+*   范围运算：in、 not in、 between、 not between
+*   字符串模式匹配：like，"%" 代表任意长度的字符串，“_”代表任意单个字符。
+*   逻辑运算符：and、or、not
+*   is empty、is not empty
+*   upper(s), lower(s), concat(s1,s2),substring(s,offset,length),trim(s),length(s),locate(search,s,offset),abs(n),sqrt(n),mod(dividend,divisor)求余数,size(c)返回集合元素的个数,current_date(),current_time(),current_timestamp(),year(d)month(d)day(d)hour(d)minute(d)second(d)
+(4)绑定查询参数
+
+动态绑定查询参数或者字符串拼接（又注入的安全问题）
+
+按照参数名字绑定，“:”
+<pre>String hql = "from Dept where id&gt; :id and name like :likename";
+List&lt;Dept&gt; depts = session.createQuery(hql).setLong("id", new Long(inputId)).setString("likename", "%"+inputName+"%").list();</pre>
+按参数位置绑定，"?"
+<pre>String hql = "from Dept where id&gt; ? and name like ?";
+List&lt;Dept&gt; depts = session.createQuery(hql).setLong(0, new Long(inputId)).setString(1, "%"+inputName+"%").list();</pre>
+(5)distinct过滤重复值
+
+(6)聚集函数
+
+*   count()
+*   avg()
+*   sum()
+*   max()
+*   min()
+(7) order by 对结果排序
+
+默认是升序，关键字asc表示升序，desc表示降序。
+
+(8)group by对记录分组
+
+(9)having 对分组后数据进行条件过滤
+<pre>String hql = "select e.dept.name from Employee e group by e.dept having count(e)&gt;1"</pre>
+4，分页查询
+
+当批量查询数据时，如果数据量非常大，怎么办？
+
+*   setFistResult(int firstResult):设置从第几条数据开始查询
+*   setMaxResults(int maxResult)：设置每次查询的返回的最大对象数
+<pre>public static List&lt;Employee&gt; findEmployees(int pageNo, int pageSize){
+    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    String hql = "from Employee"
+    List&lt;Employee&gt; empls = session.CreateQuery(hql).setFirstResult((pageNo-1)*pageSize).setMaxResults(pageSize).list();
+    session.getTransaction().commit();
+    session.close();
+    return empls;
+}</pre>
+5，批量修改和删除
+
+Hibernate3中新增update 和delete语句。
+<pre>Query query = session.createQuery("delete Dept d where d.name like :likename").setString("likename","%三%");
+int count = query.executeUpdate();</pre>
+6，连接查询
+
+类似于SQL，支持连接查询
+<pre>inner join(内连接)：可简写为join。列出这些相关联的实体类中满足连接条件的对象。
+left outer join(左连接)：可简写为left join。不仅列出来这些相关联实体类中满足连接条件的对象，而且还包含连接左边的实体类中所有符合搜索条件(where 条件或者having 条件)
+right outer join(右连接)：right join。不仅列出来这些相关联实体类中满足连接条件的对象，而且还包含连接右边的实体类中所有符合搜索条件(where 条件或者having 条件)
+full join(全连接)</pre>
+7，抓取连接查询
+
+fetch来做数据抓取，所谓抓取，是指从数据库加载一个对象的数据时，同时把它所关联的对象和集合的数据都一起加载出来，以便减少SQL语句的数据，从而提高查询效率。
+<pre>String hql = "FROM Dept d LEFT JOIN FETCH d.employees e WHERE d.name LIKE '%web%'";
+List&lt;Dept&gt; list = session.createQuery(hql).list();
+Set&lt;Dept&gt; depts = new HashSet&lt;Dept&gt; (list);
+for(Dept dept : depts){
+for(Employee empl : dept.getEmployees()){
+empl.getLoginName();
+}
+}</pre>
+8，子查询
+<pre>String hql = "FROM Dept d WHERE (SELECT COUNT(E) FROM d.employees e)&gt;1";
+List&lt;Dept&gt; list = session.createQuery(hql).list();
+for(Dept dept : list){
+dept.getName;
+}</pre>
+9，命名查询
+
+命名查询是指将HQL查询语句编写在映射文件里，在程序中通过Session的getNameQuery()方法来获取。
+<pre>&lt;hibernate-mapping&gt;
+&lt;class name="org.napu.Dept"&gt;&lt;/class&gt;
+&lt;query name="findDeptsByCondition"&gt;
+&lt;![CDATA[from Dept d where d.name like :likename]]&gt;
+&lt;/query&gt;
+&lt;/hibernate-mapping&gt;
+List&lt;Dept&gt; depts = session.getNamedQuery("findEdeptsByCondition").setString("likeName","%a%").list();</pre>
+
+<h2 id="Criteria_Queries">Criteria Queries</h2><p>Criteria叫标准化条件查询，它是一种比HQL更加面向对象的查询语言。QBC（Query By Criteria），特别适当在运行时才能创建查询条件的查询。程序开发时不知道，程序运行时才知道。</p>
+<h3 id="Native_SQL_Queries">Native SQL Queries</h3><p>1，实体查询</p>
+<pre>String sql = "SELECT * FROM dept WHERE id &gt; :id limit 3";
+List&lt;Dept&gt; depts = session.createSQLQuery(sql).addEntity(Dept.class).setLong(“id”,1).list();
+for(Dept dept : depts){
+dept.getName();
+}
+
+//_____
+String sql = "Select {d.*}, {e.*} FROM dept d JOIN employee e ON d.id = e.dept_id";
+List list = session.CreateSQLQuery(sql).addEntity("d",Dept.class).addEntity("e",Employee.class).list();
+for( Iterator it = list.iterator(); it.hasNext();){
+    Object[] obj = (Object[]) iterator.next();
+    Dept dept = (Dept)obj[0];
+    Employee empl = (Employee) obj[1];
+}</pre>
+2，标量查询
+
+将查询结果转化为标量值。.addScalar("countNum",Hibernate.LONG)
+
+3，定义成命名查询来使用
+<pre>&lt;sql-query name="findDeptAndEmployee"&gt;
+&lt;![CDATA[Select {d.*}, {e.*} FROM dept d JOIN employee e ON d.id = e.dept_id]]&gt;
+&lt;return alias="d" class="org.napu.Dept"/&gt;
+&lt;return alias="e" class="org.napu.Employee"/&gt;
+&lt;/sql-query&gt;</pre>
+
+<h3 id="调用存储过程">调用存储过程</h3><p>1，编写过程</p>
+<pre>create procedure select_depts_by_likename(in likeName varchar(20))
+begin
+    select * from dept where name like likeName;
+end;</pre>
+2，把过程映射为命名查询
+<pre>&lt;sql-query name="findDeptAndEmployee"&gt;
+&lt;return alias="d" class="org.napu.Dept"&gt;
+&lt;return-property name="id" column="id"/&gt;
+&lt;return-property name="name" column="name"/&gt;
+&lt;return-property name="createdTime" column="created_time"/&gt;
+&lt;/return&gt;
+{call select_depts_by_likename(:likeName)}
+&lt;/sql-query&gt;</pre>
+3，调用过程
+<pre>List&lt;Dept&gt; depts = session.getNamedQuery("findEdeptsByCondition").setString("likeName","%a%").list();</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/07/Hibernate 数据查询/" data-id="cihocho8u005rg4tjga3brxrm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HQL/">HQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QBC/">QBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Query/">Query</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stored-procedure/">stored procedure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hibernate高级映射" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/05/Hibernate高级映射/" class="article-date">
+  <time datetime="2015-05-05T06:49:44.000Z" itemprop="datePublished">2015-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/05/Hibernate高级映射/">Hibernate高级映射</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="集合映射">集合映射</h3><p>&lt;set java.util.Set or java.util.SortSet&gt;&lt;list java.util.List&gt;&lt;bag java.util.Collection&gt;&lt;idbag&gt;&lt;map java.util.Map or java.util.SortMap&gt;&lt;primitive-array&gt;&lt;array&gt;</p>
+<h3 id="组件映射">组件映射</h3><p>&lt;component&gt;</p>
+<p>1，组件类作为持久化类的单个属性</p>
+<p>2，组件类作为持久化类的集合属性：集合映射中的类</p>
+<p>3，组件类作为持久化类的对象标识符属性：数据库采用联合主键</p>
+<h3 id="管理关系映射">管理关系映射</h3><p>关联关系是在领域模型建模中经常使用到的一种关系，它是对现实世界中事物之间的关系最基本的表示。</p>
+<p>管联关系指的是不同持久化类之间的一种结构关系，简单地说，关联关系描述某个对象在一段时间内一直知道另一个对象的存在。</p>
+<p>关联关系包括多样性关联和方向性关联。多样性（一对多，多对多），方向性（单项关联，双向关联）</p>
+<p>映射关联关系就是把对象模型中类之间的关联关系映射成关系模型中数据库表之间的外键引用关系。在映射设计时，考虑两个问题：一是如何将对象模型中的对象之间的关系保存在关系模型的数据库表中，二是如何从关系模型的数据库表中检索出对象模型中的关联的对象。</p>
+<p>1，单向多对一</p>
+<p>多个员工属于同一部门</p>
+<p>Department.hbm.xml</p>
+<p>Employee.hbm.xml</p>
+<p>&lt;many-to-one name=”dept” column=”dept_id”&gt;</p>
+<p>2，单向一对一</p>
+<p>Citizen.hbm.xml</p>
+<p>&lt;many-to-one name=”idCard” column=”idcard_id” unique=”true” cascade=”all”&gt;</p>
+<p>IdCard.hbm.xml</p>
+<p>每个公民只有一张身份证，这就是典型的一对一关联关系。</p>
+<p>3，双向一对一</p>
+<p>基于唯一外键的一对一双向关联</p>
+<p>Citizen.hbm.xml</p>
+<p>&lt;many-to-one name=”idCard” column=”idcard_id” unique=”true” cascade=”all”/&gt;</p>
+<p>IDCard.hbm.xml</p>
+<p>&lt;one-to-one name=”citizen” property-ref=”idCard”/&gt;</p>
+<p>基于主键的双向一对一关联</p>
+<p>Citizen.hbm.xml</p>
+<p>&lt;generator class=”foreign”&gt;&lt;param name=”property”&gt;idCard&lt;/param&gt;&lt;/generator&gt;</p>
+<p>&lt;one-to-one name=”idCard” constrained=”true” cascade=”all”/&gt;</p>
+<p>IDCard.hbm.xml</p>
+<p>&lt;one-to-one name=”citizen”/&gt;</p>
+<p>4，单向一对多</p>
+<p>一个账号可以有多个订单</p>
+<pre>//Order.java
+public class Order{
+  private Long id;
+  private String orderNo;
+  private Date createdTime;
+  public Order(){}
+}
+//Account.java
+public class Account{
+  private Long id;
+  private String loginName;
+  private Set&lt;Order&gt; orderSet;
+  public Account(){}
+}
+//Account.hbm.xml
+&lt;set name="orderSet" cascade="save-update"&gt;
+    &lt;key column="account_id"/&gt;
+    &lt;one-to-many class="org.napu.Order"&gt;
+&lt;set&gt;</pre>
+5，双向一对多（多对一）
+<pre>//Order.java
+public class Order{
+  private Long id;
+  private String orderNo;
+  private Date createdTime;
+  private Account account;
+  public Order(){}
+}
+//Account.java
+public class Account{
+  private Long id;
+  private String loginName;
+  private Set&lt;Order&gt; orderSet;
+  public Account(){}
+}
+//Order.hbm.xml
+&lt;many-to-one name="account" column="account_id" not-null="true"/&gt;
+//Account.hbm.xml
+&lt;Set name="orderSet" cascade="all" inverse="true"&gt;
+    &lt;key column="account_id"/&gt;
+    &lt;one-to-many class="org.napu.Order"&gt;
+&lt;/Set&gt;</pre>
+6，单向多对多
+
+大学生和课程之间的关系
+<pre>//Student.java
+public class Student{
+  private Long id;
+  private String name;
+  private String grade;
+  private Set&lt;Course&gt; courses;
+  public Student(){}
+}
+//Course.java
+public class Course{
+  private Long id;
+  private String name;
+  private Double creditHours;
+  public Course(){}
+}
+//Student.hbm.xml
+&lt;set name="courses" table="student_course"&gt;
+    &lt;key column="student_id"/&gt;
+    &lt;many-to-many column="course_id" class="org.napu.Course"&gt;
+&lt;set&gt;</pre>
+7，双向多对多
+<pre>//Student.java
+public class Student{
+  private Long id;
+  private String name;
+  private String grade;
+  private Set&lt;Course&gt; courses;
+  public Student(){}
+}
+//Course.java
+public class Course{
+  private Long id;
+  private String name;
+  private Double creditHours;
+  private Set&lt;Student&gt; students;
+  public Course(){}
+}
+//Student.hbm.xml
+&lt;set name="courses" table="student_course"&gt;
+    &lt;key column="student_id"/&gt;
+    &lt;many-to-many column="course_id" class="org.napu.Course"/&gt;
+&lt;set&gt;
+//Course.hbm.xml
+&lt;set name=""students table="students_course" inverse="true"&gt;
+    &lt;key column="course_id"/&gt;
+    &lt;many-to-many column="student_id" class="org.napu.Student"/&gt;
+&lt;/set&gt;</pre>
+
+<h3 id="继承关系映射">继承关系映射</h3><p>继承在对象模型中是is a(是一个)的关系，在关系模型中，实体之间只有has a(有一个)的关系。</p>
+<p>Hibernate提供了3中继承映射的方法。</p>
+<p><pre>//Singer.java<br>public class Singer{<br>  private Long id;<br>  private String name;<br>  private String region;<br>  private String description;<br>  pubic Singer(){}<br>}<br>//SingleSinger.java<br>public class SingleSinger extends Singer{<br>  private Character gender;<br>  public SingleSinger(){}<br>}<br>//Bands.java<br>public class Bands extends Singer{<br>  private String leader;<br>  public Bands(){}<br>}</pre><br>1，整个继承层次一张表</p>
+<p><pre>//Singer.hbm.xml<br>&lt;hibernate-mapping&gt;<br> &lt;class name=”org.napu.Singer” table=”singer”&gt;<br>  &lt;id name=”id” column=”id” type=”long”&gt;&lt;generator class=”native”/&gt;&lt;/id&gt;<br>  &lt;discriminator column=”type” type=”string”/&gt;<br>  &lt;property name=”name”/&gt;<br>  &lt;property name=”region”/&gt;<br>  &lt;property name=”description”/&gt;<br>  &lt;subclass name=”org.napu.SingleSinger” discriminator-value=”S”&gt;<br>    &lt;property name=”gender”/&gt;<br>  &lt;/subclass&gt;<br>  &lt;subclass name=”org.napu.Bands” discriminator-value=”B”&gt;<br>    &lt;property name=”leader”/&gt;<br>  &lt;/subclass&gt;<br> &lt;/class&gt;<br>&lt;/hibernate-mapping&gt;</pre><br>2，每个子类一张表</p>
+<p><pre>&lt;joined-subclass name=”org.napu.SingleSinger” table=”single_singer”&gt;<br>  &lt;key column=”singler_id”/&gt;<br>  &lt;property name=”gender”/&gt;<br>&lt;/joined-subclass&gt;<br>…</pre><br>3，每个具体类一张表</p>
+<p><pre>&lt;union-subclass name=”org.napu.SingleSinger” table=”single_singer”&gt;<br>  &lt;property name=”gender”/&gt;<br>&lt;/union-subclass&gt;<br>…</pre><br>一些经验：</p>
+<ul>
+<li>如果不需要多态查询：使用每个具体类一张表。</li>
+<li>一定要使用多态查询：子类中的属性相对较少，使用每个层次一张表。</li>
+<li>子类中属性较多，使用每个子类一张表。</li>
+<li>简单的问题一般选择每个层次继承一张表，复杂案例一般选择每个子类一张表</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/05/Hibernate高级映射/" data-id="cihocho8r005mg4tjlrwyri14" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象映射/">对象映射</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-操纵Session" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/05/操纵Session/" class="article-date">
+  <time datetime="2015-05-04T21:28:31.000Z" itemprop="datePublished">2015-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/05/操纵Session/">操纵Session</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Session接口可以说是Hibernate框架中使用最多的一个接口，它负责持久化工作、负责管理持久化对象的声明周期、提供第一级别的高级缓存来保证持久化对象的数据和数据库同步。</p>
+<p>1，Session的缓存</p>
+<p>Java中，缓存通常是指Java对象的属性占用的内存空间，一般使用集合类型的属性来作为缓存。Session这一级别的缓存通常称之为一级缓存，是由它的实现类SeeionImpl中的成员属性persistenceContext中定义的一系列Java集合（Map）属性构成。</p>
+<p>当程序调用Session的CRUD方法以及调用查询几口list(),iterate()和filter()方法时，如果Session缓存中不存在对象，则加入第一级缓存，如果Session中已经存在这个对象，则不需要去数据库架子而是直接调用缓存，减少数据库访问的频率，提高程序效率。</p>
+<p>当调用Transaction的commit()事务提交方法时，会自动进行缓存清理和数据库同步。</p>
+<p>Session的缓存一般交由Hibernate框架自动管理而无需程序员干预。</p>
+<p>2，持久化生命周期</p>
+<p>一个持久化类的实例，在持久化生命周期中会在不同状态之间转变。Hibernate定义四种状态。</p>
+<p><img src="http://img.dnbcw.info/2011129/3715650.gif" alt=""></p>
+<p>1，瞬时状态(transient)</p>
+<p>该实例是用new创建的，还没有被持久化，不处于任何Session的缓存中，它没有对象标识符。不跟任何一个Session关联，在数据库中没有对应的记录。</p>
+<p>2，持久化状态(persistent)</p>
+<p>已经被持久化，加入到Session缓存中。实例目前与某个Session关联。它拥有对象标识符值，并且可能在数据库中找到一个对应的行。Hibernate保证在同一个Session实例的缓存中，数据库中的每条记录只对应唯一一个持久化实例。持久化对象总是被一个Session实例关联。持久化实例和数据库中的相关记录对应，Session在清理缓存时，会根据持久化实例的属性数据变化，同步更新数据库。</p>
+<p>3，移除状态(removed)</p>
+<p>如果一个对象已经被计划在一个Session中结束时删除，它就处于移除状态，但仍然处于Session的缓存中，直到工作单元结束。</p>
+<p>4，托管(detached)</p>
+<p>已经被持久化过，但已经不处于Session的缓存中。不再位于Session的缓存中，但它拥有对象标识符。</p>
+<p>Session的基本操作</p>
+<p>public Serializable save(Object obj) throws HibernateException：持久化瞬时实例，返回对象标识符。</p>
+<p>public Object get(Class clazz, Serializable id) throws HibernateException：根据制定OID找到一个持久化类。</p>
+<p>public Object loadClass clazz, Serializable id) throws HibernateException：类似于get</p>
+<p>public void delete(Object object) throws HibernateException：把指定的持久化类实例变成顺时状态，并从数据库表中移除对应的记录。</p>
+<p>public void update(Object object) throws HibernateException：重附托管对象，并把它的状态更新到数据库表中。</p>
+<p>public void saveOrUpdate(Object obj) throws HibernateException： 同时具有save()和update()的功能</p>
+<p>public Object merge(Object object) throws HibernateException：将给定实例的状态复制到具有相同标识符的持久化实例上，并返回这个持久化实例。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/05/操纵Session/" data-id="cihocho5d000ug4tjovhr6vm3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hibernate 基本配置及操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/04/Hibernate 基本配置及操作/" class="article-date">
+  <time datetime="2015-05-04T01:14:14.000Z" itemprop="datePublished">2015-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/04/Hibernate 基本配置及操作/">Hibernate 基本配置及操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Hibernate_全局配置文件">Hibernate 全局配置文件</h3><p>1，hibernate.properties；hibernate.cfg.xml;</p>
+<p>hibernate框架在启动的时候会在应用的ClassPath路径中查询有没有这两个文件，如果有则加载他们的配置参数。</p>
+<p>在hibernate.cfg.xml文件中，首先配置session-factory元素来指定一个SessionFactory的配置，</p>
+<p><pre>&lt;hibernate-configuration&gt;<br>&lt;session-factory&gt;<br>&lt;property name=”hibernate.dialect”&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;<br>&lt;/session-factory&gt;<br>&lt;/hibernate-configuration&gt;</pre><br>2， JDBC属性</p>
+<ul>
+<li>hibernate.connection.url</li>
+<li>hibernate.connection.driver_class</li>
+<li>hibernate.connection.username</li>
+<li>hibernate.connection.password</li>
+<li>hibernate.connection.isolation：设置JDBC事务的隔离级别</li>
+<li>hibernate.connection.batch_size：批量操作的记录数<br>3，连接池属性</li>
+</ul>
+<p>通常要使用第三方的连接池技术。C3P0这个开源的连接池产品为例进行链接数据库参数的配置。</p>
+<p><pre>&lt;property name=”hibernate.c3p0.min_size”&gt;5&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.max_size”&gt;20&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.timeout”&gt;1800&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.max_statement”&gt;100&lt;/property&gt;</pre><br>4，缓存属性</p>
+<p>用来配置Hibernate使用的二级缓存策略。常用的配置如下：</p>
+<ul>
+<li>hibernate.cache.provider_class：指定第三方的缓存提供类的名称。ehcache缓存插件可做为Hibernate的二级缓存提供者。org.hibernate.cache.EhCacheProvider</li>
+<li><p>hibernate.cache.use_query_cache：指定是否开启Hibernate的查询缓存。可选值为false和true。默认为false。<br>5，其他属性</p>
+</li>
+<li><p>hibernate.show_sql：指定是否把Hibernate运行时的SQL语句输出到控制台。</p>
+</li>
+<li>hibernate.format_sql：指定是否对Hibernate运行时产生的SQL语句进行格式化便于阅读。</li>
+<li>hibernate.hbm2ddl.auto：指定应用程序在运行时，当产生SessionFactory实例时对是否自动检查数据库结构，或者将数据库schema的DDL导出到数据库。可选值：Validate（检查数据库结构），update（数据库结构发生变化时修改），create（将数据库schema的DDL导出到数据库），create_drop（在SessionFactory中实例创建时间数据schema的DDL导出到数据库，在SessionFactory被显示关闭时将数据库自动删除）。</li>
+<li>hibernate.current_session_context_class：为当前Session指定一个策略。常用值：jta(当前Session根据JTA来跟踪和界定)、Thread（前Session通过当前执行的线程来跟踪和界定）</li>
+</ul>
+<h3 id="对象关系映射文件">对象关系映射文件</h3><p>Hibernate的对象关系映射文件把面相对象中的实体类对象映射到数据库中的实体，把实体类之间的关联关系也映射到数据库中多个表之间的相互关系中。</p>
+<p><pre>XML文件的起始行，指定XML的版本和编码方式<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>映射文件的所使用的DTD声明<br>&lt;!DOCTYPE hibernate-mapping PUBLIC<br> “-//Hibernate/Hibernate Mapping DTD 3.0//EN”<br> “<a href="http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&amp;gt" target="_blank" rel="external">http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&amp;gt</a>;</pre></p>
+<p>&lt;!– Hibernate对象关系映射文件的根元素 –&gt;<br>&lt;hibernate-mapping&gt;<br> &lt;!– class元素用来定义一个持久化类及对应的数据库表 –&gt;<br> &lt;class name=”com.qiujy.domain.Account” table=”account”&gt;<br> &lt;!–<br> id元素：指定每个持久化类的唯一标识(即对象标识符OID)到数据库表主键字段的映射<br> name属性：指定持久化类的OID名<br> column属性：指定数据库表主键字段名。此属性的名和映射到数据库表的字段名相同时，可省略<br> type属性：指定主键映射时所使用的Hibernate类型名。此属性的类型为基本数据类型和String类型时，可省略<br> –&gt;<br> &lt;id name=”id” column=”id” type=”long”&gt;<br> &lt;!– generator元素：指定对象标识符的生成器名。<br> native生成器把对象标识符值的生成工作交由底层数据库来完成<br> –&gt;<br> &lt;generator class=”native” /&gt;<br> &lt;/id&gt;<br> &lt;!–<br> property元素：指定持久化类的每一个要映射到数据库表的字段的属性的信息。<br> name属性；指定持久化类中要映射到数据库表字段的属性名。<br> column属性：指定对应的表的字段名。此属性的名和映射到数据库表的字段名相同时，可省略<br> type属性：指定属性映射所使用的Hibernate类型名。此属性的类型为基本数据类型和String类型时，可省略<br> not-null属性：指定此属性映射到数据库表的字段值是否允许为值<br> –&gt;<br> &lt;property name=”loginname” column=”loginname” type=”string” not-null=”true”/&gt;<br> &lt;property name=”password” column=”password” type=”string” not-null=”true”/&gt;<br> &lt;property name=”email” column=”email” type=”string”/&gt;<br> &lt;!– 属性类型为Date类型的必须要明确指定使用的Hibernate类型名 –&gt;<br> &lt;property name=”registrationTime” column=”registration_time” type=”timestamp”/&gt;<br> &lt;/class&gt;<br>&lt;/hibernate-mapping&gt;<br>1,映射持久化类</p>
+<p>在Hibernate对象关系映射文件中，使用class元素来映射持久化类到数据库表中</p>
+<ul>
+<li>name：指定要映射的持久化类的名称</li>
+<li>table：指定和此持久化类对应的数据库表名<br>2，映射对象标识符</li>
+</ul>
+<p>Hibernate中要求每一个持久化类都有一个对象标识符来唯一标识它的每一个实例。对象标识符的值是数据库表中行的主键。</p>
+<p>3，对象标识符生成方式</p>
+<p>可以通过ID元素的generator子元素，指定对象标识符的生成器。</p>
+<ol>
+<li>代理对象标识符：在一个持久化类中添加一个没有业务意义的属性来作为对象标识符，这样应用程序的领域模型更具有扩展性。</li>
+<li>自然对象标识符：由许多遗留的SQL数据模型使用了带有业务意义的主键组成。</li>
+</ol>
+<ul>
+<li>如果对象标识符的数据类型为整数型（Long，int，short）或对应的包装类型，为提高应用程序在不同数据库上的移植能力，建议使用native。</li>
+<li>如果对象标识符的数据类型的为字符串型，为提高应用程序的在不同数据库上的移植能力，建议用UUID。</li>
+<li>如果应用程序是先有数据库的物理模型后偶建立实体模型，且使用了自然主键，那么选择assigned.<br>4，映射普通属性</li>
+</ul>
+<p>对象标识符，版本号，自定义数据类型属性以外的属性。通过class元素的property子元素来映射&lt;property name=”属性名” column=”列名称” type=“映射属性”/&gt;</p>
+<p>5，Hibernate映射的数据类型</p>
+<p><img src="http://www.educity.cn/article_images/2014-03-18/11810dd6-1bfb-4478-92ca-471f8942ba92.jpg" alt=""></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/04/Hibernate 基本配置及操作/" data-id="cihocho8z0061g4tj7czng05j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Configuration/">Configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ORM（Object Relation Mapping）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/03/ORM（Object Relation Mapping）/" class="article-date">
+  <time datetime="2015-05-03T01:38:47.000Z" itemprop="datePublished">2015-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/03/ORM（Object Relation Mapping）/">ORM（Object Relation Mapping）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2><p>对象关系映射，是一种完成对象模型到关系模型的映射技术。就是一种把应用程序的对象数据持久化到关系数据库表的一种技术。</p>
+<ul>
+<li>把对象的数据转储到关系型数据库表中时就会发生如下不匹配的问题。</li>
+<li>对象模型中对象之间的关联关系与关系模型中数据库表之间的关系无法一一对应。</li>
+<li>对象模型中对象的继承关系在关系模型中无法直接表示。</li>
+<li>对象模型中对象的等值性在关系模型数据库表中表示困难。</li>
+<li>对象模型中有关联的对象之间的导航访问在关系模型中无法直接实现。<br>ORM 来解决上述问题。它能用面向对象的思想开发基于关系型数据库的应用程序。</li>
+</ul>
+<h3 id="Hibernate">Hibernate</h3><p>JBoss公司著名架构师Gavin King设计，开发的一个开源的ORM框架。</p>
+<ul>
+<li>它是连接Java应用程序和关系数据库的中间件。</li>
+<li>它对JDBC API进行了封装，负责Java对象的持久化。</li>
+<li>在分层的软件框架中它位于持久化层，封装的所有的数据访问细节，使业务逻辑层可以专注于实现业务逻辑。</li>
+<li>它是一种ORM工具，能够建立面相对象的域模型和关系模型的映射。</li>
+</ul>
+<h3 id="hibernate_的核心类和接口">hibernate 的核心类和接口</h3><h4 id="1，Configuration类">1，Configuration类</h4><p>Configuration类是Hibernate的入口，它负责配置并启动Hibernate。Hibernate框架通过Configuration实例加载配置文件信息，然后读取指定对象关系文件的内容并创建SessionFactory实例。</p>
+<h4 id="2，SessionFactory接口">2，SessionFactory接口</h4><p>SessionFactory接口负责初始化Hibernate，一个SessionFactory实例对应一个数据存储源（一般就是指一个数据库）。应用程序从SessionFactory中获取Session实例。SessionFactory具有以下几个特点：</p>
+<ul>
+<li>线程安全，即同一个SessionFactory实例可以被应用的多个线程共享。</li>
+<li>它是重量级的，因为它需要一个很大的缓存，用来存放预定义的SQL语句以及映射元数据。<br>所以说，如果一个应用程序只访问一个数据库，则只需要创建一个全局的SessionFactory实例。</li>
+</ul>
+<h4 id="3，Session接口">3，Session接口</h4><p>Session是Hibernate中应用最频繁的接口。Session也被称为持久化管理器。他负责管理所有与持久化相关的操作：存储、更新、删除和加载对象等。Session具有以下特点。</p>
+<p>单线程，非共享的对象。线程不安全，在设计软件架构时，应该避免多个线程共享同一个Session实例。</p>
+<p>Session实例是轻量级的，它的创建和销毁不需要消耗太多的资源。可以为每个请求分配一个Session实例，在每次请求过程中及时创建和销毁Session实例。</p>
+<p>Session有一个缓存，他存放当前工作单元加载的对象。Session的缓存被称为Hibernate的第一级缓存。</p>
+<h4 id="4，Transaction接口">4，Transaction接口</h4><p>Transaction接口是Hibernate框架的事务接口。它对底层事务接口做了封装，包括：JDBC API和JTA。这样，使得Hibernate应用可通过一致的Transaction接口来声明事务边界，这有助于应用程序在不同环境和容器中移植。</p>
+<h4 id="5，Query和Criteria接口">5，Query和Criteria接口</h4><p>他们是Hibernate的查询接口，用于从数据库存储源查询对象以及控制执行查询的过程。Query包装了一个HQL的查询语句；而Criteria接口完全封装了基于字符串形式的查询语句，比Query更加面相对象，Criteria接口擅长执行动态查询。</p>
+<h3 id="Hibernate的工作过程">Hibernate的工作过程</h3><p><img src="http://img.my.csdn.net/uploads/201304/07/1365329836_2944.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/03/ORM（Object Relation Mapping）/" data-id="cihocho8i005ag4tjf4row4c9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ORM/">ORM</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-版本控制概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/03/版本控制概述/" class="article-date">
+  <time datetime="2015-05-03T00:37:00.000Z" itemprop="datePublished">2015-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/03/版本控制概述/">版本控制概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>版本控制是一种软件工程技巧，指的是在软件开发过程中，确保由不同人所编辑的同一文件都得到跟新。版本控制的标准做法是通过文档控制来记录各个文件的改动，并未每次改动添加编号。</p>
+<p>版本控制系统指能够追踪、比较、回复、提交程序代码或文件改动的软件。</p>
+<h3 id="版本控制术语">版本控制术语</h3><p>仓库（Repository）：是版本控制系统中存放项目文件及这些文件的全部历史的中心。它是版本控制系统策略的核心组件。仓库使用典型的文件和目录层次结构——树状结构来存储信息。在物理结构上它是版本控制系统的根目录。</p>
+<p>模块（Module）：就是仓库里用一个用户版本控制系统管理起来的工程。</p>
+<p>导入（Import）：添加文件到版本中控制系统的仓库中，为项目创建了一个模块。</p>
+<p>工作目录（Working directory）：保存了从仓库中拿到的项目文件到本地复制。也叫工作空间（workspace）。开发人员可以再工作目录下修改其中的文件。</p>
+<p>检出（checkout）：指的是从仓库中获取一个模块中的文件到本地的工作目录里，然后就可以再工作目录下，修改其中的文件。</p>
+<p>提交（commit）：在本地的工作目录下，对工程中的文件进行修改，这些修改需要提交到版本控制系统的仓库。</p>
+<p>同步（Update）：从仓库中的模块中下载被其他人修改过的文件。</p>
+<p>文件版本（Revision）：指的是单个文件的版本，而不是整个项目的版本。基本上，每个文件每次修改，经过提交后，它的文件版本都会改变一次。单个文件的版本（Revision）与整个工程的版本（Version或Release）可以没有任何关系。</p>
+<p>发行版本（Release）：整个产品的版本。</p>
+<p>标签（Tag）：在工程开发过程的一个特定时期，对一个文件或者多个文件给的符号名，一般是有意义的字符串：如Beta_2_0,RC_3_0,GA_1_0等。tag是服务版本的一些文字含义。</p>
+<p><a href="http://www.blogjava.net/RomulusW/archive/2008/05/04/197985.html" target="_blank" rel="external">各个版本的含义</a></p>
+<p>Alpha：是内部测试版,一般不向外部发布,会有很多Bug.一般只有测试人员使用。</p>
+<p>Beta：也是测试版，这个阶段的版本会一直加入新的功能。在Alpha版之后推出。</p>
+<p>RC：(Release　Candidate) 顾名思义么 ! 用在软件上就是候选版本。系统平台上就是发行候选版本。RC版不会再加入新的功能了，主要着重于除错。</p>
+<p><span class="hilite1"><span class="hilite1">GA</span></span>:General Availability,正式发布的版本，在国外都是用<span class="hilite1"><span class="hilite1">GA</span></span>来说明release版本的。</p>
+<p>RTM：(Release to Manufacture)是给工厂大量压片的版本，内容跟正式版是一样的，不过RTM版也有出限制、评估版的。但是和正式版本的主要程序代码都是一样的。</p>
+<p>OEM：是给计算机厂商随着计算机贩卖的，也就是随机版。只能随机器出货，不能零售。只能全新安装，不能从旧有操作系统升级。包装不像零售版精美，通常只有一面CD和说明书(授权书)。</p>
+<p>RVL：号称是正式版，其实RVL根本不是版本的名称。它是中文版/英文版文档破解出来的。</p>
+<p>EVAL：而流通在网络上的EVAL版，与“评估版”类似，功能上和零售版没有区别。</p>
+<p>RTL：Retail(零售版)是真正的正式版，正式上架零售版。在安装盘的i386文件夹里有一个eula.txt，最后有一行EULAID，就是你的版本。比如简体中文正式版是EULAID:WX.4_PRO_RTL_CN，繁体中文正式版是WX.4_PRO_RTL_TW。其中：如果是WX.开头是正式版，WB.开头是测试版。_PRE，代表家庭版；_PRO，代表专业版。</p>
+<p>α、β、λ常用来表示<a target="_self">软件测试</a>过程中的三个阶段，α是第一阶段，一般只供内部测试使用；β是第二个阶段，已经消除了软件中大部分的不完善之处，但仍有可能还存在缺陷和漏洞，一般只提供给特定的用户群来测试使用；λ是第三个阶段，此时产品已经相当成熟，只需在个别地方再做进一步的优化处理即可上市发行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/03/版本控制概述/" data-id="cihocho52000kg4tjh82felmw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-struts-advanced" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/30/struts-advanced/" class="article-date">
+  <time datetime="2015-04-29T23:02:02.000Z" itemprop="datePublished">2015-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/30/struts-advanced/">Struts Advanced</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1，利用Token解决重复提交">1，利用Token解决重复提交</h3><p>基本原理：服务器在处理到达的请求之前，会将请求中包含的令牌值与保存在当前用户会话中的令牌值进行比较，看是否匹配。在处理完请求后，且在响应发送给客户端之前，将会产生一个新的令牌值，该令牌值除了传给客户端以外，也会将会话中保存的旧的令牌值进行替换。这样如果用户后退到刚才的提交页面并重复提交的话，客户端传过来的令牌就和服务器端的令牌不一致，从而有效的防止了重复提交的发生。</p>
+<h3 id="2，BeanUtils与PropertyUtils">2，BeanUtils与PropertyUtils</h3><p>Apache Jakarta Commons项目提供了很多流行的commons组件。</p>
+<p>BeanUtils提供了JAVA反射和自省API的包装。其主要目的是利用反射机制对JavaBean的属性进行处理。一个JavaBean通常包含了大量的属性，在很多情况下，对JavaBean的处理会导致大量getset代码堆积。</p>
+<p>如果用户有两个具有很多相同属性的JavaBean，一个很常见的现象就是Struts里的PO对象和对应的ActionForm</p>
+<p>BeanUtils.copyProperties(admin,adminForm)，支持数据类型范围内的转换。</p>
+<p>BeanUtils不对这些属性进行处理，需要手动处理。admin.setAttrabuite。</p>
+<p>PropertyUtils工具类，提供copyProperties()方法，不支持数据类型转换，速度快。</p>
+<p>时间类型要被转化时，使用java.sql.Date，不要使用java.util.Date(不支持)。</p>
+<h4 id="使用BeanUtils的成本很高，超过取数据，将其复制到对应的value_对象，以及通过串行化将其返回到远程客户机的时间的总和。不要滥用。"><span style="color:#ff0000;">使用BeanUtils的成本很高，超过取数据，将其复制到对应的value 对象，以及通过串行化将其返回到远程客户机的时间的总和。不要滥用。</span></h4><h4 id="3，Struts的上传和下载">3，Struts的上传和下载</h4><p>Commons-fileupload组件，struts上传组件。</p>
+<p>Commons-fileupload组件：</p>
+<p>配置Web.xml文件，action所对应是一个Servlet，而非Struts的action。编辑上传类，FileUploadServlet.java</p>
+<p>Struts上传文件组件：</p>
+<p>在form中enctpye的值一定要设置为multipart或form-data</p>
+<p>配置Struts-config.xml，formbean,action</p>
+<p>ActionForm Bean中必须第一个名为file的属性，org.apache.struts.upload.FormFile类型。</p>
+<h3 id="4，Null与“”的区别">4，Null与“”的区别</h3><p>String str1 = null; Str 引用为空；没有被分配空间，不是对象；if(str1==null)</p>
+<p>String str2 = “”; str引用一个空串；分配的空间，是对象；if(str2.equal(“”))</p>
+<pre>if(str==null||str.equal("")){
+
+    //先判断是不是对象，在判断是不是空字符串
+
+}</pre>
+
+<h3 id="5,struts处理中文乱码">5,struts处理中文乱码</h3><ul>
+<li><h5 id="页面中显示中文乱码">页面中显示中文乱码</h5></li>
+<li><h5 id="传递参数中文乱码">传递参数中文乱码</h5></li>
+<li><h5 id="国际化资源文件乱码">国际化资源文件乱码</h5><p>1,页面中文乱码<br><pre>&lt;% @page language=”java” import=”java.util.” pageEncoding=”UTF-8”%&gt;</pre><br>2,传递中文乱码</p>
+</li>
+</ul>
+<p>a,Tomcat目录中conf/server.xml中</p>
+<p><pre>&lt;Connector port=”8080” protocol=”HTTP/1.1” connectionTimeout=”2000” redirectPort=”8443” URIEncoding=”UTF-8”&gt;</pre><br>b,添加过滤器Filter</p>
+<p><pre>public class CharacterEncodingFilter implements Filter{<br>    public void destroy(){}<br>    public void doFilter(ServletRequest request, ServletResponse response FilterChain chain) throws Exceptions{<br>    request.setCharacterEncoding(“utf-8”);<br>    chain.doFilter(request,response);<br>  }<br>public void init(FilterConfig arg0) throws ServletException{}<br>}</pre></p>
+<p>web.xml<br>&lt;filter&gt;<br>&lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;<br>&lt;filter-class&gt;org.napu.utils.CharacterEncodingFilter&lt;/filter-class&gt;<br>&lt;/filter&gt;<br>&lt;filter-mapping&gt;<br>&lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;<br>&lt;url-pattern&gt;/<em>&lt;/url-pattern&gt;<br>&lt;/filter-mapping&gt;<br>过滤的URL为“/</em>”,表示当前的request请求。<br>3，国际化资源文件乱码</p>
+<p>native2ascii –encoding gbk ApplicationResources_zh.properties bank.properties</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/30/struts-advanced/" data-id="cihocho60001lg4tj8i9xrcjy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tokens/">Tokens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中文乱码/">中文乱码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hibernate/">Hibernate</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/fibonacci/">fibonacci</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/socket/">socket</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Zhaohui zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

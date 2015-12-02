@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Welcome To Napu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome To Napu's Blog">
+<meta property="og:url" content="http://zhaohuizhang.github.io/page/4/index.html">
+<meta property="og:site_name" content="Welcome To Napu's Blog">
+<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome To Napu's Blog">
+<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+  
+    <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Welcome To Napu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello world，have a nice day!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaohuizhang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-struts-tiles" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/30/struts-tiles/" class="article-date">
+  <time datetime="2015-04-29T18:44:25.000Z" itemprop="datePublished">2015-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/30/struts-tiles/">Struts Tiles</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Struts Tiles 框架提供了一种模板机制，模板定义了网页的布局，同一模板可以被多个Web页面公用。Tiles框架还允许定义可重用的Tiles组件，它可以描述一个完整的网页，也可以描述网页的局部内容。</p>
+<p><pre>iframe框架中也可以嵌入多个页面，但对于每个请求一个页面，服务器就要开启一个线程，也就是说，采用iframe框架，当用户第一次向服务器请求页面时，服务器要为这一次请求开启多个线程。而Tiles框架，将多个页面组合成一个页面，每次请求，服务器只要开启一个线程它既实现了iframe的布局功能，也解决了服务器负载问题<br></pre><br>Tiles框架增强了基于组件的设计和Web UI设计中的模板概念。接触WebUI组件之间的耦合并重用它们。Tiles模板的优点：</p>
+<p>1，创建可重用的模板</p>
+<p>2，动态构建和装在页面</p>
+<p>3，定义可重用的Tiles组件</p>
+<p>4，支持国际化</p>
+<p>Tiles建立在JSP的include指令的基础上，但比JSP的include指令更加强大。包括以下内容：</p>
+<ul>
+<li>Tiles标签库</li>
+<li>Tiles组件的配置文件</li>
+<li>TilesPlugIn插件<br>Tiles的insert标签取代JSP include指令来创建复合式页面，还不能充分发挥Tiles框架的优势。将Tiles的组件代码移植到tiles-defs.xml文件中。</li>
+</ul>
+<p>集成Struts与Tiles</p>
+<ol>
+<li>创建工程，设置Tiles环境</li>
+<li>设置页面</li>
+<li>设置XML文件在WEB-INF中添加tiles-defs.xml文件</li>
+<li>修改index.jsp文件</li>
+<li>在Struts-config.xml中配置TilesPlugin插件</li>
+<li>发布运行<br>如果Tiles组件代表完整的网页，可以通过Struts Action来调用Tiles组件。<br><pre>&lt;action-mappings&gt;<br>&lt;action path=”/index” type=”org.apache.struts.actions.ForwardAction” parameter=”index-definition”&gt;<br>&lt;/action&gt;<br>&lt;/action-mappings&gt;</pre><br>ForwardAction把请求转发给名为index-definition的Tiles组件，能够充分利用Struts框架的流程控制功能，又能减少JSP文件的数目。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/30/struts-tiles/" data-id="cihocho5m0014g4tjbrwe5alh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tiles/">Tiles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-flask-mysql-migrate" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/29/flask-mysql-migrate/" class="article-date">
+  <time datetime="2015-04-28T19:38:42.000Z" itemprop="datePublished">2015-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flask/">Flask</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/29/flask-mysql-migrate/">Flask Mysql Migrate</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><pre>from app import app,db<br>from flask.ext.script import Manager<br>from flask.ext.migrate import Migrate, MigrateCommand</pre></p>
+<p>migrate = Migrate(app, db)</p>
+<p>manager = Manager(app)<br>manager.add_command(‘db’, MigrateCommand)<br>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>manager.run()</p>
+<p><pre>$ python app.py db init</pre></p>
+<p><pre>$ python app.py db migrate</pre></p>
+<p><pre>$ python app.py db upgrade</pre><br><a href="https://github.com/zhaohuizhang/aaronx" target="_blank" rel="external">Github</a></p>
+<p><a href="https://flask-migrate.readthedocs.org/en/latest/" target="_blank" rel="external">Flask-migrate</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/29/flask-mysql-migrate/" data-id="cihocho7d003cg4tjhootq22s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Struts validate验证框架配置使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/28/Struts validate验证框架配置使用/" class="article-date">
+  <time datetime="2015-04-27T19:20:57.000Z" itemprop="datePublished">2015-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/28/Struts validate验证框架配置使用/">Struts validate验证框架配置使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，struts-config.xml文件中配置</p>
+<p><pre>&lt;action path=”/login” name=”loginForm” scope=”request”<br>    type=”org.napu.action.LoginForm”<br>    validate=”true” input=”/login.jsp”&gt;<br>    &lt;forward name=”succ” path=”/success.jsp”/&gt;<br>    &lt;forward name=”error” path=”/error.jsp”/&gt;<br>&lt;/action&gt;</pre><br>validate的值为true。</p>
+<p><pre>&lt;struts-config&gt;<br>….<br>&lt;message-resouses  parameter=”AppliactionResource.property” /&gt;<br>&lt;plug-in className=”org.apache.struts.validator.ValidatorPlugin”&gt;<br>    &lt;set-property value=”/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml” property=”pathnames”&gt;<br>&lt;/plug-in&gt;<br>&lt;/struts-config&gt;</pre><br>2，在WEB-INF目录中新建validation.xml文件。</p>
+<p><pre>&lt;form-validation&gt;<br>&lt;global&gt;&lt;/global&gt;<br>&lt;formset&gt;<br>&lt;form name=”LoginForm”&gt;<br>&lt;field property=”username” depends=”required,minlength,maxlength”&gt;<br>&lt;arg0 key=”userform.username”/&gt;<br>&lt;arg1 name=”minlength” key=”${var:min}” resource=”false”/&gt;<br>&lt;arg2 name=”maxlength” key=”${var:max}” resource=”true”/&gt;<br>&lt;var&gt;<br>&lt;var-name&gt;min&lt;/var-name&gt;<br>&lt;var-value&gt;6&lt;/var-value&gt;<br>&lt;/var&gt;<br>&lt;var&gt;<br>&lt;var-name&gt;max&lt;/var-name&gt;<br>&lt;var-value&gt;20&lt;/var-value&gt;<br>&lt;/var&gt;<br>&lt;/field&gt;<br>&lt;/form&gt;<br>&lt;/formset&gt;<br>&lt;/form-validation&gt;</pre><br>3，把validator框架使用的消息文本添加到应用的ResourceBundle中，在ApplicationResource.properties中添加内容。</p>
+<p>4，将Form的extends ActionForm 改为extends ValidatorForm</p>
+<p>5，在JSP页面中添加&lt;html:errors property=”key”/&gt;。这里property对应Form中的定义的属性。</p>
+<p>&nbsp;</p>
+<h3 id="自定义的验证">自定义的验证</h3><p>1，创建一个实现规则接口的静态方法的类。</p>
+<p>2，在validator-rules.xml中的global元素中添加validator子元素</p>
+<p>3，在资源属性文件中添加error信息。</p>
+<p>4，在validation.xml中添加配置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/28/Struts validate验证框架配置使用/" data-id="cihocho85004gg4tj6p946uy3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Validation/">Validation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PYTHON YIELD 使用浅析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/PYTHON YIELD 使用浅析/" class="article-date">
+  <time datetime="2015-04-26T20:15:54.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/PYTHON YIELD 使用浅析/">PYTHON YIELD 使用浅析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="dwc-exp-a" class="dw-article-sidebar dw-bluemix"><br><div id="ibm-leadspace-body"><br><br>### <a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/" target="_blank" rel="external">PYTHON YIELD </a><br><br></div><br><div id="dw-summary-area" class="dw-summary-columns"><br><div class="ibm-col-6-4"><br><br>初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。<br><br></div><br></div><br></div><br>您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？<br><br>我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。<br><br>## 如何生成斐波那契數列<br><br>斐波那契（Fibonacci）數列是一个非常简单的递归数列，除第一个和第二个数外，任意一个数都可由前两个数相加得到。用计算机程序输出斐波那契數列的前 N 个数是一个非常简单的问题，许多初学者都可以轻易写出如下函数：<br><br>##### 清单 1. 简单输出斐波那契數列前 N 个数<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        print b<br>        a, b = b, a + b<br>        n = n + 1</pre><br></div><br>执行 fab(5)，我们可以得到如下输出：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; fab(5)<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>结果没有问题，但有经验的开发者会指出，直接在 fab 函数中用 print 打印数字会导致该函数可复用性较差，因为 fab 函数返回 None，其他函数无法获得该函数生成的数列。<br><br>要提高 fab 函数的可复用性，最好不要直接打印出数列，而是返回一个 List。以下是 fab 函数改写后的第二个版本：<br><br>##### 清单 2. 输出斐波那契數列前 N 个数第二版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    L = []<br>    while n &lt; max:<br>        L.append(b)<br>        a, b = b, a + b<br>        n = n + 1<br>    return L</pre><br></div><br>可以使用如下方式打印出 fab 函数返回的 List：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>改写后的 fab 函数通过返回 List 能满足复用性的要求，但是更有经验的开发者会指出，该函数在运行中占用的内存会随着参数 max 的增大而增大，如果要控制内存占用，最好不要用 List<br><br>来保存中间结果，而是通过 iterable 对象来迭代。例如，在 Python2.x 中，代码：<br><br>##### 清单 3. 通过 iterable 对象来迭代<br><br><div class="codesection"><br><pre class="displaycode"> for i in range(1000): pass</pre><br></div><br>会导致生成一个 1000 个元素的 List，而代码：<br><div class="codesection"><br><pre class="displaycode"> for i in xrange(1000): pass</pre><br></div><br>则不会生成一个 1000 个元素的 List，而是在每次迭代中返回下一个数值，内存空间占用很小。因为 xrange 不返回 List，而是返回一个 iterable 对象。<br><br>利用 iterable 我们可以把 fab 函数改写为一个支持 iterable 的 class，以下是第三个版本的 Fab：<br><br>##### 清单 4. 第三个版本<br><br><div class="codesection"><br><pre class="displaycode"> class Fab(object):<br><br>    def <strong>init</strong>(self, max):<br>        self.max = max<br>        self.n, self.a, self.b = 0, 0, 1<br><br>    def <strong>iter</strong>(self):<br>        return self<br><br>    def next(self):<br>        if self.n &lt; self.max:<br>            r = self.b<br>            self.a, self.b = self.b, self.a + self.b<br>            self.n = self.n + 1<br>            return r<br>        raise StopIteration()</pre><br></div><br>Fab 类通过 next() 不断返回数列的下一个数，内存占用始终为常数：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in Fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>然而，使用 class 改写的这个版本，代码远远没有第一版的 fab 函数来得简洁。如果我们想要保持第一版 fab 函数的简洁性，同时又要获得 iterable 的效果，yield 就派上用场了：<br><br>##### 清单 5. 使用 yield 的第四版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        yield b<br>        # print b<br>        a, b = b, a + b<br>        n = n + 1<br><br>‘’’</pre><br></div><br>第四个版本的 fab 和第一版相比，仅仅把 print b 改为了 yield b，就在保持简洁性的同时获得了 iterable 的效果。<br><br>调用第四版的 fab 和第二版的 fab 完全一致：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。<br><br>也可以手动调用 fab(5) 的 next() 方法（因为 fab(5) 是一个 generator 对象，该对象具有 next() 方法），这样我们就可以更清楚地看到 fab 的执行流程：<br><br>##### 清单 6. 执行流程<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f = fab(5)<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 2<br> &gt;&gt;&gt; f.next()<br> 3<br> &gt;&gt;&gt; f.next()<br> 5<br> &gt;&gt;&gt; f.next()<br> Traceback (most recent call last):<br>  File “&lt;stdin&gt;”, line 1, in &lt;module&gt;<br> StopIteration</pre><br></div><br>当函数执行结束时，generator 自动抛出 StopIteration 异常，表示迭代完成。在 for 循环里，无需处理 StopIteration 异常，循环会正常结束。<br><br>我们可以得出以下结论：<br><br>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。<br><br>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br><br>如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断：<br><br>##### 清单 7. 使用 isgeneratorfunction 判断<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from inspect import isgeneratorfunction<br> &gt;&gt;&gt; isgeneratorfunction(fab)<br> True</pre><br></div><br>要注意区分 fab 和 fab(5)，fab 是一个 generator function，而 fab(5) 是调用 fab 返回的一个 generator，好比类的定义和类的实例的区别：<br><br>##### 清单 8. 类的定义和类的实例<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; import types<br> &gt;&gt;&gt; isinstance(fab, types.GeneratorType)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), types.GeneratorType)<br> True</pre><br></div><br>fab 是无法迭代的，而 fab(5) 是可迭代的：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from collections import Iterable<br> &gt;&gt;&gt; isinstance(fab, Iterable)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), Iterable)<br> True</pre><br></div><br>每次调用 fab 函数都会生成一个新的 generator 实例，各实例互不影响：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f1 = fab(3)<br> &gt;&gt;&gt; f2 = fab(5)<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 3<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 5</pre><br></div><br><div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="return_的作用">return 的作用</h2><p>在一个 generator function 中，如果没有 return，则默认执行至函数完毕，如果在执行过程中 return，则直接抛出 StopIteration 终止迭代。</p>
+<div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="另一个例子">另一个例子</h2><p>另一个 yield 的例子来源于文件读取。如果直接对文件对象调用 read() 方法，会导致不可预测的内存占用。好的方法是利用固定长度的缓冲区来不断读取文件内容。通过 yield，我们不再需要编写读文件的迭代类，就可以轻松实现文件读取：</p>
+<h5 id="清单_9-_另一个_yield_的例子">清单 9. 另一个 yield 的例子</h5><p><div class="codesection"></div></p>
+<p><pre class="displaycode"> def read_file(fpath):<br>    BLOCK_SIZE = 1024<br>    with open(fpath, ‘rb’) as f:<br>        while True:<br>            block = f.read(BLOCK_SIZE)<br>            if block:<br>                yield block<br>            else:<br>                return</pre><br><br>以上仅仅简单介绍了 yield 的基本概念和用法，yield 在 Python 3 中还有更强大的用法，我们会在后续文章中讨论。</p>
+<p>注：本文的代码均在 Python 2.7 中调试通过</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/27/PYTHON YIELD 使用浅析/" data-id="cihocho8f0054g4tjpm6b8o44" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-yield/">python yield</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Sublime Text 2 插件安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/Sublime Text 2 插件安装/" class="article-date">
+  <time datetime="2015-04-26T19:43:17.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tools/">Tools</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/Sublime Text 2 插件安装/">Sublime Text 2 插件安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.cnblogs.com/dolphin0520/archive/2013/04/29/3046237.html" target="_blank" rel="external">Sublime Text 2安装插件有两种方法：</a></p>
+<p>1）离线安装，先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。</p>
+<p>2）在线安装，在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：</p>
+<p>选择”查看“—&gt;”显示控制台“，然后在下面弹出的框中输入：</p>
+<p><div class="cnblogs_code"></div></p>
+<p><pre>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘<a href="http://sublime.wbond.net/&#39;+pf.replace(" target="_blank" rel="external">http://sublime.wbond.net/&#39;+pf.replace(</a>‘ ‘,’%20’)).read())</pre><br><br>然后回车确认，安装完毕之后重启sublime，如果发现在Perferences中看到package control这一项，则安装成功。</p>
+<p>然后就可以通过”Ctrl+Shift+P“打开命令面板，输入”install“命令，就可以看到安装包列表了。</p>
+<p>下面推荐几款必备的常用插件：</p>
+<p>1.Tag插件</p>
+<p>Tag插件可以为web开发者提供html和css标签，很方便快捷，对于web前端设计者非常实用。</p>
+<p><img src="http://images.cnitblog.com/blog/288799/201304/29231537-2ddaba665be244be9661107d7f43b260.jpg" alt=""></p>
+<p>2.Prefixr插件</p>
+<p>为css3提供一些前缀，比如</p>
+<p><img src="http://images.cnitblog.com/blog/288799/201304/29231738-65012f61dfa04f9f87bf839f61ebb254.jpg" alt=""></p>
+<p>3.Terminal插件</p>
+<p>Terminal插件可以允许在Sublime Text2中打开cmd命令窗口，很实用的一个插件，安装好该插件好，打开cmd命令窗口的快捷键是</p>
+<p>Ctrl+Shift+T。</p>
+<p>4.SublimeTmpl插件</p>
+<p>这个插件允许用户定义文件的模板，比如在写一个html文件时，老是重复文件头的一些引入信息很繁琐，可以定义一个模板直接生成必须的信息，具体的SublimeTmpl插件用法请自行百度。</p>
+<p>5.SideBarEnhancements插件</p>
+<p>一个增强侧边栏文件夹浏览功能的插件，比较不错。</p>
+<p>6.DocBlockr插件</p>
+<p>用来生成注释块的插件，安装好之后直接输入”/*”，然后再按回车键，即可生成代码注释块。</p>
+<p>7.SublimeCodeIntel插件</p>
+<p>智能提示插件，这个插件的智能提示功能非常强大，可以自定义提示的内容库，我的Python智能提示设置（配置文件路径为packages\SublimeCodeIntel-master.codeintel\config）为：</p>
+<p><div class="cnblogs_code"></div></p>
+<p><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div></p>
+<p><pre>{<br>    “Python”: {<br>        “python”:’D:/Program Files/Python26/python.exe’,<br>        “pythonExtraPaths”: [‘D:/Program Files/Python26’,’D:/Program Files/Python26/DLLs’,’D:/Program Files/Python26/Lib’,’D:/Program Files/Python26/Lib/plat-win’,’D:/Program Files/Python26/Lib/lib-tk’,’D:/Program Files/Python26/Lib/site-packages’]<br>    }<br>}</pre></p>
+<p><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div><br><br>其中“pythonExtraPaths”就是需要智能提示所需要用到的内容库。</p>
+<p>8.AndyPython插件</p>
+<p>一款针对Python语言的智能提示插件，其需要提示的关键字和函数可以在Packages\AndyPython\PythonCompletions.py中设置。</p>
+<p>9.AndyJS2插件</p>
+<p>一款针对Javsscript和jquery智能提示的插件。</p>
+<p>10.jquery插件</p>
+<p>jquery提示库。</p>
+<p>11.Ctags插件</p>
+<p>该插件可以实现快速定位到函数定义的地方。</p>
+<p>12.为了避免打开含中文字符的文件出现乱码，需要先安装GBK Encoding Support这个插件，再安装ConvertToUTF8插件即可。</p>
+<p>如果有朋友觉得没有注册有时候会有弹窗比较讨厌，这里介绍一种破解办法：</p>
+<p>用一种十六进制编辑器（我这里用的UltraEdit）打开sublime text 2安装目录下的文件sublime_text.exe，在此之前最好备份一下，如果没有破解成功可以恢复，然后定位到000CBB70这一行，找到8A C3，将其修改为B0 01，然后保存即可，这是破解注册成功的界面：</p>
+<p><img src="http://images.cnitblog.com/blog/288799/201305/05150245-21015e86b67246278d8c6622626f5a52.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/27/Sublime Text 2 插件安装/" data-id="cihocho7u003wg4tjemfotgno" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-scrapymongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/26/python-scrapymongodb/" class="article-date">
+  <time datetime="2015-04-26T09:12:11.000Z" itemprop="datePublished">2015-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/26/python-scrapymongodb/">Python Scrapy+MongoDB</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用户想用一个Python程序从StackOverflow抓取数据，获取新的问题（问题标题和URL），抓取的数据应当存入MongoDB。</p>
+<p>在开始抓取工作前，一定要先查看该网站的使用/服务条款，要尊重robots.txt文件。抓取行为应当遵守道德，不要在很短的时间内发起大量请求，从而导致网站遭受泛洪攻击。</p>
+<p>本文安装运行环境：windows 7 Enterprise  64bit</p>
+<p>安装：</p>
+<p><a href="http://scrapy.org/" target="_blank" rel="external">Scrapy</a>，<a href="https://api.mongodb.org/python/current/" target="_blank" rel="external">PyMongo </a>，<a href="https://www.mongodb.org/" target="_blank" rel="external">MongoDB</a>，<a href="http://sourceforge.net/projects/pywin32/files/pywin32/" target="_blank" rel="external">Pywin32</a></p>
+<p><pre>pip install Scrapy<br>pip install pymongo<br>scrapy startproject stack<br>Problem：NO module name service_identity<br>solution:pip install service_identity</pre><br><a href="https://github.com/zhaohuizhang/ScrapySpider" target="_blank" rel="external">Github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/26/python-scrapymongodb/" data-id="cihocho68001vg4tjo7wo1dh2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/">Scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crawler/">crawler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Struts 标签" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/24/Struts 标签/" class="article-date">
+  <time datetime="2015-04-24T00:34:10.000Z" itemprop="datePublished">2015-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/24/Struts 标签/">Struts 标签</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Strust 提供了5个标签库：HTML标签库，Bean标签库，Logic标签库，Template标签库，Nested标签库。</p>
+<p><table></table></p>
+<p><thead></thead></p>
+<p><tr></tr></p>
+<p><th>标签库</th></p>
+<p><th>描述</th><br><br></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>HTML标签</td></p>
+<p><td>用来创建能够和Struts框架以及其他相应的HTML标签交互的语言环境标签</td><br></p>
+<p><tr></tr></p>
+<p><td>Bean标签</td></p>
+<p><td>在访问JavaBean及其属性，以及定义一个新的bean时使用</td><br></p>
+<p><tr></tr></p>
+<p><td>Logic标签</td></p>
+<p><td>管理条件产生的输出和对象集产生的循环</td><br></p>
+<p><tr></tr></p>
+<p><td>Template标签</td></p>
+<p><td>很少使用,都用Tiles啦</td><br></p>
+<p><tr></tr></p>
+<p><td>Nested标签</td></p>
+<p><td>增强对其他Struts标签的嵌套使用能力</td><br><br><br><br>1,Struts HTML标签</p>
+<p>&lt;html:html&gt;,&lt;html:base&gt;,&lt;html:img&gt;,&lt;html:link&gt;,&lt;html:errors&gt;,&lt;html:form&gt;,&lt;html:password&gt;,&lt;html:select&gt;,&lt;html:option&gt;,</p>
+<p>2，Bean标签</p>
+<p>操作JavaBean相关的对象，cookie,header,parameter,define,write,message,include,page,resource,size,struts等。</p>
+<p>3，Logic标签</p>
+<p>比较运算符标签；循环遍历标签；字符串匹配标签；判断指定内容是否存在标签；判断空标签；转发与重定向标签</p>
+<p>&lt;logic:equal&gt;,&lt;logic:greaterThan&gt;,&lt;logic:greaterEqual&gt;,&lt;logic:lessThan&gt;,&lt;logic:lessEqual&gt;,&lt;lgoic:iterate&gt;,&lt;logic:match&gt;,&lt;logic:notmatch&gt;,&lt;logic:present&gt;,&lt;logic:notpresent&gt;</p>
+<p>Sample:</p>
+<pre>&lt;% pageContext.setAttribute("test","helloworld");%&gt;
+&lt;logic:match value="hello" name="test"&gt;
+hello is component of test
+&lt;/logic:match&gt;</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/24/Struts 标签/" data-id="cihocho7y0046g4tjsropjhe8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tag/">Tag</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-struts-components" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/23/struts-components/" class="article-date">
+  <time datetime="2015-04-23T00:31:23.000Z" itemprop="datePublished">2015-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/23/struts-components/">Struts components</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table><br><thead><br><tr><br><th>名称</th><br><th>描述</th><br></tr><br></thead><br><tbody><br><tr><br><td>Action</td><br><td>控制器的一部分，用于模型的交互，执行状态改变或状态查询，以及告诉ActionServlet下一个选择的视图。</td><br></tr><br><tr><br><td>ActionForm</td><br><td>状态改变的数据</td><br></tr><br><tr><br><td>ActionForward</td><br><td>用户指向或视图选择</td><br></tr><br><tr><br><td>ActionMapping</td><br><td>状态改变事件</td><br></tr><br><tr><br><td>ActionServlet</td><br><td>控制器，接收用户请求或状态改变，以及发出视图选择</td><br></tr><br></tbody><br></table>
+
+<h3 id="1，ActionServlet">1，ActionServlet</h3><p>ActionServlet的功能是将一个用户端的URI映射到一个相应的Action类，如果这个类是第一次被调用，那么实例化Action类放到内存中。</p>
+<pre>initInternal();
+initOther();
+intiServlet();
+getServletContext().setAttribute();
+initModuleConfigFactory();
+ModuleConfig moduleConfig = initModuleConfig("",cofing);
+initModuleMessageResources(moduleConfig);
+initModuleDataSources(moduleConfig);
+initModulePlugIns(moduleConfig);
+moduleCofing.freeze();</pre>
+
+<h3 id="2，ActionForm">2，ActionForm</h3><p>ActionForm 提供想要的缓冲、校验、转换机制。本质上是一种JavaBean，是专门用来传递数据的DTO（Data Transfer Object）它用于表单数据验证的validate()方法和用于数据复位的reset()方法。</p>
+<p><img src="http://images.cnblogs.com/cnblogs_com/eflylab/200701/20060108033310.jpg" alt=""></p>
+<p>ActionForm有请求（request）和会话（session）两种作用域（scope）.</p>
+<p>在验证ActionForm时，如果检测到一个或多个验证错误，Struts会返回在struts-config.xml中&lt;action&gt;定义的input属性指向的页面。</p>
+<p>DynaActionForm的目的就是减少ActionForm的数据，利用它用户不用创建一个个具体的ActionForm类，而在配置文件中配置出所需要的虚拟ActionForm。</p>
+<p><pre>&lt;form-beans&gt;<br>&lt;form-bean name=”loginForm” type=”org.apache.struts.action.DynaActionForm”&gt;<br>&lt;form-property name=”actionClass” type=”java.lang.String” /&gt;<br>&lt;form-property name=”username” type=”java.lang.String” /&gt;<br>&lt;form-property name=”password” type=”java.lang.String” /&gt;<br>&lt;/form-bean&gt;<br>&lt;/form-beans&gt;</pre></p>
+<p><pre>String userName = (String) form.get(‘username’);</pre><br>验证的部分后面讲</p>
+<h3 id="3，ActionForward">3，ActionForward</h3><p>基类有四个属性：name, path, redirect, classname. ActionForward控制程序的走向。代表一个程序的URI。</p>
+<p>当redirect=false时，将保存存储在http请求和请求的上下文的所有内容，仅在同一个应用中可用。redirect=true是，Web客户端进行一次新的http请求，请求的资源可以在同一个应用中，也可以不在，原来的请求参数不再保存，原来的请求上下文也被消除，新http请求仅包含ActionForward的path属性里所包含的参数。</p>
+<h3 id="4，ActionMapping">4，ActionMapping</h3><p>&lt;action-mappings&gt;用来描述一组ActionMapping对象，当中的每一个&lt;action&gt;标签都对应一个ActionMapping对象，当客户端发出请求至RequestProcessor时，请求的URI对应于&lt;action&gt;中的path属性，而要呼吁的Action对象则是type属性所设定的对象，RequestProcessor会将请求的执行工作交给盖Action对象来执行。</p>
+<h3 id="5，Action">5，Action</h3><p>每个Action为客户完成某种操作。一旦正确的Action实例确定，就会调用RequestProcessor类的processActionPerform()方法。负责调用Action实例的execute()方法。</p>
+<p>ForwardAction 类似于&lt;jsp:forward&gt;,将请求转发到其他的MVC组件，当仅仅是完成从一个页面到另一个页面的请求转发操作是，并不一定需要一个真正的Action，</p>
+<p><pre>&lt;action path=”/index” name=”loginActionForm” scope=”request” tpye=”org.apache.struts.action.ForwardAction” parameter=”/login.jsp” validate=”false” imput=”/login.jsp”&gt;&lt;/action&gt;</pre><br>DispatchAction, 在一个Action中完成一组紧密相关的业务操作，从而减少重复性编程，使应用更加便于维护。parameter=method , method 对应于Action的具体方法。</p>
+<p>MappingDispatchAction类似于DispatchAction</p>
+<p>LookupDispatchAction, 必须重写getKeyMethodMap方法，该方法返回一个Map对象。</p>
+<p>IncludeAction，引入页面与ForwardAction类似</p>
+<p>SwitchAction，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/23/struts-components/" data-id="cihocho5w001gg4tjyohyxika" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/component/">component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Struts 工作原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/22/Struts 工作原理/" class="article-date">
+  <time datetime="2015-04-22T05:14:27.000Z" itemprop="datePublished">2015-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/Struts 工作原理/">Struts 工作原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://images.51cto.com/files/uploadimg/20090916/1333550.jpg" alt=""></p>
+<p>1，读取配置（初始化ModuleConfig对象）</p>
+<p>采用Struts框架的Web应用，在Web应用启动时就会加载ActionServlet，在ActionServlet初始化ModuleConfig的时候，调用initModuleConfigFactory()初始化配置工厂，然后由配置工厂通过initModuleConfig(‘’,cofing)获得ModuleConfig对象。</p>
+<p><pre>initModuleMessageResources(moduleConfig);<br>initModuleDataSources(moduleConfig);<br>initModulePlugIns(moduleCofig);</pre><br>这些方法的功能就是：容器在加载Struts应用程序时，会先加载web.xml中与Struts相关的一些参数，找到Struts-config.xml文件，通过循环来读取此文件和解析里面的内容，并初始化相关对象。</p>
+<p>2，用户请求</p>
+<p>用户提交表单或调用URL向Web应用程序服务器提交一个请求，请求数据用HTTP协议上传给Web服务器。</p>
+<p>3，填充FormBean</p>
+<p>填充FormBean的过程包括实例化，复位，填充数据，校验，保存等操作。根据*.do请求从ActionConfig中找出对应该请求的Action子类，如有对应的Action且这个Action有一个相应的ActionForm，则ActionForm被实例化并用HTTP请求的数据填充其属性，并保存在ServletContext中，这样它们就可以被其他的Action对象或者JSP调用。</p>
+<p>4，转发请求</p>
+<p>控制器根据ActionConfig将请求发送到具体的Action，与请求一起的FormBean也一并传给这个Action对象。</p>
+<p>5，处理业务</p>
+<p>Action一般包含一个execute()方法，负责业务逻辑，执行完毕后返回一个ActionForward对象，控制器通过ActionForward对象进行转发工作。</p>
+<p>6，返回响应</p>
+<p>Action根据不同的结果返回一个响应给总的控制器，该目标响应对象对应一个具体的JSP页面或另一个Action。</p>
+<p>7，查找响应</p>
+<p>总控制器根据业务功能Action返回的目标响应对象找到相应的资源对象，通常是一个具体的JSP页面。</p>
+<p>8，响应用户</p>
+<p>目标相应对象将结果展现给用户目标响应对象，即具体的JSP页面，这样客户就得到响应的结果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/Struts 工作原理/" data-id="cihocho83004bg4tjk1e4zbcn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-principal/">work principal</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-struts-login-demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/22/struts-login-demo/" class="article-date">
+  <time datetime="2015-04-22T04:30:41.000Z" itemprop="datePublished">2015-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/struts-login-demo/">Struts Login Demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>应用场景：当用户访问某一个应用程序之前，必须先进入登陆界面，进行登陆验证。</p>
+<p><img src="http://images.51cto.com/files/uploadimg/20090916/1330450.jpg" alt=""></p>
+<p>Struts的核心功能是前端控制器，前端控制器是一个Servlet，在web.xml中配置所有Request都必须经过前端控制器。前端控制器的名字是ActionServlet，由框架来实现和管理。所有的视图和业务逻辑隔离都是因为这个ActionServlet，可以把它理解为分发器，Dispatcher。</p>
+<p>Struts中以XML配置代替硬编码配置信息。以前决定JSP往哪个Servlet提交，是要卸载JSP代码中，也就是说一点这个提交路径要改，就必须改写代码再重新编译。而Struts中编码的只是一个逻辑名字，它对应的class文件写进了xml配置文件中，这个配置文件记录着所有的映射关系，一旦需要改变路径只需要改变XML文件。这也就是Struts-config.xml文件的重用性。</p>
+<p>前端控制器从Struts-config.xml中查找与请求匹配的内容，然后进行相关操作。</p>
+<p>path值为/login，对应login.do的操作。当login.do的请求到来之后，用一个类型为LoginAction的对象来处理这个请求，在处理请求时需要用一个名为loginActionForm的对象来封装请求的内容。处理后的结构再提交给前端控制器，由前端控制器根据forward的值将相应的内容发送至客户端。</p>
+<p>Action为后端控制器，DispatchAction，DynaValidationAction.等等。都有一个execute()方法，用来处理业务逻辑，request , response, formBean, actionMapping4个对象，放回actionForward对象。</p>
+<p>在Struts中ActionServlet通过读取struts-config.xml中的配置信息来决定，用户的请求发送给哪个Action对象。每个Action的映射都是通过一个&lt;Action&gt;元素来配置。</p>
+<p>这些配置在系统启动时被读入内存，供Struts在运行期间使用。在内存中每个&lt;action&gt;元素对应一个struts.action.ActionMapping类的实例。</p>
+<p>1,Web应用启动初始化ActionServlet</p>
+<p>2,ActionServlet从struts-config.xml中读取配置信息，把它们存放到各个配置对象中。</p>
+<p><img src="http://img.ddvip.com/2013/0813/201308130950471776.gif" alt=""></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/struts-login-demo/" data-id="cihocho5t001bg4tjmhbfcaks" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Login/">Login</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hibernate/">Hibernate</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/fibonacci/">fibonacci</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/socket/">socket</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Zhaohui zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

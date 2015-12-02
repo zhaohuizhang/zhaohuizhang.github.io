@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Welcome To Napu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welcome To Napu's Blog">
+<meta property="og:url" content="http://zhaohuizhang.github.io/page/2/index.html">
+<meta property="og:site_name" content="Welcome To Napu's Blog">
+<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome To Napu's Blog">
+<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+  
+    <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Welcome To Napu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello world，have a nice day!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaohuizhang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Java 终结处理&amp;垃圾回收" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/10/Java 终结处理&垃圾回收/" class="article-date">
+  <time datetime="2015-06-09T23:05:49.000Z" itemprop="datePublished">2015-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/10/Java 终结处理&垃圾回收/">Java 终结处理&amp;垃圾回收</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，finalize()方法</p>
+<p>一旦垃圾回收器准备释放对象占用的存储空间，将首先调用其finalize()方法，并且在下一次来垃圾回收动作发生时，才会真正回收对象占用的内存。</p>
+<ul>
+<li>对象可能不会被回收；</li>
+<li>垃圾回收不等于“析构”;</li>
+<li>垃圾回收只与内存有关；<br>2，垃圾回收</li>
+</ul>
+<p>如果JVM并未面临内存耗尽的情形，它是不会浪费时间去执行垃圾回收已恢复内存的。</p>
+<p>3，垃圾回收器如何工作</p>
+<p>垃圾回收器对于提高对象的创建速度具有明显的效果。</p>
+<ul>
+<li>stop-and-copy</li>
+<li>Mark-and-sweep</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/06/10/Java 终结处理&垃圾回收/" data-id="cihocho8p005kg4tj5wj7pyw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java 打印素数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/20/java 打印素数/" class="article-date">
+  <time datetime="2015-05-20T00:08:22.000Z" itemprop="datePublished">2015-05-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/20/java 打印素数/">java 打印素数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre> public static void main(String args[]){
+
+ for(int i=2; i&lt;100; i++){
+
+ int factor = 0;
+ for(int j=1; j&lt;(i+2)/2; j++){
+
+ if((i%j)==0){
+
+ factor++;
+ }
+ }
+ if(factor &lt; 2)
+ System.out.println(i+" is a prime");
+
+ }
+ }</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/20/java 打印素数/" data-id="cihocho750032g4tj26587o0x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java中的一些概念" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/17/Java中的一些概念/" class="article-date">
+  <time datetime="2015-05-16T18:28:40.000Z" itemprop="datePublished">2015-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/17/Java中的一些概念/">Java中的一些概念（updating）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，别名现象</p>
+<p>主要出现在赋值上面。对于基本数据类型的复制时很简单的，基本数据类型存储了实际的数值，而并非指向一个对象的引用，所以在赋值的时候，是将一个地方的内容复制到另一个地方。例如：对于基本数据类型使用a=b，那么b的内容复制给了a。若修改a的值，b根本不会受这些修改的影响。</p>
+<p>但是对一个对象进行操作时，我们真正操作的是对象的引用。所以倘若“将一个对象赋值给另一个对象”，实际是将“引用”从一个地方复制到另一个地方。这意味着假若对对象使用c=d，那么c和d都指向原本只有d指向的那个对象。</p>
+<p>2，短路</p>
+<p>当使用逻辑运算符时会出现的一种现象。即如果能够明确无误的计算表达式的值，那么就不再计算表达式余下的部分。因此整个逻辑表达式靠后的部分有可能不会被运算。</p>
+<p>3，按位操作符</p>
+<p>对于布尔值，按位操作符与逻辑操作符有相同的效果，只是它们中途不会短路。</p>
+<p>4，位移操作符</p>
+<p>只能用来处理整数类型。左移操作符“&lt;&lt;”能按照操作符右侧指定的位数将操作符左面的操作数向左移动（低位补0）；右移操作符“&gt;&gt;”能够按照操作符右侧的位数将操作符左侧的操作数向右移动，“有符号”使用“符号扩展”：若符号为正，则在高位插入0，若符号为负，则在高位插入1.。java中加入一种无符号右移操作符“&gt;&gt;&gt;”，无论正负，高位置0。</p>
+<p>对于char, byte, short进行位移操作符，首先转换为int型。结果也是一个int值。</p>
+<p>5，窄化转换(narrowing conversion)</p>
+<p>将能容纳更多信息的数据类型转换成无法容纳那么多信息的数据类型，有可能面临信息丢失的危险。</p>
+<p>6，扩展转换(widening conversion)</p>
+<p>不必显式的地进行类型转换，因为新类型肯定能容纳原来类型的信息，不会造成任何信息的丢失。</p>
+<p>7，截尾和舍入</p>
+<p>float int 时，截尾</p>
+<p>舍入（Java.lang.Math round()方法）</p>
+<p>8，逗号操作符</p>
+<p>Java里面唯一用到逗号操作符的地方就是for循环的控制表达式。在控制表达式的初始化和步进控制部分，可以用一系列的逗号分隔的语句，这些语句可以独立执行。</p>
+<p>9，return，break，continue</p>
+<p>在任何的迭代语句的主体部分，都可以用break和continue控制循环的流程。</p>
+<p>10，无穷循环for(;;)</p>
+<p>11，标签</p>
+<p>label:，在java中需要使用标签的唯一理由是因为循环嵌套存在，而且想从多层嵌套中break，continue。</p>
+<p>12，this</p>
+<p>尽管用this可以调用一个构造器，但却不能调用两个。此外构造器调用必须置于初始处，否则编译出错。除构造器外，编译器禁止其他任何方法中调用构造器。</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/17/Java中的一些概念/" data-id="cihocho8n005ig4tjgf14ex9m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-remove-duplicates-elements-from-arraylist-in-java" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/" class="article-date">
+  <time datetime="2015-05-15T05:24:29.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/">How to remove duplicates elements from ArrayList in Java</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>How to Remove Duplicates from Array without using Java Collection API</p>
+<p>Read more: <a href="http://javarevisited.blogspot.com/2014/01/how-to-remove-duplicates-from-array-java-without-collection-API.html#ixzz3aD7lSsgh" target="_blank" rel="external">http://javarevisited.blogspot.com/2014/01/how-to-remove-duplicates-from-array-java-without-collection-API.html#ixzz3aD7lSsgh</a></p>
+<pre>import java.util.Arrays;
+
+public class RemoveDupFromArray{
+    private static void main(String args[]){
+**         int**[][] test = **new** **int**[][]{
+            {**1**, **1**, **2**, **2**, **3**, **4**, **5**},
+            {**1**, **1**, **1**, **1**, **1**, **1**, **1**},
+            {**1**, **2**, **3**, **4**, **5**, **6**, **7**},
+            {**1**, **2**, **1**, **1**, **1**, **1**, **1**},};
+
+         for (int[] input : test){
+             System.out.println("Array with Duplicates :"+Arrays.toString(input));
+             System.out.println("Array without Duplicates :"+ Arrays.toString(removeDuplicates(input)));
+         }
+    }
+   public static int[] removeDuplicates(int[] input){
+
+       Arrays.sort(input);
+       int[] result =  new int[input.length];
+       int pre = input[0];
+       result[0] = pre;
+       for(int i=1;i&lt;input.length;i++){
+        int ch = input[i];
+        if(pre != ch){
+            result[i] = ch
+        }
+        pre = ch;
+    }
+      return result;
+
+   }
+}</pre>
+Use Collection API
+<pre>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+public class RemoveDuplicatesFromArray{
+
+public static void main(String[] args){
+List&lt;String&gt; duplicatesList = (List&lt;String&gt;) Arrays.asList("Android" , "Android", "iOS", "Windows mobile");
+
+System.out.println("size:"+duplicatesList.size());
+System.out.println("String:"+duplicatesList);
+
+LinkedHashSet&lt;String&gt; linkHash = new LinkedHashSet&lt;String&gt;(duplicatesList);
+
+List&lt;String&gt; removDup = new ArrayList&lt;String&gt;(linkHash);
+
+System.out.println("size:"+removDup.size());
+System.out.println("String:"+removDup);
+
+}
+
+}
+</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/" data-id="cihocho760034g4tjz0tnlrwy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-死锁及如何避免" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/死锁及如何避免/" class="article-date">
+  <time datetime="2015-05-15T04:34:08.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/死锁及如何避免/">死锁及如何避免</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font-size:large;"><strong>什么是死锁，如何避免死锁？<br>线程A需要资源X，而线程B需要资源Y，而双方都掌握有对方所要的资源，这种情况称为死锁（deadlock），或死亡拥抱（the deadly embrace）。
+</strong></span></p>
+<p><span style="font-size:large;"><strong>在并发程序设计中，死锁 (deadlock) 是一种十分常见的逻辑错误。通过采用正确的编程方式，死锁的发生不难避免。</strong></span></p>
+<div class="level2">
+
+<p><span style="font-size:large;"><strong>在计算机专业的本科教材中，通常都会介绍死锁的四个必要条件。这四个条件缺一不可，或者说只要破坏了其中任何一个条件，死锁就不可能发生。我们来复习一下，这四个条件是：</strong></span></p>
+<ol>
+<li><div class="li"><span style="font-size:large;"><strong>互斥（Mutual exclusion）：存在这样一种资源，它在某个时刻只能被分配给一个执行绪（也称为线程）使用；</strong></span></div></li>
+<li><div class="li"><span style="font-size:large;"><strong>持有（Hold and wait）：当请求的资源已被占用从而导致执行绪阻塞时，资源占用者不但无需释放该资源，而且还可以继续请求更多资源；</strong></span></div></li>
+<li><div class="li"><span style="font-size:large;"><strong>不可剥夺（No preemption）：执行绪获得到的互斥资源不可被强行剥夺，换句话说，只有资源占用者自己才能释放资源；</strong></span></div></li>
+<li><div class="li"><span style="font-size:large;"><strong>环形等待（Circular wait）：若干执行绪以不同的次序获取互斥资源，从而形成环形等待的局面，想象在由多个执行绪组成的环形链中，每个执行绪都在等待下一个执行绪释放它持有的资源。</strong></span></div><br></li></ol></div><br><span style="font-size:large;"><strong>不难看出，在死锁的四个必要条件中，第二、三和四项条件比较容易消除。通过引入事务机制，往往可以消除第二、三两项条件，方法是将所有上锁操作均作为事务对待，一旦开始上锁，即确保全部操作均可回退，同时通过锁管理器检测死锁，并剥夺资源（回退事务）。这种做法有时会造成较大开销，而且也需要对上锁模式进行较多改动。</strong></span>
+
+<p><span style="font-size:large;"><strong>消除第四项条件是比较容易且代价较低的办法。具体来说这种方法约定：上锁的顺序必须一致。具体来说，我们人为地给锁指定一种类似“水位”的方向性属性。无论已持有任何锁，该执行绪所有的上锁操作，必须按照一致的先后顺序从低到高（或从高到低）进行，且在一个系统中，只允许使用一种先后次序。</strong></span></p>
+<p><span style="font-size:large;"><strong>请注意，放锁的顺序并不会导致死锁。也就是说，尽管按照 锁A, 锁B, 放A, 放B 这样的顺序来进行锁操作看上去有些怪异，但是只要大家都按先A后B的顺序上锁，便不会导致死锁。</strong></span></p>
+<p><span style="color:#ff0000;font-size:large;"><strong>解决方法：</strong></span></p>
+<p><span style="font-size:large;"><strong>1 使用事务时，尽量缩短事务的逻辑处理过程，及早提交或回滚事务； (细化处理逻辑，执行一段逻辑后便回滚或者提交，然后再执行其它逻辑，直到事物执行完毕提交)<br>2 设置死锁超时参数为合理范围，如：3分钟-10分种；超过时间，自动放弃本次操作，避免进程悬挂；<br>3 优化程序，检查并避免死锁现象出现；<br>4 .对所有的脚本和SP都要仔细测试，在正是版本之前。<br>5 所有的SP都要有错误处理（通过@error）<br>6 一般不要修改SQL SERVER事务的默认级别。不推荐强行加锁</strong></span></p>
+<p><span style="color:#0000ff;font-size:large;"><strong>另外参考的解决方法：</strong></span></p>
+<p><span style="font-size:large;"><strong>按同一顺序访问对象<br>如果所有并发事务按同一顺序访问对象，则发生死锁的可能性会降低。例如，如果两个并发事务获得 Supplier 表上的锁，然后获得 Part 表上的锁，则在其中一个事务完成之前，另一个事务被阻塞在 Supplier 表上。第一个事务提交或回滚后，第二个事务继续进行。不发生死锁。将存储过程用于所有的数据修改可以标准化访问对象的顺序。</strong></span></p>
+<p><span style="font-size:large;">**避免事务中的用户交互<br>避免编写包含用户交互的事务，因为运行没有用户交互的批处理的速度要远远快于用户手动响应查询的速度，例如答复应用程序请求参数的提示。例如，如果事务正在等待用户输入，而用户去吃午餐了或者甚至回家过周末了，则用户将此事务挂起使之不能完成。这样将降低系统的吞吐量，因为事务持有的任何锁只有在事务提交或回滚时才会释放。即使不出现死锁的情况，访问同一资源的其它事务也会被阻塞，等待该事务完成。</span></p>
+<p>保持事务简短并在一个批处理中<br>在同一数据库中并发执行多个需要长时间运行的事务时通常发生死锁。事务运行时间越长，其持有排它锁或更新锁的时间也就越长，从而堵塞了其它活动并可能导致死锁。保持事务在一个批处理中，可以最小化事务的网络通信往返量，减少完成事务可能的延迟并释放锁。</p>
+<p>使用低隔离级别<br>确定事务是否能在更低的隔离级别上运行。执行提交读允许事务读取另一个事务已读取（未修改）的数据，而不必等待第一个事务完成。使用较低的隔离级别（例如提交读）而不使用较高的隔离级别（例如可串行读）可以缩短持有共享锁的时间，从而降低了锁定争夺。</p>
+<p>使用绑定连接<br>使用绑定连接使同一应用程序所打开的两个或多个连接可以相互合作。次级连接所获得的任何锁可以象由主连接获得的锁那样持有，反之亦然，因此不会相互阻塞。**</p>
+<h3 id="Java_防死锁">Java 防死锁</h3><p>1)尽量使用tryLock(long timeout, TimeUnit unit)的方法(ReentrantLock、ReentrantReadWriteLock)，设置超时时间，超时可以退出防止死锁。<br>2)尽量使用java.util.concurrent(jdk 1.5以上)包的并发类代替手写控制并发，比较常用的是ConcurrentHashMap、ConcurrentLinkedQueue、AtomicBoolean等等，实际应用中java.util.concurrent.atomic十分有用，简单方便且效率比使用Lock更高<br>3)尽量降低锁的使用粒度，尽量不要几个功能用同一把锁<br>4)尽量减少同步的代码块</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/死锁及如何避免/" data-id="cihocho58000pg4tjm1kx65es" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deadlock/">Deadlock</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Path ClassPath 的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/Path ClassPath 的区别/" class="article-date">
+  <time datetime="2015-05-15T04:24:25.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/Path ClassPath 的区别/">Path ClassPath 的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ClassNotFoundException(所需要的支持类库放错了地方，并没有放在类路径CLASSPATH里面)</p>
+<p>NoClassDefFoundError（运行函数没有放在path中）.</p>
+<p><strong>1.path的作用</strong></p>
+<p><strong>  </strong>  path是系统用来指定可执行文件的完整路径，即使不在path中设置JDK的路径也可执行JAVA文件，但必须把完整的路径写出来，如C:\Program Files\Java\jdk1.6.0_10\bin\javac TheClass.java。path是用来搜索所执行的可执行文件路径的，如果执行的可执行文件不在当前目录下，那就会依次搜索path中设置的路径；而java的各种操作命令是在其安装路径中的bin目录下，所以在path中设置了JDK的安装目录后就不用再把java文件的完整路径写出来了，它会自动去path中设置的路径中去找；</p>
+<p><strong>2.classpath的作用</strong></p>
+<p><strong>    </strong>classpath是指定你在程序中所使用的类（.class）文件所在的位置，就如在引入一个类时：import javax.swing.JTable这句话是告诉编译器要引入javax.swing这个包下的JTable类，而classpath就是告诉编译器该到哪里去找到这个类（前提是你在classpath中设置了这个类的路径）；如果你想要编译在当前目录下找，就加上“.”,如：.;C:\Program Files\Java\jdk\,这样编译器就会到当前目录和C:\Program Files\Java\jdk\去找javax.swing.JTable这个类；还提下：大多数人都是用Eclipse写程序，不设classpath也没关系，因为Eclipse有相关的配置；</p>
+<p>path是os用<br>classpath java用<br>path里面不光有Java的bin，还可以包含许多其他的，tc啊，masm阿，只要在path中设了这些环境的路径，你在dos下的任何路径上都可以调用这些路径下的命令。<br>classpath是java专用的查找类的路径</p>
+<p>系统变量是环境变量的一种，环境变量一种仅本用户适用，另一种即系统变量整个系统的用户都适用,两者都可以在使用应用程序时提供快捷.一般在编辑java文件或者C#文件时需要修改,设计到多个文件夹之间的切换时也可以根据自己的需要设置.<br>简单的说就是，如果设置系统变量和用户变量，都叫做设置环境变量，设置系统变量时，该系统的所有帐号的用户都可以使用，但是设置用户变量时，其他的帐号登陆时就不一定可以使用。</p>
+<p>下面以java环境变量为例设置方法:<br>1、如果是Win95/98，在\autoexec.bat的最后面添加如下3行语句：<br>JAVA_HOME=c:\j2sdk1.4.1<br>PATH=%JAVA_HOME%\bin;%PATH%<br>CLASSPATH=.;%JAVA_HOME%\lib<br>看好了CLASSPATH中第一个”.”，这个代表当前目录，很多人HelloWorld没有运行起来大多是这个原因。</p>
+<p>2、如果是Win2000或者XP，使用鼠标右击”我的电脑”-&gt;属性-&gt;高级-&gt;环境变量<br>系统变量-&gt;新建-&gt;变量名：JAVA_HOME 变量值：c:\j2sdk1.4.1<br>系统变量-&gt;新建-&gt;变量名：CLASSPATH 变量值：.;%JAVA_HOME%\lib<br>系统变量-&gt;编辑-&gt;变量名：Path 在变量值的最前面加上：%JAVA_HOME%\bin;<br>CLASSPATH前面的那个”.”和上面的意义是一样的。</p>
+<p>3、如果是Linux用户<br>在你的环境中，通常我加在.bashrc文件中，你可以加在你的Profile文件中。<br>/usr/local/jdk 为你安装jdk的目录。<br>export JAVA_HOME=/usr/local/jdk<br>export CLASSPATH=.:$JAVA_HOME/lib<br>export PATH=$PATH:$JAVA_HOME/bin</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/Path ClassPath 的区别/" data-id="cihocho8d004yg4tjahifq0zk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Classpath/">Classpath</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Path/">Path</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-XML Schema 和 DTD的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/XML Schema 和 DTD的区别/" class="article-date">
+  <time datetime="2015-05-15T04:12:23.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/XML Schema 和 DTD的区别/">XML Schema 和 DTD的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Schema和DTD的区别"><a href="http://www.cnblogs.com/zhaozhan/archive/2010/01/04/1639194.html" target="_blank" rel="external">Schema和DTD的区别</a></h1><div class="clear"></div><br><div class="postBody"><br><div id="cnblogs_post_body"><br><br>      Schema是对XML文档结构的定义和描述，其主要的作用是用来约束XML文件，并验证XML文件有效性。DTD的作用是定义XML的合法构建模块，它使用一系列的合法元素来定义文档结构。它们之间的区别有下面几点：<br><br>1、Schema本身也是XML文档，DTD定义跟XML没有什么关系，Schema在理解和实际应用有很多的好处。<br><br>2、DTD文档的结构是“平铺型”的，如果定义复杂的XML文档，很难把握各元素之间的嵌套关系；Schema文档结构性强，各元素之间的嵌套关系非常直观。<br><br>3、DTD只能指定元素含有文本，不能定义元素文本的具体类型，如字符型、整型、日期型、自定义类型等。Schema在这方面比DTD强大。<br><br>4、Schema支持元素节点顺序的描述，DTD没有提供无序情况的描述，要定义无序必需穷举排列的所有情况。Schema可以利用xs:all来表示无序的情况。<br><br>5、对命名空间的支持。DTD无法利用XML的命名空间，Schema很好满足命名空间。并且，Schema还提供了include和import两种引用命名空间的方法。<br><br></div><br><div class="clear"></div><br><div id="blog_post_info_block"><br><div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhaozhan/category/209171.html" target="_blank" rel="external">XML</a></div><br></div><br></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/XML Schema 和 DTD的区别/" data-id="cihocho7q003og4tjf8treq6m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTD/">DTD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schema/">Schema</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fibonacci" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/fibonacci/" class="article-date">
+  <time datetime="2015-05-15T03:59:44.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fibonacci/">fibonacci</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/fibonacci/">Fibonacci</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">*@author napu.zhang</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Fibonacci&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibonacciRecusion</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">1</span> || num ==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fibonacciRecusion(num-<span class="number">1</span>)+fibonacciRecusion(num-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibonacciLoop</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">1</span>||num ==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> fibo1=<span class="number">1</span>,fibo2=<span class="number">1</span>,fibonacci=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&amp;lt;=num;i++)&#123;</span><br><span class="line">            fibonacci = fibo1 + fibo2;</span><br><span class="line">            fibo1 = fibo2;</span><br><span class="line">            fibo2 = fibonacci;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fibonacci;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Enter num"</span>)</span><br><span class="line">        <span class="keyword">int</span> number = <span class="keyword">new</span> Scanner(System.In).nextInt();</span><br><span class="line">        System.out.println(<span class="string">"Fibonacci series upto "</span>+number+<span class="string">"numbers:"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&amp;lt;=number; i++)&#123;</span><br><span class="line">            System.out.print(fibonacciRecusion(i)+<span class="string">""</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/fibonacci/" data-id="cihocho7h003ig4tjfyeta346" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-object-method" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/14/java-object-method/" class="article-date">
+  <time datetime="2015-05-14T00:06:34.000Z" itemprop="datePublished">2015-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/14/java-object-method/">Java Object Method</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java.lang.Object</p>
+<p>java.lang 包在使用的时候无需显示导入，编译时由编译器自动导入。</p>
+<p>Object类是类层次结构的根，Java类所有的类从根本上都是继承于这个类</p>
+<p>Object是唯一没有父类的类</p>
+<p>Object 类中的方法</p>
+<p><img src="http://images.cnitblog.com/blog/325852/201301/03120453-53ad86e99a464684ab5e89fe6c4089e1.png" alt=""></p>
+<p>1，getClass</p>
+<p>public final Class&lt;?extends Object&gt; getClass()</p>
+<p>返回一个对象的运行时类。该Class对象是由所表示类的static synchronized方法锁定的对象。</p>
+<p>2，hashCode</p>
+<p>public int hashCode()</p>
+<p>返回该对象的哈希码值。支持该方法是为哈希表提供一些优点，例如：java.util.Hashtable提供的哈希表。</p>
+<p><code>hashCode</code> 的常规协定是：</p>
+<ul>
+<li>在 Java 应用程序执行期间，在同一对象上多次调用 <tt>hashCode</tt> 方法时，必须一致地返回相同的整数，前提是对象上 <tt>equals</tt> 比较中所用的信息没有被修改。从某一应用程序的一次执行到同一应用程序的另一次执行，该整数无需保持一致。</li>
+<li>如果根据 <tt>equals(Object)</tt> 方法，两个对象是相等的，那么在两个对象中的每个对象上调用 <code>hashCode</code> 方法都必须生成相同的整数结果。</li>
+<li>以下情况<em>不</em> 是必需的：如果根据 <a href="/java%20tools/jdk1.5%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/java/lang/Object.html#equals(java.lang.Object"><code>equals(java.lang.Object)</code></a>) 方法，两个对象不相等，那么在两个对象中的任一对象上调用 <tt>hashCode</tt> 方法必定会生成不同的整数结果。但是，程序员应该知道，为不相等的对象生成不同整数结果可以提高哈希表的性能。<br>实际上，由 <tt>Object</tt> 类定义的 hashCode 方法确实会针对不同的对象返回不同的整数。（这一般是通过将该对象的内部地址转换成一个整数来实现的，但是 Java<sup>TM</sup> 编程语言不需要这种实现技巧。）</li>
+</ul>
+<p>3，equals</p>
+<p>public boolean equals(Object obj)</p>
+<p>判断某个对象是否与当前对象相等。</p>
+<p><code>equals</code> 方法在非空对象引用上实现相等关系：</p>
+<ul>
+<li><em>自反性</em>：对于任何非空引用值 <code>x</code>，<code>x.equals(x)</code> 都应返回 <code>true</code>。</li>
+<li><em>对称性</em>：对于任何非空引用值 <code>x</code> 和 <code>y</code>，当且仅当 <code>y.equals(x)</code> 返回 <code>true</code> 时，<code>x.equals(y)</code> 才应返回 <code>true</code>。</li>
+<li><em>传递性</em>：对于任何非空引用值 <code>x</code>、<code>y</code> 和 <code>z</code>，如果 <code>x.equals(y)</code> 返回 <code>true</code>，并且 <code>y.equals(z)</code> 返回 <code>true</code>，那么 <code>x.equals(z)</code> 应返回 <code>true</code>。</li>
+<li><em>一致性</em>：对于任何非空引用值 <code>x</code> 和 <code>y</code>，多次调用 <tt>x.equals(y)</tt> 始终返回 <code>true</code> 或始终返回 <code>false</code>，前提是对象上 <code>equals</code> 比较中所用的信息没有被修改。</li>
+<li>对于任何非空引用值 <code>x</code>，<code>x.equals(null)</code> 都应返回 <code>false</code>。<br><code>Object</code> 类的 <tt>equals</tt> 方法实现对象上差别可能性最大的相等关系；即，对于任何非空引用值 <code>x</code> 和 <code>y</code>，当且仅当 <code>x</code> 和 <code>y</code> 引用同一个对象时，此方法才返回 <code>true</code>（<code>x == y</code> 具有值<code>true</code>）。</li>
+</ul>
+<p>注意：当此方法被重写时，通常有必要重写 <tt>hashCode</tt> 方法，以维护 <tt>hashCode</tt> 方法的常规协定，该协定声明相等对象必须具有相等的哈希码。</p>
+<dl><dt><strong>参数：</strong></dt><dd><code>obj</code> - 要与之比较的引用对象。</dd><dt><strong>返回：</strong></dt><dd>如果此对象与 obj 参数相同，则返回 <code>true</code>；否则返回 <code>false</code>。</dd></dl>
+
+<p>4，clone</p>
+<p>protected Object clone() throws CloneNotSupportedExcetption</p>
+<p>创建并返回此对象的一个副本。</p>
+<p><tt>Object</tt> 类的 <tt>clone</tt> 方法执行特定的克隆操作。首先，如果此对象的类不能实现接口 <tt>Cloneable</tt>，则会抛出 <tt>CloneNotSupportedException</tt>。注意：所有的数组都被视为实现接口<tt>Cloneable</tt>。否则，此方法会创建此对象的类的一个新实例，并像通过分配那样，严格使用此对象相应字段的内容初始化该对象的所有字段；这些字段的内容没有被自我克隆。所以，此方法执行的是该对象的“浅表复制”，而不“深层复制”操作。</p>
+<p><tt>Object</tt> 类本身不实现接口 <tt>Cloneable</tt>，所以在类为 <tt>Object</tt> 的对象上调用 <tt>clone</tt> 方法将会导致在运行时抛出异常。</p>
+<dl><dt><strong>返回：</strong></dt><dd>此实例的一个克隆。</dd><dt><strong>抛出：</strong></dt><dd><code>[CloneNotSupportedException](/java%20tools/jdk1.5%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/java/lang/CloneNotSupportedException.html &quot;java.lang 中的类&quot;)</code> - 如果对象的类不支持 <code>Cloneable</code> 接口，则重写 <code>clone</code> 方法的子类也会抛出此异常，以指示无法克隆某个实例。</dd></dl>
+
+<p>5，toString</p>
+<p>public String toString()</p>
+<p>return getClass().getName()+”@”+Integer.toHexString(hashCode())</p>
+<p>6，notify</p>
+<p>public final void notify()</p>
+<p>唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个<code>wait</code> 方法，在对象的监视器上等待。</p>
+<p>7，notifyAll</p>
+<p>public final void notifAll()</p>
+<p>唤醒在此对象监视器上等待的所有线程。线程通过调用其中一个 <code>wait</code> 方法，在对象的监视器上等待。</p>
+<p>8，finalize</p>
+<p>protected void finalize() throws Throwable</p>
+<p>当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。子类重写 <code>finalize</code> 方法，以配置系统资源或执行其他清除。</p>
+<p><tt>finalize</tt> 的常规协定是：当 Java<sup>TM</sup> 虚拟机已确定尚未终止的任何线程无法再通过任何方法访问此对象时，将调用此方法，除非由于准备终止的其他某个对象或类的终结操作执行了某个操作。<tt>finalize</tt> 方法可以采取任何操作，其中包括再次使此对象对其他线程可用；不过，<tt>finalize</tt> 的主要目的是在不可撤消地丢弃对象之前执行清除操作。例如，表示输入/输出连接的对象的 finalize 方法可执行显式 I/O 事务，以便在永久丢弃对象之前中断连接。</p>
+<p><tt>Object</tt> 类的 <tt>finalize</tt> 方法执行非特殊性操作；它仅执行一些常规返回。<tt>Object</tt> 的子类可以重写此定义。</p>
+<p>Java 编程语言不保证哪个线程将调用某个给定对象的 <tt>finalize</tt> 方法。但可以保证在调用 finalize 时，调用 finalize 的线程将不会持有任何用户可见的同步锁定。如果 finalize 方法抛出未捕获的异常，那么该异常将被忽略，并且该对象的终结操作将终止。</p>
+<p>在启用某个对象的 <tt>finalize</tt> 方法后，将不会执行进一步操作，直到 Java 虚拟机再次确定尚未终止的任何线程无法再通过任何方法访问此对象，其中包括由准备终止的其他对象或类执行的可能操作，在执行该操作时，对象可能被丢弃。</p>
+<p>对于任何给定对象，Java 虚拟机最多只调用一次 <tt>finalize</tt> 方法。</p>
+<p><code>finalize</code> 方法抛出的任何异常都会导致此对象的终结操作停止，但可以通过其他方法忽略它。</p>
+<dl><dt><strong>抛出：</strong></dt><dd><code>[Throwable](/java%20tools/jdk1.5%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/java/lang/Throwable.html &quot;java.lang 中的类&quot;)</code> - 此方法抛出的 <code>Exception</code></dd><dd></dd></dl>
+
+<p>9，wait</p>
+<p>public final void wait(long time) throws InterruptedException</p>
+<p>导致当前的线程等待，直到其他线程调用此对象的 <code>notify()</code> 方法或 <code>notifyAll()</code> 方法，或者超过指定的时间量。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/14/java-object-method/" data-id="cihocho6t002lg4tjjm7w4waq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Abstract 与 Interface的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/13/Abstract 与 Interface的区别/" class="article-date">
+  <time datetime="2015-05-12T18:43:38.000Z" itemprop="datePublished">2015-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/13/Abstract 与 Interface的区别/">Abstract 与 Interface的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。</p>
+<p>2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都是abstract的。</p>
+<p>3，abstract class和interface所反映出的设计理念不同，其中abstract class表示的是“is - a”关系，interface表示的是“like - a”。</p>
+<p>4，实现抽象类和接口的类必须实现其中的所有方法。抽象类中可以有非抽象方法。接口中则不能实现方法。</p>
+<p>5，接口中定义的变量默认是public static final 型，且必须给其初值，所以实现类中不能重新定义，也不能改变变量。</p>
+<p>6，抽象类中的变量默认是friendly型，其值可以再子类中重新定义，也可以重新赋值。</p>
+<p>7，接口中的方法默认都是 public abstract 类型的。</p>
+<p>总结：</p>
+<ul>
+<li>接口体现的是一种设计规范，抽象类体现的是模板式设计。</li>
+<li>接口里的方法必须是public abstract抽象方法，抽象类里可以有方法实现。</li>
+<li>接口里不可以定义静态方法，抽象类可以。</li>
+<li>接口里的变量全部为静态常量，抽象类里可有普通变量。</li>
+<li>接口里不可以有构造函数和初始化块，抽象类里可以有。</li>
+<li>一个类可以实现多个接口，但只能集成一个抽象类。<br>接口是一种非常有效的编程方法，它让对象的定义与实现分离，从而可以在不破坏现有应用程序的情况下使对象得以完善与进化。接口消除了实现继承的一个大问题，就是在对设 计实施后再对其进行更改时很可能对代码产生破坏。即使实现继承允许类从基类继承实现，在类首次发布时仍然会使我们不得不为设计做很多的抉择。如果原有的设想不正确，并非 总可以在以后的版本中对代码进行安全的更改。</li>
+</ul>
+<p>接口一旦被定义和接受，就必须保持不变，以保护为使用该接口而编写的应用程序。接口发布后，就不能对其进行更改。这是我们进行组件设计的一个重要原则，叫做‘接口不变性’。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cihocho94006cg4tj3qeir5et" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Abstract/">Abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interface/">Interface</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hibernate/">Hibernate</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/fibonacci/">fibonacci</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/socket/">socket</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Zhaohui zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
