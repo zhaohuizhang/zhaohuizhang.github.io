@@ -65,51 +65,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/02/hello-world/" class="article-date">
-  <time datetime="2015-12-02T04:39:35.626Z" itemprop="datePublished">2015-12-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/12/02/hello-world/" data-id="cihocho7c003bg4tjd6pibsph" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-NIO-Introduce-Abstractly" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/30/NIO-Introduce-Abstractly/" class="article-date">
@@ -769,6 +724,60 @@ Object[] toArray(Object[] a)
 
 
   
+    <article id="post-Java 终结处理&amp;垃圾回收" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/10/Java 终结处理&垃圾回收/" class="article-date">
+  <time datetime="2015-06-09T23:05:49.000Z" itemprop="datePublished">2015-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/10/Java 终结处理&垃圾回收/">Java 终结处理&amp;垃圾回收</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，finalize()方法</p>
+<p>一旦垃圾回收器准备释放对象占用的存储空间，将首先调用其finalize()方法，并且在下一次来垃圾回收动作发生时，才会真正回收对象占用的内存。</p>
+<ul>
+<li>对象可能不会被回收；</li>
+<li>垃圾回收不等于“析构”;</li>
+<li>垃圾回收只与内存有关；<br>2，垃圾回收</li>
+</ul>
+<p>如果JVM并未面临内存耗尽的情形，它是不会浪费时间去执行垃圾回收已恢复内存的。</p>
+<p>3，垃圾回收器如何工作</p>
+<p>垃圾回收器对于提高对象的创建速度具有明显的效果。</p>
+<ul>
+<li>stop-and-copy</li>
+<li>Mark-and-sweep</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/06/10/Java 终结处理&垃圾回收/" data-id="cihocho8p005kg4tj5wj7pyw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -809,7 +818,7 @@ Object[] toArray(Object[] a)
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -819,10 +828,6 @@ Object[] toArray(Object[] a)
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/12/02/hello-world/">Hello World</a>
-          </li>
         
           <li>
             <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
@@ -838,6 +843,10 @@ Object[] toArray(Object[] a)
         
           <li>
             <a href="/2015/11/27/markdown/">markdown</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/27/hexo-commands/">Hexo-commands</a>
           </li>
         
       </ul>
