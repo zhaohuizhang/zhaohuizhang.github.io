@@ -65,6 +65,121 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Struts 工作原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/22/Struts 工作原理/" class="article-date">
+  <time datetime="2015-04-22T05:14:27.000Z" itemprop="datePublished">2015-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/Struts 工作原理/">Struts 工作原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://images.51cto.com/files/uploadimg/20090916/1333550.jpg" alt=""></p>
+<p>1，读取配置（初始化ModuleConfig对象）</p>
+<p>采用Struts框架的Web应用，在Web应用启动时就会加载ActionServlet，在ActionServlet初始化ModuleConfig的时候，调用initModuleConfigFactory()初始化配置工厂，然后由配置工厂通过initModuleConfig(‘’,cofing)获得ModuleConfig对象。</p>
+<p><pre>initModuleMessageResources(moduleConfig);<br>initModuleDataSources(moduleConfig);<br>initModulePlugIns(moduleCofig);</pre><br>这些方法的功能就是：容器在加载Struts应用程序时，会先加载web.xml中与Struts相关的一些参数，找到Struts-config.xml文件，通过循环来读取此文件和解析里面的内容，并初始化相关对象。</p>
+<p>2，用户请求</p>
+<p>用户提交表单或调用URL向Web应用程序服务器提交一个请求，请求数据用HTTP协议上传给Web服务器。</p>
+<p>3，填充FormBean</p>
+<p>填充FormBean的过程包括实例化，复位，填充数据，校验，保存等操作。根据*.do请求从ActionConfig中找出对应该请求的Action子类，如有对应的Action且这个Action有一个相应的ActionForm，则ActionForm被实例化并用HTTP请求的数据填充其属性，并保存在ServletContext中，这样它们就可以被其他的Action对象或者JSP调用。</p>
+<p>4，转发请求</p>
+<p>控制器根据ActionConfig将请求发送到具体的Action，与请求一起的FormBean也一并传给这个Action对象。</p>
+<p>5，处理业务</p>
+<p>Action一般包含一个execute()方法，负责业务逻辑，执行完毕后返回一个ActionForward对象，控制器通过ActionForward对象进行转发工作。</p>
+<p>6，返回响应</p>
+<p>Action根据不同的结果返回一个响应给总的控制器，该目标响应对象对应一个具体的JSP页面或另一个Action。</p>
+<p>7，查找响应</p>
+<p>总控制器根据业务功能Action返回的目标响应对象找到相应的资源对象，通常是一个具体的JSP页面。</p>
+<p>8，响应用户</p>
+<p>目标相应对象将结果展现给用户目标响应对象，即具体的JSP页面，这样客户就得到响应的结果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/Struts 工作原理/" data-id="cihrkq5o7004aestjfs3wldmj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-principal/">work principal</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-struts-login-demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/22/struts-login-demo/" class="article-date">
+  <time datetime="2015-04-22T04:30:41.000Z" itemprop="datePublished">2015-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/struts-login-demo/">Struts Login Demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>应用场景：当用户访问某一个应用程序之前，必须先进入登陆界面，进行登陆验证。</p>
+<p><img src="http://images.51cto.com/files/uploadimg/20090916/1330450.jpg" alt=""></p>
+<p>Struts的核心功能是前端控制器，前端控制器是一个Servlet，在web.xml中配置所有Request都必须经过前端控制器。前端控制器的名字是ActionServlet，由框架来实现和管理。所有的视图和业务逻辑隔离都是因为这个ActionServlet，可以把它理解为分发器，Dispatcher。</p>
+<p>Struts中以XML配置代替硬编码配置信息。以前决定JSP往哪个Servlet提交，是要卸载JSP代码中，也就是说一点这个提交路径要改，就必须改写代码再重新编译。而Struts中编码的只是一个逻辑名字，它对应的class文件写进了xml配置文件中，这个配置文件记录着所有的映射关系，一旦需要改变路径只需要改变XML文件。这也就是Struts-config.xml文件的重用性。</p>
+<p>前端控制器从Struts-config.xml中查找与请求匹配的内容，然后进行相关操作。</p>
+<p>path值为/login，对应login.do的操作。当login.do的请求到来之后，用一个类型为LoginAction的对象来处理这个请求，在处理请求时需要用一个名为loginActionForm的对象来封装请求的内容。处理后的结构再提交给前端控制器，由前端控制器根据forward的值将相应的内容发送至客户端。</p>
+<p>Action为后端控制器，DispatchAction，DynaValidationAction.等等。都有一个execute()方法，用来处理业务逻辑，request , response, formBean, actionMapping4个对象，放回actionForward对象。</p>
+<p>在Struts中ActionServlet通过读取struts-config.xml中的配置信息来决定，用户的请求发送给哪个Action对象。每个Action的映射都是通过一个&lt;Action&gt;元素来配置。</p>
+<p>这些配置在系统启动时被读入内存，供Struts在运行期间使用。在内存中每个&lt;action&gt;元素对应一个struts.action.ActionMapping类的实例。</p>
+<p>1,Web应用启动初始化ActionServlet</p>
+<p>2,ActionServlet从struts-config.xml中读取配置信息，把它们存放到各个配置对象中。</p>
+<p><img src="http://img.ddvip.com/2013/0813/201308130950471776.gif" alt=""></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/struts-login-demo/" data-id="cihrkq5kh001bestja7dczwgm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Login/">Login</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Struts （V-1.3.8） 应用概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/04/21/Struts （V-1.3.8） 应用概述/" class="article-date">
@@ -109,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Struts （V-1.3.8） 应用概述/" data-id="cihonh71e00404wtj3kuehjxm" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Struts （V-1.3.8） 应用概述/" data-id="cihrkq5nl0040estja1tsnhbd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/">MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
@@ -219,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Python 工具总结/" data-id="cihonh71q004k4wtjowjgua47" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Python 工具总结/" data-id="cihrkq5or004kestjro9gymac" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全栈工程师/">全栈工程师</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文本处理/">文本处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学计算/">科学计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
@@ -303,7 +418,7 @@ while(True):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/20/网络爬虫/" data-id="cihonh6yg00094wtjv8xw6mgo" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/20/网络爬虫/" data-id="cihrkq5jb0009estjl1slgwg1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-rq/">python-rq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
@@ -387,7 +502,7 @@ while(True):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/14/python scrapy/" data-id="cihonh70300244wtj3p503aeg" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/14/python scrapy/" data-id="cihrkq5l30024estjsctopoeb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/srcapy/">srcapy</a></li></ul>
@@ -421,7 +536,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -430,7 +545,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 17.5px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
     </div>
   </div>
 
@@ -439,7 +554,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -451,6 +566,14 @@ while(True):
       <ul>
         
           <li>
+            <a href="/2015/12/03/IO-Contrast/">IO-Contrast</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/03/AIO/">AIO</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/02/NIO-library/">NIO-library</a>
           </li>
         
@@ -460,14 +583,6 @@ while(True):
         
           <li>
             <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/27/java-I-O/">java-I/O-1</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/27/markdown/">markdown</a>
           </li>
         
       </ul>

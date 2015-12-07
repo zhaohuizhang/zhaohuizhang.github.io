@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Abstract 与 Interface的区别 | Welcome To Napu&#39;s Blog</title>
+  <title>IO-Contrast | Welcome To Napu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
+  <meta name="description" content="4中I/O对比异步非阻塞I/O在早期JDK1.4 和 1.5 Update10版本之前，JDK的Selector基于select/poll模型实现，它是基于I/O复用技术的非阻塞I/O，不是异步I/O。在JDK1.5 Update 10 和 Linux core 2.6 以上版本，Sun优化了Selector实现，它在底层使用epoll替换了selector/poll，上层的API没有变化。由于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Abstract 与 Interface的区别">
-<meta property="og:url" content="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/index.html">
+<meta property="og:title" content="IO-Contrast">
+<meta property="og:url" content="http://zhaohuizhang.github.io/2015/12/03/IO-Contrast/index.html">
 <meta property="og:site_name" content="Welcome To Napu's Blog">
-<meta property="og:description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
-<meta property="og:updated_time" content="2015-12-02T04:39:35.619Z">
+<meta property="og:description" content="4中I/O对比异步非阻塞I/O在早期JDK1.4 和 1.5 Update10版本之前，JDK的Selector基于select/poll模型实现，它是基于I/O复用技术的非阻塞I/O，不是异步I/O。在JDK1.5 Update 10 和 Linux core 2.6 以上版本，Sun优化了Selector实现，它在底层使用epoll替换了selector/poll，上层的API没有变化。由于">
+<meta property="og:updated_time" content="2015-12-04T11:14:07.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abstract 与 Interface的区别">
-<meta name="twitter:description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
+<meta name="twitter:title" content="IO-Contrast">
+<meta name="twitter:description" content="4中I/O对比异步非阻塞I/O在早期JDK1.4 和 1.5 Update10版本之前，JDK的Selector基于select/poll模型实现，它是基于I/O复用技术的非阻塞I/O，不是异步I/O。在JDK1.5 Update 10 和 Linux core 2.6 以上版本，Sun优化了Selector实现，它在底层使用epoll替换了selector/poll，上层的API没有变化。由于">
   
     <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
   
@@ -67,16 +64,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Abstract 与 Interface的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-IO-Contrast" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/13/Abstract 与 Interface的区别/" class="article-date">
-  <time datetime="2015-05-12T18:43:38.000Z" itemprop="datePublished">2015-05-13</time>
+    <a href="/2015/12/03/IO-Contrast/" class="article-date">
+  <time datetime="2015-12-03T09:37:25.000Z" itemprop="datePublished">2015-12-03</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -85,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Abstract 与 Interface的区别
+      IO-Contrast
     </h1>
   
 
@@ -93,31 +86,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。</p>
-<p>2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都是abstract的。</p>
-<p>3，abstract class和interface所反映出的设计理念不同，其中abstract class表示的是“is - a”关系，interface表示的是“like - a”。</p>
-<p>4，实现抽象类和接口的类必须实现其中的所有方法。抽象类中可以有非抽象方法。接口中则不能实现方法。</p>
-<p>5，接口中定义的变量默认是public static final 型，且必须给其初值，所以实现类中不能重新定义，也不能改变变量。</p>
-<p>6，抽象类中的变量默认是friendly型，其值可以再子类中重新定义，也可以重新赋值。</p>
-<p>7，接口中的方法默认都是 public abstract 类型的。</p>
-<p>总结：</p>
-<ul>
-<li>接口体现的是一种设计规范，抽象类体现的是模板式设计。</li>
-<li>接口里的方法必须是public abstract抽象方法，抽象类里可以有方法实现。</li>
-<li>接口里不可以定义静态方法，抽象类可以。</li>
-<li>接口里的变量全部为静态常量，抽象类里可有普通变量。</li>
-<li>接口里不可以有构造函数和初始化块，抽象类里可以有。</li>
-<li>一个类可以实现多个接口，但只能集成一个抽象类。<br>接口是一种非常有效的编程方法，它让对象的定义与实现分离，从而可以在不破坏现有应用程序的情况下使对象得以完善与进化。接口消除了实现继承的一个大问题，就是在对设 计实施后再对其进行更改时很可能对代码产生破坏。即使实现继承允许类从基类继承实现，在类首次发布时仍然会使我们不得不为设计做很多的抉择。如果原有的设想不正确，并非 总可以在以后的版本中对代码进行安全的更改。</li>
-</ul>
-<p>接口一旦被定义和接受，就必须保持不变，以保护为使用该接口而编写的应用程序。接口发布后，就不能对其进行更改。这是我们进行组件设计的一个重要原则，叫做‘接口不变性’。</p>
+        <h2 id="4中I/O对比">4中I/O对比</h2><h3 id="异步非阻塞I/O">异步非阻塞I/O</h3><p>在早期JDK1.4 和 1.5 Update10版本之前，JDK的Selector基于select/poll模型实现，它是基于I/O复用技术的非阻塞I/O，不是异步I/O。在JDK1.5 Update 10 和 Linux core 2.6 以上版本，Sun优化了Selector实现，它在底层使用epoll替换了selector/poll，上层的API没有变化。<br>由于 JDK1.7 提供的NIO2.0,新增了异步套接字通道，它是真正的异步I/O，在异步I/O操作的时候可以传递信号变量，当操作完成后悔调用相关的方法，异步I/O被称为AIO。<br>NIO类库支持非阻塞读和写，相比于之前的同步阻塞读和写，它是异步的，因此习惯称NIO为异步非阻塞I/O。</p>
+<h3 id="多路复用器Selector">多路复用器Selector</h3><p>JAVA NIO的实现关键是多路复用I/O技术，多路复用的核心就是通过Selector轮询注册在其上Channel，当发现某个或者多个Channel处于就绪状态后，从阻塞状态返回就绪的Channel的选择键集合，进行I/O操作。由于多路复用器是NIO实现非阻塞IO的关键，它又是主要通过Selector实现的。</p>
+<h3 id="伪异步I/O">伪异步I/O</h3><p>伪异步I/O的概念来源于实践，在JDK NIO编程没有流行之前，为了解决Tomcat通信线程同步I/O导致业务线程被挂住的问题，大家想了一个方法：在通信线程和业务线程之间做一个缓冲区，这个缓冲区用于隔离I/O线程和业务线程间的直接访问，这样业务线程就不会被I/O线程阻塞。对于后端业务来说，将消息或者Task放到线程池后就返回了，它不再直接访问I/O线程或进行I/O读写，这样就不会被同步阻塞。类似的设计还包含前端启动一组线程，将接收的客户端封装成Task，放到后端的线程池执行，用于解决一连接一线程的问题。</p>
+<h2 id="不同I/O模型对比">不同I/O模型对比</h2><p>表 1 几种I/O模型的功能和特性对比<br>| 模型 | 同步阻塞I/O（BIO） | 伪异步I/O | 非阻塞I/O（NIO） | 异步I/O（AIO）|<br>| :—– | :—- | :—- | :—- | :—- |<br>| 客户端个数：I/O线程 | 1：1  | M:N（其中M可以大于N） | M:1（1个I/O线程处理多个客户端连接） | M:0（不需要启动额外线程，被动调用） |<br>| I/O类型（阻塞） | 阻塞I/O   | 阻塞I/O | 非阻塞I/O | 非阻塞I/O |<br>| I/O类型（同步） | 同步I/O   | 同步I/O | 同步I/O（I/O多路复用）| 异步I/O |<br>| API使用难度 | 简单  | 简单 | 非常复杂 | 复杂 |<br>| 调度难度 | 简单 | 简单 | 复杂 | 复杂|<br>| 可靠性 | 非常差 | 差 | 高 | 高 |<br>| 吞吐量 | 低 | 中 | 高 | 高|</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cihrkq5q1006festjealt86h9" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/12/03/IO-Contrast/" data-id="cihrkq5ph005nestjqkb18y6h" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Abstract/">Abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interface/">Interface</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
 
     </footer>
   </div>
@@ -125,19 +105,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/05/14/java-object-method/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java Object Method
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/05/12/对象入门/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/12/03/AIO/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">对象入门</div>
+      <div class="article-nav-title">AIO</div>
     </a>
   
 </nav>

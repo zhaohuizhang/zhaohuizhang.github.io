@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Abstract 与 Interface的区别 | Welcome To Napu&#39;s Blog</title>
+  <title>AIO | Welcome To Napu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
+  <meta name="description" content="AIO ProgramingNIO 2.0 引入了新的异步通道的概念，并提拱了异步文件通道和异步套接字通道的实现。异步通道通过两种方式获取操作结果。
+
+通过java.util.concurrent.Future类来表示异步操作的结果。
+在执行异步操作的时候传入一个java.nio.channel。CompletionHandler 接口的实现类作为操作完成的回调。NIO 2.0 的异步套接字通道是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Abstract 与 Interface的区别">
-<meta property="og:url" content="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/index.html">
+<meta property="og:title" content="AIO">
+<meta property="og:url" content="http://zhaohuizhang.github.io/2015/12/03/AIO/index.html">
 <meta property="og:site_name" content="Welcome To Napu's Blog">
-<meta property="og:description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
-<meta property="og:updated_time" content="2015-12-02T04:39:35.619Z">
+<meta property="og:description" content="AIO ProgramingNIO 2.0 引入了新的异步通道的概念，并提拱了异步文件通道和异步套接字通道的实现。异步通道通过两种方式获取操作结果。
+
+通过java.util.concurrent.Future类来表示异步操作的结果。
+在执行异步操作的时候传入一个java.nio.channel。CompletionHandler 接口的实现类作为操作完成的回调。NIO 2.0 的异步套接字通道是">
+<meta property="og:updated_time" content="2015-12-03T09:35:38.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abstract 与 Interface的区别">
-<meta name="twitter:description" content="1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。
-2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都">
+<meta name="twitter:title" content="AIO">
+<meta name="twitter:description" content="AIO ProgramingNIO 2.0 引入了新的异步通道的概念，并提拱了异步文件通道和异步套接字通道的实现。异步通道通过两种方式获取操作结果。
+
+通过java.util.concurrent.Future类来表示异步操作的结果。
+在执行异步操作的时候传入一个java.nio.channel。CompletionHandler 接口的实现类作为操作完成的回调。NIO 2.0 的异步套接字通道是">
   
     <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
   
@@ -67,16 +73,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Abstract 与 Interface的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-AIO" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/13/Abstract 与 Interface的区别/" class="article-date">
-  <time datetime="2015-05-12T18:43:38.000Z" itemprop="datePublished">2015-05-13</time>
+    <a href="/2015/12/03/AIO/" class="article-date">
+  <time datetime="2015-12-03T01:50:20.000Z" itemprop="datePublished">2015-12-03</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -85,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Abstract 与 Interface的区别
+      AIO
     </h1>
   
 
@@ -93,31 +95,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1，abstract class 在Java语言中表示一种继承关系，一个类只能使用一次继承关系。但是一个类可以有多个实现的interface。</p>
-<p>2，在Abstract class中可以有自己的数据成员，也可以有非abstract的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（必须是static final，不过在interface里面一般不定义数据成员），所有的成员方法都是abstract的。</p>
-<p>3，abstract class和interface所反映出的设计理念不同，其中abstract class表示的是“is - a”关系，interface表示的是“like - a”。</p>
-<p>4，实现抽象类和接口的类必须实现其中的所有方法。抽象类中可以有非抽象方法。接口中则不能实现方法。</p>
-<p>5，接口中定义的变量默认是public static final 型，且必须给其初值，所以实现类中不能重新定义，也不能改变变量。</p>
-<p>6，抽象类中的变量默认是friendly型，其值可以再子类中重新定义，也可以重新赋值。</p>
-<p>7，接口中的方法默认都是 public abstract 类型的。</p>
-<p>总结：</p>
+        <h2 id="AIO_Programing">AIO Programing</h2><p>NIO 2.0 引入了新的异步通道的概念，并提拱了异步文件通道和异步套接字通道的实现。异步通道通过两种方式获取操作结果。</p>
 <ul>
-<li>接口体现的是一种设计规范，抽象类体现的是模板式设计。</li>
-<li>接口里的方法必须是public abstract抽象方法，抽象类里可以有方法实现。</li>
-<li>接口里不可以定义静态方法，抽象类可以。</li>
-<li>接口里的变量全部为静态常量，抽象类里可有普通变量。</li>
-<li>接口里不可以有构造函数和初始化块，抽象类里可以有。</li>
-<li>一个类可以实现多个接口，但只能集成一个抽象类。<br>接口是一种非常有效的编程方法，它让对象的定义与实现分离，从而可以在不破坏现有应用程序的情况下使对象得以完善与进化。接口消除了实现继承的一个大问题，就是在对设 计实施后再对其进行更改时很可能对代码产生破坏。即使实现继承允许类从基类继承实现，在类首次发布时仍然会使我们不得不为设计做很多的抉择。如果原有的设想不正确，并非 总可以在以后的版本中对代码进行安全的更改。</li>
+<li>通过java.util.concurrent.Future类来表示异步操作的结果。</li>
+<li>在执行异步操作的时候传入一个java.nio.channel。<br>CompletionHandler 接口的实现类作为操作完成的回调。<br>NIO 2.0 的异步套接字通道是真正的异步非阻塞I/O，它对应UNIX网络编程中的时间驱动I/O（AIO），他不需要通过多路复用器Selector对应注册的通道进行轮询操作即可以实现异步读写。</li>
 </ul>
-<p>接口一旦被定义和接受，就必须保持不变，以保护为使用该接口而编写的应用程序。接口发布后，就不能对其进行更改。这是我们进行组件设计的一个重要原则，叫做‘接口不变性’。</p>
+<p><a href="https://github.com/zhaohuizhang/java-nio-demo" target="_blank" rel="external">Github</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cihrkq5q1006festjealt86h9" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/12/03/AIO/" data-id="cihrkq5q4006lestjh1ul2350" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Abstract/">Abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interface/">Interface</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
 
     </footer>
   </div>
@@ -125,19 +116,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/05/14/java-object-method/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/12/03/IO-Contrast/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Java Object Method
+          IO-Contrast
         
       </div>
     </a>
   
   
-    <a href="/2015/05/12/对象入门/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/12/02/NIO-library/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">对象入门</div>
+      <div class="article-nav-title">NIO-library</div>
     </a>
   
 </nav>
