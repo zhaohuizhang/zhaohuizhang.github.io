@@ -65,6 +65,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XML Schema 和 DTD的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/XML Schema 和 DTD的区别/" class="article-date">
+  <time datetime="2015-05-15T04:12:23.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/XML Schema 和 DTD的区别/">XML Schema 和 DTD的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Schema和DTD的区别"><a href="http://www.cnblogs.com/zhaozhan/archive/2010/01/04/1639194.html" target="_blank" rel="external">Schema和DTD的区别</a></h1><div class="clear"></div><br><div class="postBody"><br><div id="cnblogs_post_body"><br><br>      Schema是对XML文档结构的定义和描述，其主要的作用是用来约束XML文件，并验证XML文件有效性。DTD的作用是定义XML的合法构建模块，它使用一系列的合法元素来定义文档结构。它们之间的区别有下面几点：<br><br>1、Schema本身也是XML文档，DTD定义跟XML没有什么关系，Schema在理解和实际应用有很多的好处。<br><br>2、DTD文档的结构是“平铺型”的，如果定义复杂的XML文档，很难把握各元素之间的嵌套关系；Schema文档结构性强，各元素之间的嵌套关系非常直观。<br><br>3、DTD只能指定元素含有文本，不能定义元素文本的具体类型，如字符型、整型、日期型、自定义类型等。Schema在这方面比DTD强大。<br><br>4、Schema支持元素节点顺序的描述，DTD没有提供无序情况的描述，要定义无序必需穷举排列的所有情况。Schema可以利用xs:all来表示无序的情况。<br><br>5、对命名空间的支持。DTD无法利用XML的命名空间，Schema很好满足命名空间。并且，Schema还提供了include和import两种引用命名空间的方法。<br><br></div><br><div class="clear"></div><br><div id="blog_post_info_block"><br><div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhaozhan/category/209171.html" target="_blank" rel="external">XML</a></div><br></div><br></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/XML Schema 和 DTD的区别/" data-id="cii02kkcw003njktjvnk8q3q9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTD/">DTD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schema/">Schema</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fibonacci" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/fibonacci/" class="article-date">
+  <time datetime="2015-05-15T03:59:44.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fibonacci/">fibonacci</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/fibonacci/">Fibonacci</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">*@author napu.zhang</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Fibonacci&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibonacciRecusion</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">1</span> || num ==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fibonacciRecusion(num-<span class="number">1</span>)+fibonacciRecusion(num-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibonacciLoop</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">1</span>||num ==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> fibo1=<span class="number">1</span>,fibo2=<span class="number">1</span>,fibonacci=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&amp;lt;=num;i++)&#123;</span><br><span class="line">            fibonacci = fibo1 + fibo2;</span><br><span class="line">            fibo1 = fibo2;</span><br><span class="line">            fibo2 = fibonacci;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fibonacci;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Enter num"</span>)</span><br><span class="line">        <span class="keyword">int</span> number = <span class="keyword">new</span> Scanner(System.In).nextInt();</span><br><span class="line">        System.out.println(<span class="string">"Fibonacci series upto "</span>+number+<span class="string">"numbers:"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&amp;lt;=number; i++)&#123;</span><br><span class="line">            System.out.print(fibonacciRecusion(i)+<span class="string">""</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/fibonacci/" data-id="cii02kkcp003hjktj889hkt9j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java-object-method" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/05/14/java-object-method/" class="article-date">
@@ -157,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/14/java-object-method/" data-id="cihrkq5lg002lestjxxmug4km" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/14/java-object-method/" data-id="cii02kkc3002ljktjftdj5pis" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cihrkq5q1006festjealt86h9" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cii02kkeq006jjktjv3i3i52c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Abstract/">Abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interface/">Interface</a></li></ul>
@@ -335,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/12/对象入门/" data-id="cihrkq5k40010estjp0f2qvuw" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/12/对象入门/" data-id="cii02kkau0010jktjkfz0vrix" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li></ul>
@@ -407,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/11/HashMap 和 HashTable的区别/" data-id="cihrkq5py0069estjotze5d7c" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/11/HashMap 和 HashTable的区别/" data-id="cii02kken006djktj14pvp4jm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hashmap/">Hashmap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hashtable/">hashtable</a></li></ul>
@@ -577,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/08/socket blocking noblocking IO model/" data-id="cihrkq5kt001sestjq09vfwng" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/08/socket blocking noblocking IO model/" data-id="cii02kkbg001sjktjkk02vgra" class="article-share-link">Share</a>
       
       
     </footer>
@@ -678,7 +761,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/07/Hibernate 数据查询/" data-id="cihrkq5pq005uestj6m5a3cq8" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/07/Hibernate 数据查询/" data-id="cii02kkef005yjktjdxda2zjk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HQL/">HQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QBC/">QBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Query/">Query</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stored-procedure/">stored procedure</a></li></ul>
@@ -858,7 +941,7 @@ public class Course{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/05/Hibernate高级映射/" data-id="cihrkq5pj005pestjr39u18dh" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/05/Hibernate高级映射/" data-id="cii02kkec005tjktja4r5f40q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象映射/">对象映射</a></li></ul>
@@ -925,171 +1008,10 @@ public class Course{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/05/操纵Session/" data-id="cihrkq5js000uestj9g0vh2qh" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/05/操纵Session/" data-id="cii02kkao000ujktj4ksqoovh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hibernate 基本配置及操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/04/Hibernate 基本配置及操作/" class="article-date">
-  <time datetime="2015-05-04T01:14:14.000Z" itemprop="datePublished">2015-05-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/04/Hibernate 基本配置及操作/">Hibernate 基本配置及操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Hibernate_全局配置文件">Hibernate 全局配置文件</h3><p>1，hibernate.properties；hibernate.cfg.xml;</p>
-<p>hibernate框架在启动的时候会在应用的ClassPath路径中查询有没有这两个文件，如果有则加载他们的配置参数。</p>
-<p>在hibernate.cfg.xml文件中，首先配置session-factory元素来指定一个SessionFactory的配置，</p>
-<p><pre>&lt;hibernate-configuration&gt;<br>&lt;session-factory&gt;<br>&lt;property name=”hibernate.dialect”&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;<br>&lt;/session-factory&gt;<br>&lt;/hibernate-configuration&gt;</pre><br>2， JDBC属性</p>
-<ul>
-<li>hibernate.connection.url</li>
-<li>hibernate.connection.driver_class</li>
-<li>hibernate.connection.username</li>
-<li>hibernate.connection.password</li>
-<li>hibernate.connection.isolation：设置JDBC事务的隔离级别</li>
-<li>hibernate.connection.batch_size：批量操作的记录数<br>3，连接池属性</li>
-</ul>
-<p>通常要使用第三方的连接池技术。C3P0这个开源的连接池产品为例进行链接数据库参数的配置。</p>
-<p><pre>&lt;property name=”hibernate.c3p0.min_size”&gt;5&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.max_size”&gt;20&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.timeout”&gt;1800&lt;/property&gt;<br>&lt;property name=”hibernate.c3p0.max_statement”&gt;100&lt;/property&gt;</pre><br>4，缓存属性</p>
-<p>用来配置Hibernate使用的二级缓存策略。常用的配置如下：</p>
-<ul>
-<li>hibernate.cache.provider_class：指定第三方的缓存提供类的名称。ehcache缓存插件可做为Hibernate的二级缓存提供者。org.hibernate.cache.EhCacheProvider</li>
-<li><p>hibernate.cache.use_query_cache：指定是否开启Hibernate的查询缓存。可选值为false和true。默认为false。<br>5，其他属性</p>
-</li>
-<li><p>hibernate.show_sql：指定是否把Hibernate运行时的SQL语句输出到控制台。</p>
-</li>
-<li>hibernate.format_sql：指定是否对Hibernate运行时产生的SQL语句进行格式化便于阅读。</li>
-<li>hibernate.hbm2ddl.auto：指定应用程序在运行时，当产生SessionFactory实例时对是否自动检查数据库结构，或者将数据库schema的DDL导出到数据库。可选值：Validate（检查数据库结构），update（数据库结构发生变化时修改），create（将数据库schema的DDL导出到数据库），create_drop（在SessionFactory中实例创建时间数据schema的DDL导出到数据库，在SessionFactory被显示关闭时将数据库自动删除）。</li>
-<li>hibernate.current_session_context_class：为当前Session指定一个策略。常用值：jta(当前Session根据JTA来跟踪和界定)、Thread（前Session通过当前执行的线程来跟踪和界定）</li>
-</ul>
-<h3 id="对象关系映射文件">对象关系映射文件</h3><p>Hibernate的对象关系映射文件把面相对象中的实体类对象映射到数据库中的实体，把实体类之间的关联关系也映射到数据库中多个表之间的相互关系中。</p>
-<p><pre>XML文件的起始行，指定XML的版本和编码方式<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>映射文件的所使用的DTD声明<br>&lt;!DOCTYPE hibernate-mapping PUBLIC<br> “-//Hibernate/Hibernate Mapping DTD 3.0//EN”<br> “<a href="http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&amp;gt" target="_blank" rel="external">http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&amp;gt</a>;</pre></p>
-<p>&lt;!– Hibernate对象关系映射文件的根元素 –&gt;<br>&lt;hibernate-mapping&gt;<br> &lt;!– class元素用来定义一个持久化类及对应的数据库表 –&gt;<br> &lt;class name=”com.qiujy.domain.Account” table=”account”&gt;<br> &lt;!–<br> id元素：指定每个持久化类的唯一标识(即对象标识符OID)到数据库表主键字段的映射<br> name属性：指定持久化类的OID名<br> column属性：指定数据库表主键字段名。此属性的名和映射到数据库表的字段名相同时，可省略<br> type属性：指定主键映射时所使用的Hibernate类型名。此属性的类型为基本数据类型和String类型时，可省略<br> –&gt;<br> &lt;id name=”id” column=”id” type=”long”&gt;<br> &lt;!– generator元素：指定对象标识符的生成器名。<br> native生成器把对象标识符值的生成工作交由底层数据库来完成<br> –&gt;<br> &lt;generator class=”native” /&gt;<br> &lt;/id&gt;<br> &lt;!–<br> property元素：指定持久化类的每一个要映射到数据库表的字段的属性的信息。<br> name属性；指定持久化类中要映射到数据库表字段的属性名。<br> column属性：指定对应的表的字段名。此属性的名和映射到数据库表的字段名相同时，可省略<br> type属性：指定属性映射所使用的Hibernate类型名。此属性的类型为基本数据类型和String类型时，可省略<br> not-null属性：指定此属性映射到数据库表的字段值是否允许为值<br> –&gt;<br> &lt;property name=”loginname” column=”loginname” type=”string” not-null=”true”/&gt;<br> &lt;property name=”password” column=”password” type=”string” not-null=”true”/&gt;<br> &lt;property name=”email” column=”email” type=”string”/&gt;<br> &lt;!– 属性类型为Date类型的必须要明确指定使用的Hibernate类型名 –&gt;<br> &lt;property name=”registrationTime” column=”registration_time” type=”timestamp”/&gt;<br> &lt;/class&gt;<br>&lt;/hibernate-mapping&gt;<br>1,映射持久化类</p>
-<p>在Hibernate对象关系映射文件中，使用class元素来映射持久化类到数据库表中</p>
-<ul>
-<li>name：指定要映射的持久化类的名称</li>
-<li>table：指定和此持久化类对应的数据库表名<br>2，映射对象标识符</li>
-</ul>
-<p>Hibernate中要求每一个持久化类都有一个对象标识符来唯一标识它的每一个实例。对象标识符的值是数据库表中行的主键。</p>
-<p>3，对象标识符生成方式</p>
-<p>可以通过ID元素的generator子元素，指定对象标识符的生成器。</p>
-<ol>
-<li>代理对象标识符：在一个持久化类中添加一个没有业务意义的属性来作为对象标识符，这样应用程序的领域模型更具有扩展性。</li>
-<li>自然对象标识符：由许多遗留的SQL数据模型使用了带有业务意义的主键组成。</li>
-</ol>
-<ul>
-<li>如果对象标识符的数据类型为整数型（Long，int，short）或对应的包装类型，为提高应用程序在不同数据库上的移植能力，建议使用native。</li>
-<li>如果对象标识符的数据类型的为字符串型，为提高应用程序的在不同数据库上的移植能力，建议用UUID。</li>
-<li>如果应用程序是先有数据库的物理模型后偶建立实体模型，且使用了自然主键，那么选择assigned.<br>4，映射普通属性</li>
-</ul>
-<p>对象标识符，版本号，自定义数据类型属性以外的属性。通过class元素的property子元素来映射&lt;property name=”属性名” column=”列名称” type=“映射属性”/&gt;</p>
-<p>5，Hibernate映射的数据类型</p>
-<p><img src="http://www.educity.cn/article_images/2014-03-18/11810dd6-1bfb-4478-92ca-471f8942ba92.jpg" alt=""></p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/04/Hibernate 基本配置及操作/" data-id="cihrkq5pv0064estjsisv36sc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Configuration/">Configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ORM（Object Relation Mapping）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/03/ORM（Object Relation Mapping）/" class="article-date">
-  <time datetime="2015-05-03T01:38:47.000Z" itemprop="datePublished">2015-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/03/ORM（Object Relation Mapping）/">ORM（Object Relation Mapping）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言">前言</h2><p>对象关系映射，是一种完成对象模型到关系模型的映射技术。就是一种把应用程序的对象数据持久化到关系数据库表的一种技术。</p>
-<ul>
-<li>把对象的数据转储到关系型数据库表中时就会发生如下不匹配的问题。</li>
-<li>对象模型中对象之间的关联关系与关系模型中数据库表之间的关系无法一一对应。</li>
-<li>对象模型中对象的继承关系在关系模型中无法直接表示。</li>
-<li>对象模型中对象的等值性在关系模型数据库表中表示困难。</li>
-<li>对象模型中有关联的对象之间的导航访问在关系模型中无法直接实现。<br>ORM 来解决上述问题。它能用面向对象的思想开发基于关系型数据库的应用程序。</li>
-</ul>
-<h3 id="Hibernate">Hibernate</h3><p>JBoss公司著名架构师Gavin King设计，开发的一个开源的ORM框架。</p>
-<ul>
-<li>它是连接Java应用程序和关系数据库的中间件。</li>
-<li>它对JDBC API进行了封装，负责Java对象的持久化。</li>
-<li>在分层的软件框架中它位于持久化层，封装的所有的数据访问细节，使业务逻辑层可以专注于实现业务逻辑。</li>
-<li>它是一种ORM工具，能够建立面相对象的域模型和关系模型的映射。</li>
-</ul>
-<h3 id="hibernate_的核心类和接口">hibernate 的核心类和接口</h3><h4 id="1，Configuration类">1，Configuration类</h4><p>Configuration类是Hibernate的入口，它负责配置并启动Hibernate。Hibernate框架通过Configuration实例加载配置文件信息，然后读取指定对象关系文件的内容并创建SessionFactory实例。</p>
-<h4 id="2，SessionFactory接口">2，SessionFactory接口</h4><p>SessionFactory接口负责初始化Hibernate，一个SessionFactory实例对应一个数据存储源（一般就是指一个数据库）。应用程序从SessionFactory中获取Session实例。SessionFactory具有以下几个特点：</p>
-<ul>
-<li>线程安全，即同一个SessionFactory实例可以被应用的多个线程共享。</li>
-<li>它是重量级的，因为它需要一个很大的缓存，用来存放预定义的SQL语句以及映射元数据。<br>所以说，如果一个应用程序只访问一个数据库，则只需要创建一个全局的SessionFactory实例。</li>
-</ul>
-<h4 id="3，Session接口">3，Session接口</h4><p>Session是Hibernate中应用最频繁的接口。Session也被称为持久化管理器。他负责管理所有与持久化相关的操作：存储、更新、删除和加载对象等。Session具有以下特点。</p>
-<p>单线程，非共享的对象。线程不安全，在设计软件架构时，应该避免多个线程共享同一个Session实例。</p>
-<p>Session实例是轻量级的，它的创建和销毁不需要消耗太多的资源。可以为每个请求分配一个Session实例，在每次请求过程中及时创建和销毁Session实例。</p>
-<p>Session有一个缓存，他存放当前工作单元加载的对象。Session的缓存被称为Hibernate的第一级缓存。</p>
-<h4 id="4，Transaction接口">4，Transaction接口</h4><p>Transaction接口是Hibernate框架的事务接口。它对底层事务接口做了封装，包括：JDBC API和JTA。这样，使得Hibernate应用可通过一致的Transaction接口来声明事务边界，这有助于应用程序在不同环境和容器中移植。</p>
-<h4 id="5，Query和Criteria接口">5，Query和Criteria接口</h4><p>他们是Hibernate的查询接口，用于从数据库存储源查询对象以及控制执行查询的过程。Query包装了一个HQL的查询语句；而Criteria接口完全封装了基于字符串形式的查询语句，比Query更加面相对象，Criteria接口擅长执行动态查询。</p>
-<h3 id="Hibernate的工作过程">Hibernate的工作过程</h3><p><img src="http://img.my.csdn.net/uploads/201304/07/1365329836_2944.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/03/ORM（Object Relation Mapping）/" data-id="cihrkq5p20059estjzcf3xpao" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ORM/">ORM</a></li></ul>
 
     </footer>
   </div>
@@ -1120,7 +1042,7 @@ public class Course{
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1129,7 +1051,7 @@ public class Course{
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 17.5px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 17.5px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12.5px;">网络爬虫</a>
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 16px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 18px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12px;">网络爬虫</a>
     </div>
   </div>
 
@@ -1138,7 +1060,7 @@ public class Course{
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -1150,6 +1072,14 @@ public class Course{
       <ul>
         
           <li>
+            <a href="/2015/12/10/NIO-Programing/">NIO-Programing</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/09/JAVA-NIO-Netty/">JAVA-NIO-Netty</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/03/IO-Contrast/">IO-Contrast</a>
           </li>
         
@@ -1159,14 +1089,6 @@ public class Course{
         
           <li>
             <a href="/2015/12/02/NIO-library/">NIO-library</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/30/NIO-Introduce-Abstractly/">NIO-Introduce-Abstractly</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/30/java-I-O-2/">java-I/O-2</a>
           </li>
         
       </ul>

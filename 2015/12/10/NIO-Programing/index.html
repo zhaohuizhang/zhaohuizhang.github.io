@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Java | Welcome To Napu&#39;s Blog</title>
+  <title>NIO-Programing | Welcome To Napu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome To Napu's Blog">
-<meta property="og:url" content="http://zhaohuizhang.github.io/categories/Java/page/2/index.html">
+  <meta name="description" content="NIO 开发步骤
+创建ServerSocketChannel，配置他为非阻塞模式；
+绑定监听，配置TCP参数，backlog的大小；
+创建一个独立的I/O线程，用于轮询多路复用器Selector；
+创建Selector，将之前创建的ServerSocketChannel 注册到Selector上，监听SelectorKey.ACCEPT;
+启动I/O线程，在循环体中执行Selector。selec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NIO-Programing">
+<meta property="og:url" content="http://zhaohuizhang.github.io/2015/12/10/NIO-Programing/index.html">
 <meta property="og:site_name" content="Welcome To Napu's Blog">
-<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:description" content="NIO 开发步骤
+创建ServerSocketChannel，配置他为非阻塞模式；
+绑定监听，配置TCP参数，backlog的大小；
+创建一个独立的I/O线程，用于轮询多路复用器Selector；
+创建Selector，将之前创建的ServerSocketChannel 注册到Selector上，监听SelectorKey.ACCEPT;
+启动I/O线程，在循环体中执行Selector。selec">
+<meta property="og:updated_time" content="2015-12-10T03:11:30.259Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome To Napu's Blog">
-<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:title" content="NIO-Programing">
+<meta name="twitter:description" content="NIO 开发步骤
+创建ServerSocketChannel，配置他为非阻塞模式；
+绑定监听，配置TCP参数，backlog的大小；
+创建一个独立的I/O线程，用于轮询多路复用器Selector；
+创建Selector，将之前创建的ServerSocketChannel 注册到Selector上，监听SelectorKey.ACCEPT;
+启动I/O线程，在循环体中执行Selector。selec">
   
     <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
   
@@ -63,134 +79,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/15/XML Schema 和 DTD的区别/" class="archive-article-date">
-  <time datetime="2015-05-15T04:12:23.000Z" itemprop="datePublished">May 15</time>
+        <section id="main"><article id="post-NIO-Programing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/10/NIO-Programing/" class="article-date">
+  <time datetime="2015-12-10T02:57:35.000Z" itemprop="datePublished">2015-12-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/15/XML Schema 和 DTD的区别/">XML Schema 和 DTD的区别</a>
+    <h1 class="article-title" itemprop="name">
+      NIO-Programing
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/14/java-object-method/" class="archive-article-date">
-  <time datetime="2015-05-14T00:06:34.000Z" itemprop="datePublished">May 14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/14/java-object-method/">Java Object Method</a>
-    </h1>
-  
+        <h2 id="NIO_开发步骤">NIO 开发步骤</h2><ul>
+<li>创建ServerSocketChannel，配置他为非阻塞模式；</li>
+<li>绑定监听，配置TCP参数，backlog的大小；</li>
+<li>创建一个独立的I/O线程，用于轮询多路复用器Selector；</li>
+<li>创建Selector，将之前创建的ServerSocketChannel 注册到Selector上，监听SelectorKey.ACCEPT;</li>
+<li>启动I/O线程，在循环体中执行Selector。select()方法，轮询就绪的Channel；</li>
+<li>当轮询到就绪状态的Channel时，需要进行判断，如果是OP_ACCEPT状态，说明是新接入的客户端，则调用ServerSocketChannel.accept()方法接受新的客户端；</li>
+<li>设置新接入的客户端链路SocketChannel为非阻塞模式，配置其他的一些TCP参数；</li>
+<li>将SocketChannel注册到Selector，监听OP_READ操作位；</li>
+<li>如果轮询的Channel为OP_READ，则说明SocketChannel中有就绪的数据包需要读取，则构造ByteBuffer对象，读入数据包；</li>
+<li>如果轮询的Channel为OP_WRITE，说明还有数据没有发送完成，需要继续发送。</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/13/Abstract 与 Interface的区别/" class="archive-article-date">
-  <time datetime="2015-05-12T18:43:38.000Z" itemprop="datePublished">May 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/13/Abstract 与 Interface的区别/">Abstract 与 Interface的区别</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/12/对象入门/" class="archive-article-date">
-  <time datetime="2015-05-12T06:31:01.000Z" itemprop="datePublished">May 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/12/10/NIO-Programing/" data-id="cii02kkdz005hjktj85h6zeij" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/12/对象入门/">对象入门</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/11/HashMap 和 HashTable的区别/" class="archive-article-date">
-  <time datetime="2015-05-11T06:03:57.000Z" itemprop="datePublished">May 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/11/HashMap 和 HashTable的区别/">HashMap 和 HashTable的区别</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/03/ORM（Object Relation Mapping）/" class="archive-article-date">
-  <time datetime="2015-05-03T01:38:47.000Z" itemprop="datePublished">May 3</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/03/ORM（Object Relation Mapping）/">ORM（Object Relation Mapping）</a>
-    </h1>
   
+    <a href="/2015/12/09/JAVA-NIO-Netty/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JAVA-NIO-Netty</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

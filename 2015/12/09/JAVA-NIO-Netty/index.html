@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Java | Welcome To Napu&#39;s Blog</title>
+  <title>JAVA-NIO-Netty | Welcome To Napu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is zhaohuizhang&apos;s blog site">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome To Napu's Blog">
-<meta property="og:url" content="http://zhaohuizhang.github.io/categories/Java/page/2/index.html">
+  <meta name="description" content="Java NIO 问题
+NIO 的类库和API繁琐，使用麻烦，需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等。
+
+需要具备其他的额外技能做铺垫，例如熟悉Java多线程编程。因为NIO编程涉及到Reactor模式。
+
+可靠性能力补齐、工作量大、难度大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA-NIO-Netty">
+<meta property="og:url" content="http://zhaohuizhang.github.io/2015/12/09/JAVA-NIO-Netty/index.html">
 <meta property="og:site_name" content="Welcome To Napu's Blog">
-<meta property="og:description" content="This is zhaohuizhang&apos;s blog site">
+<meta property="og:description" content="Java NIO 问题
+NIO 的类库和API繁琐，使用麻烦，需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等。
+
+需要具备其他的额外技能做铺垫，例如熟悉Java多线程编程。因为NIO编程涉及到Reactor模式。
+
+可靠性能力补齐、工作量大、难度大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处">
+<meta property="og:updated_time" content="2015-12-10T02:56:33.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome To Napu's Blog">
-<meta name="twitter:description" content="This is zhaohuizhang&apos;s blog site">
+<meta name="twitter:title" content="JAVA-NIO-Netty">
+<meta name="twitter:description" content="Java NIO 问题
+NIO 的类库和API繁琐，使用麻烦，需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等。
+
+需要具备其他的额外技能做铺垫，例如熟悉Java多线程编程。因为NIO编程涉及到Reactor模式。
+
+可靠性能力补齐、工作量大、难度大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处">
   
     <link rel="alternative" href="/atom.xml" title="Welcome To Napu&#39;s Blog" type="application/atom+xml">
   
@@ -63,134 +79,89 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/15/XML Schema 和 DTD的区别/" class="archive-article-date">
-  <time datetime="2015-05-15T04:12:23.000Z" itemprop="datePublished">May 15</time>
+        <section id="main"><article id="post-JAVA-NIO-Netty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/09/JAVA-NIO-Netty/" class="article-date">
+  <time datetime="2015-12-09T08:32:04.000Z" itemprop="datePublished">2015-12-09</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/15/XML Schema 和 DTD的区别/">XML Schema 和 DTD的区别</a>
+    <h1 class="article-title" itemprop="name">
+      JAVA-NIO-Netty
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/14/java-object-method/" class="archive-article-date">
-  <time datetime="2015-05-14T00:06:34.000Z" itemprop="datePublished">May 14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/14/java-object-method/">Java Object Method</a>
-    </h1>
-  
+        <h2 id="Java_NIO_问题">Java NIO 问题</h2><ul>
+<li><p>NIO 的类库和API繁琐，使用麻烦，需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等。</p>
+</li>
+<li><p>需要具备其他的额外技能做铺垫，例如熟悉Java多线程编程。因为NIO编程涉及到Reactor模式。</p>
+</li>
+<li><p>可靠性能力补齐、工作量大、难度大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处理能力等问题。</p>
+</li>
+<li><p>JDK NIO的BUG。例如epoll bug。它会导致Selector空轮询，最终导致CPU 100%。</p>
+</li>
+</ul>
+<h2 id="Netty">Netty</h2><ul>
+<li><p>API 简单，开发门槛低；</p>
+</li>
+<li><p>功能强大，预设置了多种编码能力，支持多种主流协议；</p>
+</li>
+<li><p>定制能力强，可以通过ChannelHandler对通信框架进行灵活地扩展；</p>
+</li>
+<li><p>性能高，通过与其他业界主流的NIO框架对比，Netty的综合能力最优；</p>
+</li>
+<li><p>成熟、稳定、Netty修复了已经发现的所有JDK NIO BUG，业务人员不需要再为NIO 的BUG烦恼；</p>
+</li>
+<li><p>社区活跃，版本迭代周期短，发现的BUG可以被及时修复，同时，更新的新功能会加入；</p>
+</li>
+<li><p>经历了大规模的商业应用考验，质量得到保证。</p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/13/Abstract 与 Interface的区别/" class="archive-article-date">
-  <time datetime="2015-05-12T18:43:38.000Z" itemprop="datePublished">May 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/13/Abstract 与 Interface的区别/">Abstract 与 Interface的区别</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/12/对象入门/" class="archive-article-date">
-  <time datetime="2015-05-12T06:31:01.000Z" itemprop="datePublished">May 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/12/09/JAVA-NIO-Netty/" data-id="cii02kke8005pjktj600c3cc7" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/12/对象入门/">对象入门</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/11/HashMap 和 HashTable的区别/" class="archive-article-date">
-  <time datetime="2015-05-11T06:03:57.000Z" itemprop="datePublished">May 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/11/HashMap 和 HashTable的区别/">HashMap 和 HashTable的区别</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/05/03/ORM（Object Relation Mapping）/" class="archive-article-date">
-  <time datetime="2015-05-03T01:38:47.000Z" itemprop="datePublished">May 3</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/05/03/ORM（Object Relation Mapping）/">ORM（Object Relation Mapping）</a>
-    </h1>
+    <a href="/2015/12/10/NIO-Programing/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          NIO-Programing
+        
+      </div>
+    </a>
   
+  
+    <a href="/2015/12/03/IO-Contrast/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IO-Contrast</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">
