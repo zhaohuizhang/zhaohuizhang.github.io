@@ -65,6 +65,106 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-how-to-remove-duplicates-elements-from-arraylist-in-java" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/" class="article-date">
+  <time datetime="2015-05-15T05:24:29.000Z" itemprop="datePublished">2015-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/">How to remove duplicates elements from ArrayList in Java</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>How to Remove Duplicates from Array without using Java Collection API</p>
+<p>Read more: <a href="http://javarevisited.blogspot.com/2014/01/how-to-remove-duplicates-from-array-java-without-collection-API.html#ixzz3aD7lSsgh" target="_blank" rel="external">http://javarevisited.blogspot.com/2014/01/how-to-remove-duplicates-from-array-java-without-collection-API.html#ixzz3aD7lSsgh</a></p>
+<pre>import java.util.Arrays;
+
+public class RemoveDupFromArray{
+    private static void main(String args[]){
+**         int**[][] test = **new** **int**[][]{
+            {**1**, **1**, **2**, **2**, **3**, **4**, **5**},
+            {**1**, **1**, **1**, **1**, **1**, **1**, **1**},
+            {**1**, **2**, **3**, **4**, **5**, **6**, **7**},
+            {**1**, **2**, **1**, **1**, **1**, **1**, **1**},};
+
+         for (int[] input : test){
+             System.out.println("Array with Duplicates :"+Arrays.toString(input));
+             System.out.println("Array without Duplicates :"+ Arrays.toString(removeDuplicates(input)));
+         }
+    }
+   public static int[] removeDuplicates(int[] input){
+
+       Arrays.sort(input);
+       int[] result =  new int[input.length];
+       int pre = input[0];
+       result[0] = pre;
+       for(int i=1;i&lt;input.length;i++){
+        int ch = input[i];
+        if(pre != ch){
+            result[i] = ch
+        }
+        pre = ch;
+    }
+      return result;
+
+   }
+}</pre>
+Use Collection API
+<pre>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+public class RemoveDuplicatesFromArray{
+
+public static void main(String[] args){
+List&lt;String&gt; duplicatesList = (List&lt;String&gt;) Arrays.asList("Android" , "Android", "iOS", "Windows mobile");
+
+System.out.println("size:"+duplicatesList.size());
+System.out.println("String:"+duplicatesList);
+
+LinkedHashSet&lt;String&gt; linkHash = new LinkedHashSet&lt;String&gt;(duplicatesList);
+
+List&lt;String&gt; removDup = new ArrayList&lt;String&gt;(linkHash);
+
+System.out.println("size:"+removDup.size());
+System.out.println("String:"+removDup);
+
+}
+
+}
+</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/how-to-remove-duplicates-elements-from-arraylist-in-java/" data-id="cilt153x60037c0tjm55j25qm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-死锁及如何避免" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/05/15/死锁及如何避免/" class="article-date">
@@ -118,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/15/死锁及如何避免/" data-id="ciipif6iw000prwtjmkn6ghcg" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/死锁及如何避免/" data-id="cilt153v6000pc0tjellzbkh8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deadlock/">Deadlock</a></li></ul>
@@ -171,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/15/Path ClassPath 的区别/" data-id="ciipif6m60053rwtj4i6hc2v4" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/Path ClassPath 的区别/" data-id="cilt153yh0056c0tj57sgq6qs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Classpath/">Classpath</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Path/">Path</a></li></ul>
@@ -213,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/15/XML Schema 和 DTD的区别/" data-id="ciipif6lh003qrwtj3jupp6zy" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/XML Schema 和 DTD的区别/" data-id="cilt153xp003tc0tjc3fqx62t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTD/">DTD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schema/">Schema</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li></ul>
@@ -256,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/15/fibonacci/" data-id="ciipif6l6003hrwtjzzmwsmqk" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/15/fibonacci/" data-id="cilt153xe003kc0tjfly9vy31" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/14/java-object-method/" data-id="ciipif6kh002lrwtjaiwqd3ja" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/14/java-object-method/" data-id="cilt153wo002lc0tj7ebu0pkt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="ciipif6n4006prwtjtv87lxvk" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/13/Abstract 与 Interface的区别/" data-id="cilt153zi006sc0tjm0erxekp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Abstract/">Abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interface/">Interface</a></li></ul>
@@ -536,7 +636,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/12/对象入门/" data-id="ciipif6j60010rwtjf72drl4k" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/12/对象入门/" data-id="cilt153vg0010c0tj0u5mckaw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li></ul>
@@ -608,7 +708,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/11/HashMap 和 HashTable的区别/" data-id="ciipif6n2006jrwtjfj5f5ra2" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/11/HashMap 和 HashTable的区别/" data-id="cilt153zf006mc0tj60ik8gyq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hashmap/">Hashmap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hashtable/">hashtable</a></li></ul>
@@ -778,112 +878,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/08/socket blocking noblocking IO model/" data-id="ciipif6jy001srwtj6a5kbhy4" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/05/08/socket blocking noblocking IO model/" data-id="cilt153w2001sc0tj0onkw57r" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hibernate 数据查询" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/07/Hibernate 数据查询/" class="article-date">
-  <time datetime="2015-05-07T01:19:25.000Z" itemprop="datePublished">2015-05-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hibernate/">Hibernate</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/07/Hibernate 数据查询/">Hibernate 数据查询</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HQL（Hibernate Query Language, HQL），它是Hibernate的面向对象的查询语言。</p>
-<p>1，创建查询对象<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Query</span> <span class="keyword">query</span> = session.createQuery(<span class="string">"from Dept"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>2，执行查询列出结果<br>(1)列出所有的结果</p>
-<p>调用Query对象的list()方法可以返回所有结果的列表。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">List</span>&lt;Dept&gt; depts = <span class="keyword">query</span>.<span class="keyword">list</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(Dept dept:depts)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>(2)列出单个结果<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Query</span> <span class="keyword">query</span> = session.createQuery(<span class="string">"from Dept where id=1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">query</span>.setMaxResults(1);</span><br><span class="line"></span><br><span class="line">Dept dept = (Dept) <span class="keyword">query</span>.uniqueResult();</span><br></pre></td></tr></table></figure></p>
-<p>(3)迭代访问结果<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Query</span> <span class="keyword">query</span>  = session.createQuery(<span class="string">"from Dept"</span>);</span><br><span class="line"></span><br><span class="line">Iterator&lt;Dept&gt; it = <span class="keyword">query</span>.iterate();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(it.next())&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>3，HQL基本语法</p>
-<p>(1)选择要查询的持久化类<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span>hql = <span class="string">"from Dept as d"</span></span><br></pre></td></tr></table></figure></p>
-<p>Dept为持久化类名。区分大小写.</p>
-<p>(2)投影查询</p>
-<p>与SQL语句类似，HQL可以只查询出某一个或某几个属性，用select关键字来指定查询的属性名。Select id,name from Dept;</p>
-<p>可以构造两个属性参数的构造函数。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public DeptRow(Long <span class="property">id</span>, String <span class="property">name</span>)&#123;&#125;</span><br><span class="line"></span><br><span class="line">Select new DeptRow(<span class="property">id</span>,<span class="property">name</span>) <span class="keyword">from</span> Dept;</span><br></pre></td></tr></table></figure></p>
-<p>(3)where 条件句</p>
-<ul>
-<li>比较运算：=、&lt;、&gt;、 =、等等</li>
-<li>范围运算：in、 not in、 between、 not between</li>
-<li>字符串模式匹配：like，”%” 代表任意长度的字符串，代表任意单个字符。</li>
-<li>逻辑运算符：and、or、not</li>
-<li>is empty、is not empty</li>
-<li>upper(s), lower(s),concat(s1,s2),substring(s,offset,length),trim(s),length(s),locate(search,s,offset),abs(n),sqrt(n),mod(dividend,divisor)求余数,size(c)返回集合元素的个数,current_date(),current_time(),current_timestamp(),year(d)month(d)day(d)hour(d)minute(d)second(d)</li>
-</ul>
-<p>(4)绑定查询参数</p>
-<p>动态绑定查询参数或者字符串拼接（又注入的安全问题）</p>
-<p>按照参数名字绑定，“:”<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> hql = <span class="string">"from Dept where id&gt; :id and name like :likename"</span>;</span><br><span class="line"><span class="built_in">List</span>&lt;Dept&gt; depts = session<span class="built_in">.</span>createQuery(hql)<span class="built_in">.</span>setLong(<span class="string">"id"</span>, <span class="literal">new</span> Long(inputId))<span class="built_in">.</span>setString(<span class="string">"likename"</span>, <span class="string">"%"</span>+inputName+<span class="string">"%"</span>)<span class="built_in">.</span><span class="built_in">list</span>();</span><br></pre></td></tr></table></figure></p>
-<p>按参数位置绑定，”?”<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String hql = <span class="string">"from Dept where id&gt; ? and name like ?"</span>;</span><br><span class="line">List&lt;Dept&gt; depts = session.createQuery(hql).setLong(<span class="number">0</span>, <span class="keyword">new</span> Long(inputId)).setString(<span class="number">1</span>, <span class="string">"%"</span>+inputName+<span class="string">"%"</span>).<span class="built_in">list</span>();</span><br></pre></td></tr></table></figure></p>
-<p>(5)distinct过滤重复值</p>
-<p>(6)聚集函数</p>
-<ul>
-<li>count()</li>
-<li>avg()</li>
-<li>sum()</li>
-<li>max()</li>
-<li>min()<br>(7) order by 对结果排序</li>
-</ul>
-<p>默认是升序，关键字asc表示升序，desc表示降序。</p>
-<p>(8)group by对记录分组</p>
-<p>(9)having 对分组后数据进行条件过滤<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String hql = "<span class="operator"><span class="keyword">select</span> <span class="keyword">e</span>.dept.<span class="keyword">name</span> <span class="keyword">from</span> Employee <span class="keyword">e</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">e</span>.dept <span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">e</span>)&gt;<span class="number">1</span><span class="string">"</span></span></span><br></pre></td></tr></table></figure></p>
-<p>4，分页查询</p>
-<p>当批量查询数据时，如果数据量非常大，怎么办？</p>
-<ul>
-<li>setFistResult(int firstResult):设置从第几条数据开始查询</li>
-<li>setMaxResults(int maxResult)：设置每次查询的返回的最大对象数<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static <span class="type">List</span>&lt;<span class="type">Employee</span>&gt; findEmployees(<span class="built_in">int</span> pageNo, <span class="built_in">int</span> pageSize)&#123;</span><br><span class="line">    <span class="type">SessionFactory</span> sessionFactory = new <span class="type">Configuration</span><span class="literal">()</span>.configure<span class="literal">()</span>.buildSessionFactory<span class="literal">()</span>;</span><br><span class="line">    <span class="type">Session</span> session = sessionFactory.openSession<span class="literal">()</span>;</span><br><span class="line">    session.beginTransaction<span class="literal">()</span>;</span><br><span class="line">    <span class="type">String</span> hql = <span class="string">"from Employee"</span></span><br><span class="line">    <span class="type">List</span>&lt;<span class="type">Employee</span>&gt; empls = session.<span class="type">CreateQuery</span>(hql).setFirstResult((pageNo-<span class="number">1</span>)*pageSize).setMaxResults(pageSize).<span class="built_in">list</span><span class="literal">()</span>;</span><br><span class="line">    session.getTransaction<span class="literal">()</span>.commit<span class="literal">()</span>;</span><br><span class="line">    session.close<span class="literal">()</span>;</span><br><span class="line">    return empls;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>5，批量修改和删除</p>
-<p>Hibernate3中新增update 和delete语句。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query query = session.createQuery("<span class="operator"><span class="keyword">delete</span> Dept <span class="keyword">d</span> <span class="keyword">where</span> <span class="keyword">d</span>.<span class="keyword">name</span> <span class="keyword">like</span> :likename<span class="string">").setString("</span>likename<span class="string">","</span>%三%<span class="string">");</span><br><span class="line">int count = query.executeUpdate();</span></span></span><br></pre></td></tr></table></figure></p>
-<p>6，连接查询</p>
-<p>类似于SQL，支持连接查询<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inner <span class="function"><span class="title">join</span><span class="params">(内连接)</span></span>：可简写为join。列出这些相关联的实体类中满足连接条件的对象。</span><br><span class="line"><span class="attribute">left</span> outer <span class="function"><span class="title">join</span><span class="params">(左连接)</span></span>：可简写为<span class="attribute">left</span> join。不仅列出来这些相关联实体类中满足连接条件的对象，而且还包含连接左边的实体类中所有符合搜索条件(where 条件或者having 条件)</span><br><span class="line"><span class="attribute">right</span> outer <span class="function"><span class="title">join</span><span class="params">(右连接)</span></span>：<span class="attribute">right</span> join。不仅列出来这些相关联实体类中满足连接条件的对象，而且还包含连接右边的实体类中所有符合搜索条件(where 条件或者having 条件)</span><br><span class="line">full <span class="function"><span class="title">join</span><span class="params">(全连接)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>7，抓取连接查询</p>
-<p>fetch来做数据抓取，所谓抓取，是指从数据库加载一个对象的数据时，同时把它所关联的对象和集合的数据都一起加载出来，以便减少SQL语句的数据，从而提高查询效率。<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> hql = <span class="string">"FROM Dept d LEFT JOIN FETCH d.employees e WHERE d.name LIKE '%web%'"</span>;</span><br><span class="line"><span class="built_in">List</span>&lt;Dept&gt; <span class="built_in">list</span> = session<span class="built_in">.</span>createQuery(hql)<span class="built_in">.</span><span class="built_in">list</span>();</span><br><span class="line"><span class="built_in">Set</span>&lt;Dept&gt; depts = <span class="literal">new</span> HashSet&lt;Dept&gt; (<span class="built_in">list</span>);</span><br><span class="line">f<span class="subst">or</span>(Dept dept : depts)&#123;</span><br><span class="line">f<span class="subst">or</span>(Employee empl : dept<span class="built_in">.</span>getEmployees())&#123;</span><br><span class="line">empl<span class="built_in">.</span>getLoginName();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>8，子查询<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> hql = <span class="string">"FROM Dept d WHERE (SELECT COUNT(E) FROM d.employees e)&gt;1"</span>;</span><br><span class="line"><span class="built_in">List</span>&lt;Dept&gt; <span class="built_in">list</span> = session<span class="built_in">.</span>createQuery(hql)<span class="built_in">.</span><span class="built_in">list</span>();</span><br><span class="line">f<span class="subst">or</span>(Dept dept : <span class="built_in">list</span>)&#123;</span><br><span class="line">dept<span class="built_in">.</span>getName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>9，命名查询</p>
-<p>命名查询是指将HQL查询语句编写在映射文件里，在程序中通过Session的getNameQuery()方法来获取。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">hibernate-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"org.napu.Dept"</span>&gt;</span><span class="tag">&lt;/<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">query</span> <span class="attribute">name</span>=<span class="value">"findDeptsByCondition"</span>&gt;</span></span><br><span class="line"><span class="cdata">&lt;![CDATA[from Dept d where d.name like :likename]]&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">query</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span></span><br><span class="line">List<span class="tag">&lt;<span class="title">Dept</span>&gt;</span> depts = session.getNamedQuery("findEdeptsByCondition").setString("likeName","%a%").list();</span><br></pre></td></tr></table></figure></p>
-<h2 id="Criteria_Queries">Criteria Queries</h2><p>Criteria叫标准化条件查询，它是一种比HQL更加面向对象的查询语言。QBC（Query By Criteria），特别适当在运行时才能创建查询条件的查询。程序开发时不知道，程序运行时才知道。</p>
-<h3 id="Native_SQL_Queries">Native SQL Queries</h3><p>1，实体查询<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">String</span> sql = <span class="string">"SELECT * FROM dept WHERE id &gt; :id limit 3"</span>;</span><br><span class="line"><span class="type">List</span>&lt;<span class="type">Dept</span>&gt; depts = session.createSQLQuery(sql).addEntity(<span class="type">Dept</span>.class).setLong(“id”,<span class="number">1</span>).list();</span><br><span class="line"><span class="keyword">for</span>(<span class="type">Dept</span> dept : depts)&#123;</span><br><span class="line">dept.getName();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//_____</span><br><span class="line"><span class="type">String</span> sql = <span class="string">"Select &#123;d.*&#125;, &#123;e.*&#125; FROM dept d JOIN employee e ON d.id = e.dept_id"</span>;</span><br><span class="line"><span class="type">List</span> list = session.<span class="type">CreateSQLQuery</span>(sql).addEntity(<span class="string">"d"</span>,<span class="type">Dept</span>.class).addEntity(<span class="string">"e"</span>,<span class="type">Employee</span>.class).list();</span><br><span class="line"><span class="keyword">for</span>( <span class="type">Iterator</span> it = list.<span class="keyword">iterator</span>(); it.hasNext();)&#123;</span><br><span class="line">    <span class="type">Object</span>[] obj = (<span class="type">Object</span>[]) <span class="keyword">iterator</span>.next();</span><br><span class="line">    <span class="type">Dept</span> dept = (<span class="type">Dept</span>)obj[<span class="number">0</span>];</span><br><span class="line">    <span class="type">Employee</span> empl = (<span class="type">Employee</span>) obj[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2，标量查询</p>
-<p>将查询结果转化为标量值。.addScalar(“countNum”,Hibernate.LONG)</p>
-<p>3，定义成命名查询来使用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">sql-query</span> <span class="attribute">name</span>=<span class="value">"findDeptAndEmployee"</span>&gt;</span></span><br><span class="line"><span class="cdata">&lt;![CDATA[Select &#123;d.*&#125;, &#123;e.*&#125; FROM dept d JOIN employee e ON d.id = e.dept_id]]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">return</span> <span class="attribute">alias</span>=<span class="value">"d"</span> <span class="attribute">class</span>=<span class="value">"org.napu.Dept"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">return</span> <span class="attribute">alias</span>=<span class="value">"e"</span> <span class="attribute">class</span>=<span class="value">"org.napu.Employee"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">sql-query</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="调用存储过程">调用存储过程</h3><p>1，编写过程<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="function"><span class="keyword">procedure</span> <span class="title">select_depts_by_likename</span><span class="params">(<span class="keyword">in</span> likeName varchar(20)</span>)</span><br><span class="line"><span class="title">begin</span></span><br><span class="line">    <span class="title">select</span> * <span class="title">from</span> <span class="title">dept</span> <span class="title">where</span> <span class="title">name</span> <span class="title">like</span> <span class="title">likeName</span>;</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure></p>
-<p>2，把过程映射为命名查询<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;sql-query <span class="property">name</span>=<span class="string">"findDeptAndEmployee"</span>&gt;</span><br><span class="line">&lt;<span class="constant">return</span> <span class="type">alias</span>=<span class="string">"d"</span> <span class="type">class</span>=<span class="string">"org.napu.Dept"</span>&gt;</span><br><span class="line">&lt;<span class="constant">return</span>-<span class="keyword">property</span> <span class="property">name</span>=<span class="string">"id"</span> column=<span class="string">"id"</span>/&gt;</span><br><span class="line">&lt;<span class="constant">return</span>-<span class="keyword">property</span> <span class="property">name</span>=<span class="string">"name"</span> column=<span class="string">"name"</span>/&gt;</span><br><span class="line">&lt;<span class="constant">return</span>-<span class="keyword">property</span> <span class="property">name</span>=<span class="string">"createdTime"</span> column=<span class="string">"created_time"</span>/&gt;</span><br><span class="line">&lt;/<span class="constant">return</span>&gt;</span><br><span class="line">&#123;call select_depts_by_likename(:likeName)&#125;</span><br><span class="line">&lt;/sql-query&gt;</span><br></pre></td></tr></table></figure></p>
-<p>3，调用过程<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;Dept&gt; depts = session<span class="built_in">.</span>getNamedQuery(<span class="string">"findEdeptsByCondition"</span>)<span class="built_in">.</span>setString(<span class="string">"likeName"</span>,<span class="string">"%a%"</span>)<span class="built_in">.</span><span class="built_in">list</span>();</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/05/07/Hibernate 数据查询/" data-id="ciipif6mw0064rwtjtbhq7kb4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HQL/">HQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QBC/">QBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Query/">Query</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stored-procedure/">stored procedure</a></li></ul>
-
     </footer>
   </div>
   
@@ -893,7 +890,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -913,7 +910,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Singleton/">Java-Singleton</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Singleton/">Java-Singleton</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -922,7 +919,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 16px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/Java-Singleton/" style="font-size: 10px;">Java-Singleton</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 18px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12px;">网络爬虫</a>
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 16px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Singleton/" style="font-size: 10px;">Java-Singleton</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 18px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12px;">网络爬虫</a>
     </div>
   </div>
 
@@ -931,7 +928,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -941,6 +938,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/03/15/java-environment/">java-environment</a>
+          </li>
         
           <li>
             <a href="/2015/12/28/Singleton/">Singleton</a>
@@ -958,10 +959,6 @@
             <a href="/2015/12/09/JAVA-NIO-Netty/">JAVA-NIO-Netty</a>
           </li>
         
-          <li>
-            <a href="/2015/12/03/IO-Contrast/">IO-Contrast</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -974,7 +971,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Zhaohui zhang<br>
+      &copy; 2016 Zhaohui zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

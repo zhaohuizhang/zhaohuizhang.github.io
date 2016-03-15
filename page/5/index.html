@@ -65,6 +65,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PYTHON YIELD 使用浅析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/PYTHON YIELD 使用浅析/" class="article-date">
+  <time datetime="2015-04-26T20:15:54.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/PYTHON YIELD 使用浅析/">PYTHON YIELD 使用浅析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="dwc-exp-a" class="dw-article-sidebar dw-bluemix"><br><div id="ibm-leadspace-body"><br><br>### <a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/" target="_blank" rel="external">PYTHON YIELD </a><br><br></div><br><div id="dw-summary-area" class="dw-summary-columns"><br><div class="ibm-col-6-4"><br><br>初学 Python 的开发者经常会发现很多 Python 函数中用到了 yield 关键字，然而，带有 yield 的函数执行流程却和普通函数不一样，yield 到底用来做什么，为什么要设计 yield ？本文将由浅入深地讲解 yield 的概念和用法，帮助读者体会 Python 里 yield 简单而强大的功能。<br><br></div><br></div><br></div><br>您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？<br><br>我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。<br><br>## 如何生成斐波那契數列<br><br>斐波那契（Fibonacci）數列是一个非常简单的递归数列，除第一个和第二个数外，任意一个数都可由前两个数相加得到。用计算机程序输出斐波那契數列的前 N 个数是一个非常简单的问题，许多初学者都可以轻易写出如下函数：<br><br>##### 清单 1. 简单输出斐波那契數列前 N 个数<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        print b<br>        a, b = b, a + b<br>        n = n + 1</pre><br></div><br>执行 fab(5)，我们可以得到如下输出：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; fab(5)<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>结果没有问题，但有经验的开发者会指出，直接在 fab 函数中用 print 打印数字会导致该函数可复用性较差，因为 fab 函数返回 None，其他函数无法获得该函数生成的数列。<br><br>要提高 fab 函数的可复用性，最好不要直接打印出数列，而是返回一个 List。以下是 fab 函数改写后的第二个版本：<br><br>##### 清单 2. 输出斐波那契數列前 N 个数第二版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    L = []<br>    while n &lt; max:<br>        L.append(b)<br>        a, b = b, a + b<br>        n = n + 1<br>    return L</pre><br></div><br>可以使用如下方式打印出 fab 函数返回的 List：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>改写后的 fab 函数通过返回 List 能满足复用性的要求，但是更有经验的开发者会指出，该函数在运行中占用的内存会随着参数 max 的增大而增大，如果要控制内存占用，最好不要用 List<br><br>来保存中间结果，而是通过 iterable 对象来迭代。例如，在 Python2.x 中，代码：<br><br>##### 清单 3. 通过 iterable 对象来迭代<br><br><div class="codesection"><br><pre class="displaycode"> for i in range(1000): pass</pre><br></div><br>会导致生成一个 1000 个元素的 List，而代码：<br><div class="codesection"><br><pre class="displaycode"> for i in xrange(1000): pass</pre><br></div><br>则不会生成一个 1000 个元素的 List，而是在每次迭代中返回下一个数值，内存空间占用很小。因为 xrange 不返回 List，而是返回一个 iterable 对象。<br><br>利用 iterable 我们可以把 fab 函数改写为一个支持 iterable 的 class，以下是第三个版本的 Fab：<br><br>##### 清单 4. 第三个版本<br><br><div class="codesection"><br><pre class="displaycode"> class Fab(object):<br><br>    def <strong>init</strong>(self, max):<br>        self.max = max<br>        self.n, self.a, self.b = 0, 0, 1<br><br>    def <strong>iter</strong>(self):<br>        return self<br><br>    def next(self):<br>        if self.n &lt; self.max:<br>            r = self.b<br>            self.a, self.b = self.b, self.a + self.b<br>            self.n = self.n + 1<br>            return r<br>        raise StopIteration()</pre><br></div><br>Fab 类通过 next() 不断返回数列的下一个数，内存占用始终为常数：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in Fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>然而，使用 class 改写的这个版本，代码远远没有第一版的 fab 函数来得简洁。如果我们想要保持第一版 fab 函数的简洁性，同时又要获得 iterable 的效果，yield 就派上用场了：<br><br>##### 清单 5. 使用 yield 的第四版<br><br><div class="codesection"><br><pre class="displaycode"> def fab(max):<br>    n, a, b = 0, 0, 1<br>    while n &lt; max:<br>        yield b<br>        # print b<br>        a, b = b, a + b<br>        n = n + 1<br><br>‘’’</pre><br></div><br>第四个版本的 fab 和第一版相比，仅仅把 print b 改为了 yield b，就在保持简洁性的同时获得了 iterable 的效果。<br><br>调用第四版的 fab 和第二版的 fab 完全一致：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; for n in fab(5):<br> …     print n<br> …<br> 1<br> 1<br> 2<br> 3<br> 5</pre><br></div><br>简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。<br><br>也可以手动调用 fab(5) 的 next() 方法（因为 fab(5) 是一个 generator 对象，该对象具有 next() 方法），这样我们就可以更清楚地看到 fab 的执行流程：<br><br>##### 清单 6. 执行流程<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f = fab(5)<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 1<br> &gt;&gt;&gt; f.next()<br> 2<br> &gt;&gt;&gt; f.next()<br> 3<br> &gt;&gt;&gt; f.next()<br> 5<br> &gt;&gt;&gt; f.next()<br> Traceback (most recent call last):<br>  File “&lt;stdin&gt;”, line 1, in &lt;module&gt;<br> StopIteration</pre><br></div><br>当函数执行结束时，generator 自动抛出 StopIteration 异常，表示迭代完成。在 for 循环里，无需处理 StopIteration 异常，循环会正常结束。<br><br>我们可以得出以下结论：<br><br>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。<br><br>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br><br>如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断：<br><br>##### 清单 7. 使用 isgeneratorfunction 判断<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from inspect import isgeneratorfunction<br> &gt;&gt;&gt; isgeneratorfunction(fab)<br> True</pre><br></div><br>要注意区分 fab 和 fab(5)，fab 是一个 generator function，而 fab(5) 是调用 fab 返回的一个 generator，好比类的定义和类的实例的区别：<br><br>##### 清单 8. 类的定义和类的实例<br><br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; import types<br> &gt;&gt;&gt; isinstance(fab, types.GeneratorType)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), types.GeneratorType)<br> True</pre><br></div><br>fab 是无法迭代的，而 fab(5) 是可迭代的：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; from collections import Iterable<br> &gt;&gt;&gt; isinstance(fab, Iterable)<br> False<br> &gt;&gt;&gt; isinstance(fab(5), Iterable)<br> True</pre><br></div><br>每次调用 fab 函数都会生成一个新的 generator 实例，各实例互不影响：<br><div class="codesection"><br><pre class="displaycode"> &gt;&gt;&gt; f1 = fab(3)<br> &gt;&gt;&gt; f2 = fab(5)<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 1<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 1<br> &gt;&gt;&gt; print ‘f1:’, f1.next()<br> f1: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 2<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 3<br> &gt;&gt;&gt; print ‘f2:’, f2.next()<br> f2: 5</pre><br></div><br><div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="return_的作用">return 的作用</h2><p>在一个 generator function 中，如果没有 return，则默认执行至函数完毕，如果在执行过程中 return，则直接抛出 StopIteration 终止迭代。</p>
+<div class="ibm-alternate-rule"></div>
+
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/#ibm-pcon" target="_blank" rel="external">回页首</a></p>
+<h2 id="另一个例子">另一个例子</h2><p>另一个 yield 的例子来源于文件读取。如果直接对文件对象调用 read() 方法，会导致不可预测的内存占用。好的方法是利用固定长度的缓冲区来不断读取文件内容。通过 yield，我们不再需要编写读文件的迭代类，就可以轻松实现文件读取：</p>
+<h5 id="清单_9-_另一个_yield_的例子">清单 9. 另一个 yield 的例子</h5><p><div class="codesection"></div></p>
+<p><pre class="displaycode"> def read_file(fpath):<br>    BLOCK_SIZE = 1024<br>    with open(fpath, ‘rb’) as f:<br>        while True:<br>            block = f.read(BLOCK_SIZE)<br>            if block:<br>                yield block<br>            else:<br>                return</pre><br><br>以上仅仅简单介绍了 yield 的基本概念和用法，yield 在 Python 3 中还有更强大的用法，我们会在后续文章中讨论。</p>
+<p>注：本文的代码均在 Python 2.7 中调试通过</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaohuizhang.github.io/2015/04/27/PYTHON YIELD 使用浅析/" data-id="cilt153yj005cc0tjuufgjlx1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-yield/">python yield</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Sublime Text 2 插件安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/04/27/Sublime Text 2 插件安装/" class="article-date">
@@ -136,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/27/Sublime Text 2 插件安装/" data-id="ciipif6ll003yrwtjysc0eabi" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/27/Sublime Text 2 插件安装/" data-id="cilt153xu0041c0tj2phh3t2x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a></li></ul>
@@ -184,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/26/python-scrapymongodb/" data-id="ciipif6k1001vrwtj6mpaq495" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/26/python-scrapymongodb/" data-id="cilt153w5001vc0tjxs9cp28z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/">Scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crawler/">crawler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
@@ -258,7 +311,7 @@ hello is component of test
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/24/Struts 标签/" data-id="ciipif6lq0048rwtjgdci846p" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/24/Struts 标签/" data-id="cilt153y0004bc0tjhlkkcj12" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tag/">Tag</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
@@ -331,7 +384,7 @@ moduleCofing.freeze();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/23/struts-components/" data-id="ciipif6jq001grwtjpss53piu" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/23/struts-components/" data-id="cilt153vv001gc0tjfqn2yaeh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/component/">component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
@@ -391,7 +444,7 @@ moduleCofing.freeze();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/22/Struts 工作原理/" data-id="ciipif6lv004drwtj323dm7cb" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/Struts 工作原理/" data-id="cilt153y2004gc0tje3k6542s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-principal/">work principal</a></li></ul>
@@ -446,7 +499,7 @@ moduleCofing.freeze();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/22/struts-login-demo/" data-id="ciipif6jh001brwtj5pcappp2" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/22/struts-login-demo/" data-id="cilt153vs001bc0tjtdpu045s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Login/">Login</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
@@ -502,7 +555,7 @@ moduleCofing.freeze();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Struts （V-1.3.8） 应用概述/" data-id="ciipif6lo0043rwtj7w2r63mz" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Struts （V-1.3.8） 应用概述/" data-id="cilt153xw0046c0tjy8kvnxdx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/">MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/struts/">struts</a></li></ul>
@@ -612,7 +665,7 @@ moduleCofing.freeze();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Python 工具总结/" data-id="ciipif6m2004qrwtjzd71kmtx" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/21/Python 工具总结/" data-id="cilt153yb004tc0tjmze0mv4g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全栈工程师/">全栈工程师</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文本处理/">文本处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学计算/">科学计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
@@ -696,7 +749,7 @@ while(True):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/20/网络爬虫/" data-id="ciipif6ii0009rwtjs81tg9je" class="article-share-link">Share</a>
+      <a data-url="http://zhaohuizhang.github.io/2015/04/20/网络爬虫/" data-id="cilt153um0009c0tjhd0j3n1e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-rq/">python-rq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
@@ -708,93 +761,9 @@ while(True):
 
 
   
-    <article id="post-python scrapy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/14/python scrapy/" class="article-date">
-  <time datetime="2015-04-14T05:41:23.000Z" itemprop="datePublished">2015-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/14/python scrapy/">python scrapy</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="python网络爬虫入门"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MjEyNTA5Mw==&amp;mid=206006839&amp;idx=1&amp;sn=568201291c68761da6cf873c1a7c5ef4&amp;scene=1&amp;key=2e5b2e802b7041cff91e825029c4e8dffd7e57e0850ce3f6ceddf95fa83fc9ef1a791f79976a57d5d12b17ba4373880d&amp;ascene=1&amp;uin=NTQ2NzM3NjAw&amp;devicetype=webwx&amp;version=70000001&amp;pass_ticket=JB%2FEpXYFNKiCkydl90TMnZcFgfueNnKbRfxBhEiBP5NJ5bt3KKdkREjW664WzO%2Fs" title="python网络爬虫入门" target="_blank" rel="external">python网络爬虫入门</a></h1><h2 id="学习要求"><strong>学习要求</strong></h2><ol>
-<li>基本的爬虫工作原理；</li>
-<li>基本的http抓取工具，scrapy</li>
-<li>Bloom Filter: Bloom</li>
-<li>分布式爬虫：<a href="https://github.com/nvie/rq" target="_blank" rel="external">python-rq</a></li>
-<li>rq和Scrapy的结合：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external">scrapy-redis</a></li>
-<li>后续处理，网页分析：<a href="https://github.com/grangier/python-goose" target="_blank" rel="external">python-goose</a></li>
-</ol>
-<h3 id="爬虫的工作原理">爬虫的工作原理</h3><p>以人民日报为例：<a href="http://www.renminribao.com" target="_blank" rel="external">http://www.renminribao.com</a></p>
-<p>基本流程如下：伪代码</p>
-<pre>import Queue
-
-initial_page = "http://www.renminribao.com"
-url_open = Queue.Queue()
-seen = set()
-seen.insert(initial_page)
-url_queue.put(initial_page)
-
-while(True):
-    if url_queue.size()&gt;0:
-        current_url = url_queue.get()
-        store(current_url)
-        for next_url in extract_urls(current_url):
-            if next_url not in seen:
-                seen.put(next_url)
-                url_queue.put(next_url)
-            else:
-                break</pre>
-
-<h3 id="效率">效率</h3><p>N个网络链接，判重的复杂度N*log(N)，python的set实现是hash，太慢</p>
-<p>通常的判重，Bloom Filter。它是一种hash的方法，但是它的特点是，它可以使用固定的内存（不随URL的数量而增长）以O(1)的效率判定URL是否已经在set中。<a href="http://billmill.org/bloomfilter-tutorial/" target="_blank" rel="external">实例</a></p>
-<h3 id="集群化抓取">集群化抓取</h3><p>slave master模式，url_queue 放到master上，所有的slave都可以通过网络跟master通信，每当一个slave完成下载一个网页，就向master请求一个新的网页来抓取，每次slave新抓取到一个网页，就把这个网页上所有链接送到master的queue里去。同样，bloom filter也放到master上，但是master只发送确定没有被访问过的URL给slave。Bloom Filter放到master的内存里，而被访问过的URL放到master上的Redis里，这样保证所有操作都是O(1)，<a href="http://redis.io/documentation" target="_blank" rel="external">LINSERT – Redis</a></p>
-<p>在各个slave上装好scrapy，在master装好Redis和rq作为分布式队列。</p>
-<p><pre>#slave.py<br>current_url = request_from_master()<br>to_send = []<br>for next_url in extract_urls(current_url):<br>    to_send.append(next_url)<br>store(current_url)<br>send_to_master(to_send)</pre></p>
-<p>#master.py</p>
-<p>distributed_queue = DistributedQueue()<br>bf = BloomFilter()</p>
-<p>initial_pages = ‘www.renminribao.com’</p>
-<p>while(True):<br>    if request == ‘GET’<br>        if distributed_queue.size()&gt;0:<br>            send(distributed_queue.get())<br>        else:<br>            break<br>    elif request == ‘POST’<br>        bf.put(request.url)<br>已经有现成的例子：<a href="https://github.com/darkrho/scrapy-redis" target="_blank" rel="external"><span class="author">arkrho</span><span class="path-divider">/</span><strong>scrapy-redis</strong></a></p>
-<h3 id="展望及后处理">展望及后处理</h3><p>1，有效地存储（数据库应该怎样安排）</p>
-<p>2，有效的判重（网页内容判重）</p>
-<p>3，有效的信息提取（抽取有用信息）</p>
-<p>4，及时更新（预测网页多久更新一次）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaohuizhang.github.io/2015/04/14/python scrapy/" data-id="ciipif6k60024rwtjrw4mjk9a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/srcapy/">srcapy</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -814,7 +783,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Singleton/">Java-Singleton</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Abstract/">Abstract</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bloom-Filter/">Bloom Filter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classpath/">Classpath</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collections/">Collections</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/">Configuration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deadlock/">Deadlock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Duplicate-from-Array/">Duplicate from Array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-migrate/">Flask migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HQL/">HQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hashmap/">Hashmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interface/">Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Singleton/">Java-Singleton</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaIO/">JavaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Login/">Login</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/">OOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Path/">Path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QBC/">QBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query/">Query</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/">Scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text2-Plugins-install/">Sublime Text2 Plugins install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tiles/">Tiles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokens/">Tokens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validation/">Validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/component/">component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/concurrent/">concurrent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawler/">crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hashtable/">hashtable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaIO/">javaIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiThread/">multiThread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-yield/">python yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-rq/">python-rq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/srcapy/">srcapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stored-procedure/">stored procedure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-principal/">work principal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文乱码/">中文乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈工程师/">全栈工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式爬虫/">分布式爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象映射/">对象映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文本处理/">文本处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学计算/">科学计算</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络爬虫/">网络爬虫</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -823,7 +792,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 16px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/Java-Singleton/" style="font-size: 10px;">Java-Singleton</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 18px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12px;">网络爬虫</a>
+      <a href="/tags/Abstract/" style="font-size: 10px;">Abstract</a> <a href="/tags/Bloom-Filter/" style="font-size: 10px;">Bloom Filter</a> <a href="/tags/Classpath/" style="font-size: 10px;">Classpath</a> <a href="/tags/Collections/" style="font-size: 10px;">Collections</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Deadlock/" style="font-size: 10px;">Deadlock</a> <a href="/tags/Duplicate-from-Array/" style="font-size: 10px;">Duplicate from Array</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Flask-migrate/" style="font-size: 10px;">Flask migrate</a> <a href="/tags/HQL/" style="font-size: 10px;">HQL</a> <a href="/tags/Hashmap/" style="font-size: 10px;">Hashmap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 16px;">Hibernate</a> <a href="/tags/Interface/" style="font-size: 10px;">Interface</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Singleton/" style="font-size: 10px;">Java-Singleton</a> <a href="/tags/JavaIO/" style="font-size: 10px;">JavaIO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Login/" style="font-size: 10px;">Login</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/NIO/" style="font-size: 18px;">NIO</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Path/" style="font-size: 10px;">Path</a> <a href="/tags/QBC/" style="font-size: 10px;">QBC</a> <a href="/tags/Query/" style="font-size: 10px;">Query</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Scrapy/" style="font-size: 10px;">Scrapy</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sublime-Text2-Plugins-install/" style="font-size: 10px;">Sublime Text2 Plugins install</a> <a href="/tags/Tag/" style="font-size: 10px;">Tag</a> <a href="/tags/Tiles/" style="font-size: 10px;">Tiles</a> <a href="/tags/Tokens/" style="font-size: 10px;">Tokens</a> <a href="/tags/Validation/" style="font-size: 10px;">Validation</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/component/" style="font-size: 10px;">component</a> <a href="/tags/concurrent/" style="font-size: 10px;">concurrent</a> <a href="/tags/crawler/" style="font-size: 10px;">crawler</a> <a href="/tags/hashtable/" style="font-size: 10px;">hashtable</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaIO/" style="font-size: 10px;">javaIO</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/multiThread/" style="font-size: 10px;">multiThread</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/python-yield/" style="font-size: 10px;">python yield</a> <a href="/tags/python-rq/" style="font-size: 10px;">python-rq</a> <a href="/tags/srcapy/" style="font-size: 10px;">srcapy</a> <a href="/tags/stored-procedure/" style="font-size: 10px;">stored procedure</a> <a href="/tags/struts/" style="font-size: 20px;">struts</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/work-principal/" style="font-size: 10px;">work principal</a> <a href="/tags/中文乱码/" style="font-size: 10px;">中文乱码</a> <a href="/tags/全栈工程师/" style="font-size: 10px;">全栈工程师</a> <a href="/tags/分布式爬虫/" style="font-size: 10px;">分布式爬虫</a> <a href="/tags/对象映射/" style="font-size: 10px;">对象映射</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/文本处理/" style="font-size: 10px;">文本处理</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/科学计算/" style="font-size: 10px;">科学计算</a> <a href="/tags/网络爬虫/" style="font-size: 12px;">网络爬虫</a>
     </div>
   </div>
 
@@ -832,7 +801,7 @@ while(True):
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -842,6 +811,10 @@ while(True):
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/03/15/java-environment/">java-environment</a>
+          </li>
         
           <li>
             <a href="/2015/12/28/Singleton/">Singleton</a>
@@ -859,10 +832,6 @@ while(True):
             <a href="/2015/12/09/JAVA-NIO-Netty/">JAVA-NIO-Netty</a>
           </li>
         
-          <li>
-            <a href="/2015/12/03/IO-Contrast/">IO-Contrast</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -875,7 +844,7 @@ while(True):
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Zhaohui zhang<br>
+      &copy; 2016 Zhaohui zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
